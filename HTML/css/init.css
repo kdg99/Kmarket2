@@ -22,4 +22,18 @@ input, textarea {outline: none;}
     font-size: 0;
     cursor: pointer;
 }
-  
+
+/* main */
+main {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+main > section {
+    float: right;
+    width: 985px;
+    height: auto;
+    box-sizing: border-box;
+}
