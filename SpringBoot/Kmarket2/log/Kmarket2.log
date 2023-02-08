@@ -1398,3 +1398,6 @@ This generated password is for development use only. Your security configuration
 2023-02-08T11:05:38.754+09:00  INFO 12268 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2023-02-08T11:05:38.798+09:00  INFO 12268 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/Kmarket2'
 2023-02-08T11:05:38.810+09:00  INFO 12268 --- [restartedMain] kr.co.kmarket2.Kmarket2Application       : Started Kmarket2Application in 3.759 seconds (process running for 4.465)
+2023-02-08T11:05:44.334+09:00  INFO 12268 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/Kmarket2]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-08T11:05:44.335+09:00  INFO 12268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-08T11:05:44.336+09:00  INFO 12268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
