@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kmarket2.dao.ArticleDAO">
+
+	<insert id="insertArticle">
+	</insert>
+	
+	<select id="selectArticle" resultType="kr.co.kmarket2.vo.ArticleVO">
+	</select>
+	
+	<select id="selectArticles" resultType="kr.co.kmarket2.vo.ArticleVO">
+	</select>
+	
+	<update id="updateArticle">
+	</update>
+	
+	<delete id="deleteArticle">
+	</delete>
+
+</mapper>
