@@ -22,7 +22,7 @@ public class MyBatisConfig {
 		
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/**/*.xml"));
         sqlSessionFactoryBean.setTypeAliasesPackage("kr.co.kmarket2.vo");
 		
 		return sqlSessionFactoryBean.getObject();
