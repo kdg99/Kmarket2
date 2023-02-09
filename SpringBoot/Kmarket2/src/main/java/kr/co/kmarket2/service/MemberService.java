@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.MemberDAO;
 import kr.co.kmarket2.vo.MemberVO;
+import kr.co.kmarket2.vo.TermsVO;
 
 @Service
 public class MemberService {
