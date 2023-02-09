@@ -1,3 +1,8 @@
+/*
+날짜 : 2023/02/08
+이름 : 김동근
+내용 : Kmarket2 SpringBoot productVO
+*/
 package kr.co.kmarket2.vo;
 
 import lombok.AllArgsConstructor;
@@ -41,4 +46,11 @@ public class ProductVO {
 	private String rdate;
 	//추가필드
 	private int level;
+	
+	
+	
+	//할인가격 조회
+	public int getDisPrice() {
+		return (int)(this.price * (1 - (this.discount / 100.0)));
+	}
 }
