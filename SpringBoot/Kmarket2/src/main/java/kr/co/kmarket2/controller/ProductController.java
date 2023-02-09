@@ -12,7 +12,7 @@ import kr.co.kmarket2.vo.ProductVO;
 public class ProductController {
 	
 	@Autowired
-	private ProductService service;
+	ProductService service;
 	
 	@GetMapping("product/list")
 	public String list(Model model) {
@@ -22,4 +22,28 @@ public class ProductController {
 		return "product/list";
 	}
 	
+	@GetMapping("product/view")
+	public String view(Model model, String prodNo) {
+		
+		return "product/view";
+	}
+	
+	@GetMapping("product/complete")
+	public String complete() {
+		
+		return "product/complete";
+	}
+	
+	@GetMapping("product/cart")
+	public String cart() {
+		
+		return "product/cart";
+	}
+	
+	@GetMapping("product/order")
+	public String order() {
+		
+		return "product/order";
+	}
 }
+ 
