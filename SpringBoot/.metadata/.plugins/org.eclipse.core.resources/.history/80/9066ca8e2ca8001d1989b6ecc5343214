@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kmarket2.dao.ProductDAO">
+
+	<insert id="insertProduct">
+		INSERT INTO `km_product` set
+			`cate1`		=#{cate1},
+			`cate2`		=#{cate2},
+			`prodName`	=#{prodName},
+			`descript`	=#{descript},
+			`company`	=#{company},
+			`seller`	=#{seller},
+			`price`		=#{price},
+			`discount`	=#{discount},
+			`point`		=#{point},
+			`stock`		=#{stock},
+			`delivery`	=#{delivery},
+			`thumb1`	=#{thumb1},
+			`thumb2`	=#{thumb2},
+			`thumb3`	=#{thumb3},
+			`detail`	=#{detail},
+			`status`	=#{status},
+			`duty`		=#{duty},
+			`receipt`	=#{receipt},
+			`bizType`	=#{bizType},
+			`origin`	=#{origin},
+			`ip`		=#{ip},
+			`rdate`		=NOW();
+	</insert>
+	
+	<select id="selectProduct" resultType="ProductVO">
+		SELECT * FROM `km_product` WHERE `prodNo`=#{prodNo};
+	</select>
+	
+	<select id="selectProducts" resultType="ProductVO">
+		SELECT * FROM `km_product`;
+	</select>
+	
+	<update id="updateProduct">
+		UPDATE `km_product` where `prodNo`=#{prodNo};
+	</update>
+	
+	<delete id="deleteProduct">
+		DELETE FROM `km_product` WHERE `prodNo`=#{prodNo};
+	</delete>
+	
+	<!-- product/list -->
+	<select id="selectProductsByCateOrderSold" resultType="ProductVO">
+		SELECT a.*, b.`level` FROM `km_product` AS a 
+		JOIN `km_member` AS b ON a.`seller` = b.`uid` 
+		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2} ORDER BY ${order} DESC LIMIT #{start}, 10;
+	</select>
+	
+	
+</mapper>

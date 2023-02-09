@@ -1,3 +1,8 @@
+/*
+날짜 : 2023/02/08
+이름 : 김동근
+내용 : Kmarket2 SpringBoot product service
+*/
 package kr.co.kmarket2.service;
 
 import java.util.List;
@@ -28,6 +33,11 @@ public class ProductService {
 	}
 	public void deleteProduct(String no) {
 		dao.deleteProduct(no);
+	}
+	
+	// product/list
+	public List<ProductVO> selectProductsByCate(String cate1, String cate2, String order, int start){
+		return dao.selectProductsByCate(cate1, cate2, order, start);
 	}
 	
 }
