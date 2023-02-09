@@ -22,6 +22,7 @@ public class SecurityConfig{
 		//인가(접근권한) 설정
 		http.authorizeHttpRequests().requestMatchers("/").permitAll()
 			.requestMatchers("/product/**").permitAll()
+			.requestMatchers("/member/**").permitAll()
 			//static 폴더 권한
 			.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll();
 		//http.authorizeHttpRequests().requestMatchers("/board/write").hasAnyRole("3", "4", "5");

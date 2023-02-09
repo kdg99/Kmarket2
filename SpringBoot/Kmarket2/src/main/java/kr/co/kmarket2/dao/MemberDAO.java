@@ -17,5 +17,5 @@ public interface MemberDAO {
 	public List<MemberVO> selectMembers();
 	public void updateMember(MemberVO vo);
 	public void deleteMember(String uid);
-  public TermsVO selectTerms();
+	public TermsVO selectTerms();
 }
