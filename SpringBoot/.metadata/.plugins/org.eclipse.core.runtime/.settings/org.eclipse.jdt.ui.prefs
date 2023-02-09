@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+breadcrumb.org.eclipse.jdt.ui.JavaPerspective=true
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"/>
+>>>>>>> cf652e38ed764fd1db130df2b7ec5e0e8fc74845
 content_assist_number_of_computers=15
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
