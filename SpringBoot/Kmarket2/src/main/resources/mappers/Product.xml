@@ -30,11 +30,11 @@
 			`rdate`=NOW();
 	</insert>
 	
-	<select id="selectProduct" resultType="kr.co.kmarket2.vo.ProductVO">
+	<select id="selectProduct" resultType="ProductVO">
 		SELECT * FROM `km_product` WHERE `prodNo`=#{prodNo};
 	</select>
 	
-	<select id="selectProducts" resultType="kr.co.kmarket2.vo.ProductVO">
+	<select id="selectProducts" resultType="ProductVO">
 		SELECT * FROM `km_product`;
 	</select>
 	
@@ -45,5 +45,7 @@
 	<delete id="deleteProduct">
 		DELETE FROM `km_product` WHERE `prodNo`=#{prodNo};
 	</delete>
-
+	
+	
+	
 </mapper>
