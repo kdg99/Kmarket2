@@ -13,6 +13,8 @@ public class MemberService {
 
 	@Autowired
 	private MemberDAO dao;
+//@Autowired
+//private MemberRepo repo;
 	
 	public void insertMember(MemberVO vo) {
 		dao.insertMember(vo);
@@ -29,5 +31,24 @@ public class MemberService {
 	public void deleteMember(String uid) {
 		dao.deleteMember(uid);
 	}
+  
+  // 약관
+	public TermsVO selectTerms() {
+		return dao.selectTerms();
+	}
 	
+	
+//	// 회원가입
+//	public int insertMember(MemberVO vo) {
+//		vo.setPass(PasswordEncoder.encode(vo.getPass()));
+//		
+//		int result = dao.insertMember(vo);
+//		
+//		return result;
+//	}
+	
+//	public int countMember(String uid) {
+//		return repo.countByUid(uid);
+//	}
+
 }

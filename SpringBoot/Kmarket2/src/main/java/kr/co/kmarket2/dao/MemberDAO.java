@@ -6,13 +6,16 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import kr.co.kmarket2.vo.MemberVO;
+import kr.co.kmarket2.vo.TermsVO;
+
 
 @Mapper
 @Repository
 public interface MemberDAO {
-	public void insertMember(MemberVO vo);
+	public int insertMember(MemberVO vo);
 	public MemberVO selectMember(String uid);
 	public List<MemberVO> selectMembers();
 	public void updateMember(MemberVO vo);
 	public void deleteMember(String uid);
+  public TermsVO selectTerms();
 }
