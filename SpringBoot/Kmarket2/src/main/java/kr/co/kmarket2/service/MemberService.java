@@ -3,9 +3,11 @@ package kr.co.kmarket2.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.MemberDAO;
+import kr.co.kmarket2.repository.MemberRepo;
 import kr.co.kmarket2.vo.MemberVO;
 import kr.co.kmarket2.vo.TermsVO;
 
@@ -14,12 +16,12 @@ public class MemberService {
 
 	@Autowired
 	private MemberDAO dao;
-//@Autowired
-//private MemberRepo repo;
+	@Autowired
+	private MemberRepo repo;
 	
-	public void insertMember(MemberVO vo) {
-		dao.insertMember(vo);
-	}
+//	public void insertMember(MemberVO vo) {
+//		dao.insertMember(vo);
+//	}
 	public MemberVO selectMember(String uid) {
 		return dao.selectMember(uid);
 	}
@@ -39,17 +41,17 @@ public class MemberService {
 	}
 	
 	
-//	// 회원가입
-//	public int insertMember(MemberVO vo) {
-//		vo.setPass(PasswordEncoder.encode(vo.getPass()));
-//		
-//		int result = dao.insertMember(vo);
-//		
-//		return result;
-//	}
+	// 회원가입
+	public int insertMember(MemberVO vo) {
+		vo.setPass(PasswordEncoder.encode(vo.getpass2()));
+		
+		int result = dao.insertMember(vo);
+		
+		return result;
+	}
 	
-//	public int countMember(String uid) {
-//		return repo.countByUid(uid);
-//	}
+	public int countMember(String uid) {
+		return repo.countByUid(uid);
+	}
 
 }
