@@ -16,6 +16,10 @@ public class MemberService {
 
 	@Autowired
 	private MemberDAO dao;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private MemberRepo repo;
 	
@@ -43,7 +47,7 @@ public class MemberService {
 	
 	// 회원가입
 	public int insertMember(MemberVO vo) {
-		vo.setPass(PasswordEncoder.encode(vo.getpass2()));
+		vo.setPass(passwordEncoder.encode(vo.getPass()));
 		
 		int result = dao.insertMember(vo);
 		
