@@ -16,21 +16,21 @@ public class MyBatisConfig {
 
 	@Autowired
 	ApplicationContext applicationContext;
-	
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
-		
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource);
+
+    @Bean
+    SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/**/*.xml"));
         sqlSessionFactoryBean.setTypeAliasesPackage("kr.co.kmarket2.vo");
-		
-		return sqlSessionFactoryBean.getObject();
-	}
-	
-	@Bean
-	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-		return new SqlSessionTemplate(sqlSessionFactory);
-	}
+
+        return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
 	
 }
