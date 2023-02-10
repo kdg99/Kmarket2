@@ -635,3 +635,15 @@ header {
   #member > .passConfirm table tr > td > input[type=submit]:hover {
       background-color: #036dde;
   }
+  
+  #member > .register table #btnZip {
+    position: relative;
+    top: 5px;
+    padding: 5px;
+}
+
+#member > .registerSeller table #btnZip {
+    position: relative;
+    top: 5px;
+    padding: 5px;
+}

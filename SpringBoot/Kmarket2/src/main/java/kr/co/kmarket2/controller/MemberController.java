@@ -1,10 +1,14 @@
 package kr.co.kmarket2.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
 import kr.co.kmarket2.service.MemberService;
@@ -37,6 +41,7 @@ public class MemberController {
 	@PostMapping("member/register")
 	public String register(MemberVO vo, HttpServletRequest req) {
 		String regip = req.getRemoteAddr();
+		vo.setRegip(regip);
 		int result = service.insertMember(vo);
 		return "redirect:/user/login?success="+result;
 	}
@@ -57,15 +62,15 @@ public class MemberController {
 		return "member/terms";
 	}
 	
-//	@ResponseBody
-//	@GetMapping("member/checkUid")
-//	public Map<String, Integer> checkUid(String uid) {
-//		int result = service.countMember(uid);
-//		Map<String, Integer> map = new HashMap<>();
-//		map.put("result", result);
-//		
-//		return map;
-//	}
+	@ResponseBody
+	@GetMapping("member/checkUid")
+	public Map<String, Integer> checkUid(String uid) {
+		int result = service.countMember(uid);
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", result);
+		
+		return map;
+	}
 	
 	
 	

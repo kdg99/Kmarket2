@@ -39,7 +39,7 @@ public class MemberService {
 		dao.deleteMember(uid);
 	}
   
-  // 약관
+	// 약관
 	public TermsVO selectTerms() {
 		return dao.selectTerms();
 	}

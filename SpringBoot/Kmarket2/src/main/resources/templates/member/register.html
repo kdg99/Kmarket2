@@ -3,13 +3,13 @@
 이름 : 강중현
 내용 : Kmarket2 SpringBoot member register
 -->
-<th:block th:include="@{member/_header.html}"/>
+<th:block th:insert="@{member/_header.html}"/>
 		<main id="member">
             <div class="register">
                 <nav>
                     <h1>일반 회원가입</h1>
                 </nav>
-				<form th:action="@{/member/register}" method="post">
+				<form th:action="@{/member/register}" method="POST">
 					<section>
 						<table>
 							<caption>필수 정보입력</caption>
@@ -51,6 +51,7 @@
 								<td>
 									<div>
 										<input type="text" name="zip" id="zip" placeholder="우편번호 입력 클릭" readonly/>
+										<button type="button" id="btnZip" onclick="postcode()">우편번호 찾기</button>
 									</div>
 									<div>
 										<input type="text" name="addr1" id="addr1" size="50" placeholder="주소를 검색하세요." readonly/>
@@ -63,9 +64,9 @@
 						</table>
 					</section>
 					<div>
-						<input type="submit" class="join" value="회원가입" />
+						<input type="submit" class="join" value="회원가입"/>
 					</div>
 				</form>
 			</div>
         </main>
-<th:block th:include="@{member/_footer.html}"/>
+<th:block th:insert="@{member/_footer.html}"/>
