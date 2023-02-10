@@ -1,5 +1,0 @@
-package kr.co.kmarket2.repository;
-
-public interface MemberRepo extends JpaRepository<MemberEntity, String>{
-	public int countByUid(String uid);
-}
