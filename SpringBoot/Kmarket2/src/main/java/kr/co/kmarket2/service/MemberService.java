@@ -47,7 +47,7 @@ public class MemberService {
 	
 	// 회원가입
 	public int insertMember(MemberVO vo) {
-		vo.setPass(passwordEncoder.encode(vo.getPass()));
+		vo.setPass(passwordEncoder.encode(vo.getPass2()));
 		
 		int result = dao.insertMember(vo);
 		
