@@ -21,7 +21,7 @@ header > .top > div {
     text-align: right;
 }
 
-header > .top > div > a {
+header > .top > div > p > a {
     display: inline-block;
     height: 100%;
     line-height: 35px;

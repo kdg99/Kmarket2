@@ -19,6 +19,8 @@ import lombok.Data;
 public class MemberEntity {
 	@Id
 	private String uid;
+	private String pass1;
+	private String pass2;
 	private String pass;
 	private String name;
 	private int gender;

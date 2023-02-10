@@ -22,7 +22,7 @@ public class SecurityConfig{
 		http.cors().and().csrf().disable();
 		
 		//인가(접근권한) 설정
-		http.authorizeHttpRequests().requestMatchers("/").permitAll()
+		http.authorizeHttpRequests().requestMatchers("/**").permitAll()		// _header 로그인/비로그인 화면표시 구분으로 인해 ** 추가 (강중현)
 			.requestMatchers("/product/**").permitAll()
 			.requestMatchers("/member/**").permitAll()
 			//static 폴더 권한
@@ -32,11 +32,11 @@ public class SecurityConfig{
 		//로그인 설정
 		http.formLogin()
 		.loginPage("/member/login")
-		.defaultSuccessUrl("/index")
+		.defaultSuccessUrl("/")
 		.failureUrl("/member/login?success=100")
 		.usernameParameter("uid")
 		.passwordParameter("pass");
-		
+
 		//로그아웃 설정
 		http.logout()
 		.invalidateHttpSession(true)

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" th:href="@{/css/init.css}">
     <link rel="stylesheet" th:href="@{/css/headfoot.css}">
-    <link rel="stylesheet" th:href="@{/member/css/member.css}">
+    <link rel="stylesheet" th:href="@{/member/css/main.css}">
 </head>
 <body>
     <div id="wrapper">
@@ -28,8 +28,6 @@
                 	<p sec:authorize="isAnonymous()">		<!-- 비로그인 사용자가 보이는 블럭 -->
 	                    <a th:href="@{/member/login}">로그인</a>
 	                    <a th:href="@{/member/join}">회원가입</a>
-	                    <a href="#">마이페이지</a>
-	                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
 	            	</p>
                 	<p sec:authorize="isAuthenticated()">		<!-- 권한이 있는 사용자가 보이는 블럭 -->
 	                	<span class="nick">홍길동</span>님 반갑습니다.
