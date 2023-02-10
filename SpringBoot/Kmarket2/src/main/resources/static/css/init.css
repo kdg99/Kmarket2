@@ -1,10 +1,13 @@
 * {
     margin: 0;
     padding: 0;
-    font:normal 12px '돋움';
+    font:normal 12px 'Noto Sans CJK KR';
 }
 ul, ol {list-style: none;}
 a{text-decoration: none; color: #111;}
+strong {
+  font-weight: bold;
+}
 input, textarea {outline: none;}
 #wrapper {
     width: 100%;

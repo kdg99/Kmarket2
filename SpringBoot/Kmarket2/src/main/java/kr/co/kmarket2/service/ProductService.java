@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.ProductDAO;
+import kr.co.kmarket2.vo.NavCateVO;
 import kr.co.kmarket2.vo.ProductVO;
 
 @Service
@@ -36,6 +37,10 @@ public class ProductService {
 	}
 	
 	// product/list
+	public NavCateVO selectNavByCate(String cate1, String cate2) {
+		return dao.selectNavByCate(cate1, cate2);
+	}
+	
 	public List<ProductVO> selectProductsByCate(String cate1, String cate2, String order, int start){
 		return dao.selectProductsByCate(cate1, cate2, order, start);
 	}
