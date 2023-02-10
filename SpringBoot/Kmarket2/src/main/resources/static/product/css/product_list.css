@@ -60,7 +60,7 @@
   margin-top: 6px;
 }
 
-#product > .list > table .desc:hover {
+#product > .list > table .name:hover {
   text-decoration: underline;
 }
 

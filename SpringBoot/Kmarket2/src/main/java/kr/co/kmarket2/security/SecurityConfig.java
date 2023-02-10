@@ -26,6 +26,7 @@ public class SecurityConfig{
 			.requestMatchers("/product/**").permitAll()
 			.requestMatchers("/member/**").permitAll()
 			//static 폴더 권한
+			.requestMatchers("/file/**").permitAll()
 			.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll();
 		//http.authorizeHttpRequests().requestMatchers("/board/write").hasAnyRole("3", "4", "5");
 		

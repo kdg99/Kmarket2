@@ -31,7 +31,11 @@
 	</insert>
 	
 	<select id="selectProduct" resultType="ProductVO">
-		SELECT * FROM `km_product` WHERE `prodNo`=#{prodNo};
+		SELECT a.*, b.`level` 
+		FROM `km_product` AS a  
+		JOIN `km_member` AS b 
+		ON a.`seller` = b.`uid` 
+		WHERE a.`prodNo`=#{no};
 	</select>
 	
 	<select id="selectProducts" resultType="ProductVO">
@@ -39,20 +43,33 @@
 	</select>
 	
 	<update id="updateProduct">
-		UPDATE `km_product` where `prodNo`=#{prodNo};
+		UPDATE `km_product` where `prodNo`=#{no};
 	</update>
 	
 	<delete id="deleteProduct">
-		DELETE FROM `km_product` WHERE `prodNo`=#{prodNo};
+		DELETE FROM `km_product` WHERE `prodNo`=#{no};
 	</delete>
 	
 	
 	<!-- product/list -->
+	<select id="selectNavByCate" resultType="NavCateVO">
+		SELECT a.`c1Name`, b.`c2Name` 
+		FROM `km_product_cate1` AS a 
+		JOIN `km_product_cate2` AS b 
+		ON a.`cate1` = b.`cate1` 
+		WHERE b.`cate1`=#{cate1} AND b.`cate2`=#{cate2};
+	</select>
+	
 	<select id="selectProductsByCate" resultType="ProductVO">
 		SELECT a.*, b.`level` FROM `km_product` AS a  
 		JOIN `km_member` AS b ON a.`seller` = b.`uid`  
 		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2} 
-		ORDER BY ${order} DESC LIMIT #{start}, 10;
+		<if test="order != 'lowprice'.toString()">
+			ORDER BY ${order} DESC LIMIT #{start}, 10;
+		</if>
+		<if test="order == 'lowprice'.toString()">
+			ORDER BY `price` ASC LIMIT #{start}, 10;
+		</if>
 	</select>
 	
 	
