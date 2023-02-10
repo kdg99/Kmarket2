@@ -25,7 +25,9 @@ public class SecurityConfig{
 		http.authorizeHttpRequests().requestMatchers("/**").permitAll()		// _header 로그인/비로그인 화면표시 구분으로 인해 ** 추가 (강중현)
 			.requestMatchers("/product/**").permitAll()
 			.requestMatchers("/member/**").permitAll()
+			.requestMatchers("/cs/**").permitAll()
 			//static 폴더 권한
+			.requestMatchers("/file/**").permitAll()
 			.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll();
 		//http.authorizeHttpRequests().requestMatchers("/board/write").hasAnyRole("3", "4", "5");
 		

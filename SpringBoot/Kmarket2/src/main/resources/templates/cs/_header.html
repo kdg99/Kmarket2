@@ -1,0 +1,36 @@
+<!--
+날짜 : 2023/02/10
+이름 : 최아영
+내용 : Kmarket2 STS cs header
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <title>케이마켓 고객센터</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/cs/css/main.css}">
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <div class="top">
+          <div>
+            <p>
+              <a th:href="@{/member/login}">로그인</a>
+              <a th:href="@{/member/join}">회원가입</a>
+              <a th:href="@{#}">마이페이지</a>
+              <a th:href="@{/product/cart}"
+                ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+                >&nbsp;장바구니</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="logo">
+          <div>
+            <a href="@{/}"><img th:src="@{/cs/img/logo.png}" alt="로고" />고객센터</a>
+          </div>
+        </div>
+      </header>
