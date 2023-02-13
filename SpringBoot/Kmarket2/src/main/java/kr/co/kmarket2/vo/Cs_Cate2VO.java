@@ -21,5 +21,6 @@ import lombok.ToString;
 public class Cs_Cate2VO {
 
 	private int cate1;
-	private String c1Name;
+    private int cate2;
+    private String c2Name;
 }

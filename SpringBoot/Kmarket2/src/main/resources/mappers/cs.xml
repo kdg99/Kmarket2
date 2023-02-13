@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.kmarket2.dao.CsDAO">
+
+	<!-- qna -->
+
+	<select id="selectCate1" resultType="Cs_Cate1VO">
+        select a.*, b.cate2, b.c2Name from `km_cs_cate1` as a
+        join `km_cs_cate2` as b on a.cate1 = b.cate1
+        where a.cate1 = #{cate1};
+    </select>
+
+    <insert id="insertQnaArticle" useGeneratedKeys="true" keyProperty="no">
+        insert into `km_cs_qna` set
+            `cate1`=#{cate1},
+            `cate2`=#{cate2},
+            `uid`=#{uid},
+            `title`=#{title},
+            `content`=#{content},
+            `rdate`=NOW(),
+            `regip`=#{regip};
+    </insert>
+    
+    <select id="selectQnaArticle" resultType="Cs_QnaVO">
+        select a.*, b.c1Name, c.c2Name from `km_cs_qna` as a 
+        join `km_cs_cate1` as b 
+        on a.cate1 = b.cate1 
+        join `km_cs_cate2` as c 
+        on b.cate1 = c.cate1 and a.cate2 = c.cate2 
+        where `no`=#{no};
+    </select>
+    
+    <select id="selectQnaArticles" resultType="Cs_QnaVO">
+        select a.*, c.c2Name from `km_cs_qna` as a 
+        join `km_cs_cate1` as b 
+        on a.cate1 = b.cate1 
+        join `km_cs_cate2` as c 
+        on b.cate1 = c.cate1 and a.cate2 = c.cate2 
+        where b.cate1 = #{cate1} 
+        order by `no` desc 
+        limit #{start}, 10;
+    </select>
+    
+    <select id="selectCountTotal" resultType="int">
+        select count(`no`) from `km_cs_qna` where `cate1` = #{cate1};
+    </select>
+    
+</mapper>

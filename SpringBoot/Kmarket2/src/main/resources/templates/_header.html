@@ -21,33 +21,71 @@
     <link rel="stylesheet" th:href="@{/product/css/product_cart.css}">
     <link rel="stylesheet" th:href="@{/product/css/product_complete.css}">
     <link rel="stylesheet" th:href="@{/product/css/product_view.css}">
-	<!-- <script>
-        $(function(){
-            $('.slider > ul').bxSlider({
-                slideWidth: 980,
-                pager: false,
-                controls: false,
-                auto: true
-            });
-
-            $('#tabs').tabs();
-        });
-    </script> -->
+	<script>
+	 	$(document).ready(function(){
+ 			$('.slider > ul').bxSlider({
+ 				auto: true,		// 자동회전
+ 				pause: 4000,	// 4초마다 페이지 넘김
+ 	            easing:'linear',
+ 	            speed: 500,		// 이동속도
+ 	            maxSlides: 5	// 최대 노출 개수
+ 	          });
+ 			
+			// 스크롤 시 사이드 따라오기
+	        var best = $("aside > .best");
+	
+	        $(window).scroll(function(){
+	          var t = $(this).scrollTop();
+	
+	          if(t > 620){
+	              best.css({
+	                  position:"fixed",
+	                  top:"0",
+	              });
+	          }else{
+	              best.css({
+	                  position:"static",
+	              });
+	          }
+	        });
+	        
+	        // 상단 이동
+	        $('#top').click(function(){
+	            $(window).scrollTop(0);
+	        });
+	        
+	        // 작업중 (강중현)
+	        /* function fnMove(seq){
+	        	var offset = $("#div" + seq).offset();
+	        	$('html, body').animate({scrollTop : offset.top}, 400);
+	        } */
+	        
+	        
+	        
+	 	});
+    </script>
 </head>
 <body>
     <div id="wrapper">
         <header>
             <div class="top">
                 <div>
-                	<p sec:authorize="isAnonymous()">		<!-- 비로그인 사용자가 보이는 블럭 -->
+               		<!-- 비로그인 사용자가 보이는 블럭 -->
+                	<p sec:authorize="isAnonymous()">
 	                    <a th:href="@{/member/login}">로그인</a>
 	                    <a th:href="@{/member/join}">회원가입</a>
-	                    <a href="#">마이페이지</a>
 	                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
 	            	</p>
-                	<p sec:authorize="isAuthenticated()">		<!-- 권한이 있는 사용자가 보이는 블럭 -->
-	                	<span class="nick">홍길동</span>님 반갑습니다.
-                		<a th:href="@{/member/logout}" class="logout">[로그아웃]</a>
+	            	<!-- 권한이 1인(일반회원) 사용자가 보이는 블럭 -->
+                	<p sec:authorize="hasRole('1')">
+                		<a th:href="@{/member/logout}" class="logout">로그아웃</a>
+                		<a href="#">마이페이지</a>
+                		<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+                	</p>
+                	<!-- 권한이 3인(관리자) 사람만 보이는 블럭 -->
+                	<p sec:authorize="hasRole('3')">
+                		<a th:href="@{/admin/index}" class="logout">관리자</a>
+                		<a th:href="@{/member/logout}" class="logout">로그아웃</a>
                 		<a href="#">마이페이지</a>
                 		<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 	</p>
@@ -66,18 +104,17 @@
             <div class="menu">
                 <div>
                     <ul>
-                        <li><a href="#">히트상품</a></li>
+                        <li><a th:href="@{/}">히트상품</a></li>
                         <li><a href="#">추천상품</a></li>
                         <li><a href="#">최신상품</a></li>
                         <li><a href="#">인기상품</a></li>
                         <li><a href="#">할인상품</a></li>
                     </ul>
                     <ul>
-                        <li><a href="#">쿠폰존</a></li>
-                        <li><a href="#">사용후기</a></li>
-                        <li><a href="#">개인결제</a></li>
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">자주묻는질문</a></li>
+                        <li><a href="#">문의하기</a></li>
                         <li><a href="#">고객센터</a></li>
-                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
             </div>

@@ -44,6 +44,11 @@ public class MemberService {
 		return dao.selectTerms();
 	}
 	
+	public TermsVO selectTermsSeller() {
+		return dao.selectTerms();
+	}
+	
+	
 	
 	// 회원가입
 	public int insertMember(MemberVO vo) {
