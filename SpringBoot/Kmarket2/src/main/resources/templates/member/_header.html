@@ -30,7 +30,7 @@
 	                    <a th:href="@{/member/join}">회원가입</a>
 	            	</p>
                 	<p sec:authorize="isAuthenticated()">		<!-- 권한이 있는 사용자가 보이는 블럭 -->
-	                	<span class="nick">홍길동</span>님 반갑습니다.
+                		<a th:href="@{/admin/index}" class="logout">관리자</a>
                 		<a th:href="@{/member/logout}" class="logout">[로그아웃]</a>
                 		<a href="#">마이페이지</a>
                 		<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
