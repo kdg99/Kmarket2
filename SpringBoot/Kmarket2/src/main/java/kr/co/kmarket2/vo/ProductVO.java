@@ -5,6 +5,10 @@
 */
 package kr.co.kmarket2.vo;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,5 +56,15 @@ public class ProductVO {
 	//할인가격 조회
 	public int getDisPrice() {
 		return (int)(this.price * (1 - (this.discount / 100.0)));
+	}
+	
+	//배송날짜 조회
+	public String getDeliDate() {
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DATE, 3);
+		SimpleDateFormat result = new SimpleDateFormat("MM/dd (E)");
+		return result.format(cal.getTime());
 	}
 }

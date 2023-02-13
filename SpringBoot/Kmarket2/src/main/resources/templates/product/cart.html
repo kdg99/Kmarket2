@@ -1,9 +1,9 @@
 <!--
-날짜 : 2023/02/07
+날짜 : 2023/02/13
 이름 : 김동근
-내용 : Kmarket2 HTML product cart
+내용 : Kmarket2 SpringBoot product cart
 -->
-<th:block th:insert="@{_header.html}"/>
+<th:block th:insert="~{@{_header.html}}"/>
         <main id="product">            
             <aside>
                 <th:block th:insert="~{@{_cate.html}}"/>
@@ -134,4 +134,4 @@
               </section>
  
         </main>
-<th:block th:insert="@{_footer.html}"/>
+<th:block th:insert="~{@{_footer.html}}"/>
