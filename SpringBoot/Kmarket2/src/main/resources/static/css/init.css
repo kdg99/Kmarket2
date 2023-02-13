@@ -20,7 +20,7 @@ input, textarea {outline: none;}
     /* display: none; */
     width: 42px;
     height: 42px;
-    background-image: url("../img/top.png");
+    background-image: url("/Kmarket2/images/top.png");
     border: none;
     font-size: 0;
     cursor: pointer;

@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
 import kr.co.kmarket2.vo.ProductVO;
 
@@ -26,4 +27,8 @@ public interface ProductDAO {
 	// product/list
 	public NavCateVO selectNavByCate(@Param("cate1") String cate1, @Param("cate2") String cate2);
 	public List<ProductVO> selectProductsByCate(@Param("cate1") String cate1, @Param("cate2") String cate2, @Param("order") String order, @Param("start") int start);
+	
+	// product/cart
+	public List<ProductVO> selectProductsForCart (String uid);
+	public void insertCart(@Param("uid") String uid, @Param("vo") CartVO vo);
 }

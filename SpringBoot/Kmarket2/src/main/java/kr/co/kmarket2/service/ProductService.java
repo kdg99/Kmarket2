@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.ProductDAO;
+import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
 import kr.co.kmarket2.vo.ProductVO;
 
@@ -43,6 +44,15 @@ public class ProductService {
 	
 	public List<ProductVO> selectProductsByCate(String cate1, String cate2, String order, int start){
 		return dao.selectProductsByCate(cate1, cate2, order, start);
+	}
+	
+	// product/cart
+	public List<ProductVO> selectProductsForCart (String uid){
+		return dao.selectProductsForCart(uid);
+	}
+	
+	public void addCart(String uid, CartVO vo) {
+		dao.insertCart(uid, vo);
 	}
 	
 }
