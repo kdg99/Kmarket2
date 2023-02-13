@@ -22,6 +22,9 @@ import lombok.ToString;
 public class Cs_Cate1VO {
 
 	private int cate1;
-	private int cate2;
-	private String c2Name;
+	private String c1Name;
+	
+	// 추가필드
+    private int cate2;
+    private String c2Name;
 }

@@ -29,4 +29,12 @@ public class Cs_QnaVO {
 	private String uid;
 	private String regip;
 	private String rdate;
+	
+	// 추가필드
+    private String c1Name;
+    private String c2Name;
+    
+    public String getrdate(){
+        return rdate.substring(2, 10);
+    }
 }

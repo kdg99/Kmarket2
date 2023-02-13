@@ -19,13 +19,14 @@ import lombok.ToString;
 @ToString
 @Builder
 public class Cs_FaqVO {
-
 	private int no;
+	private int comment;
 	private String cate1;
 	private String cate2;
 	private String title;
 	private String content;
 	private int hit;
+	private String uid;
 	private String regip;
 	private String rdate;
 	
