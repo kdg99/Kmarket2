@@ -29,6 +29,7 @@ public interface ProductDAO {
 	public List<ProductVO> selectProductsByCate(@Param("cate1") String cate1, @Param("cate2") String cate2, @Param("order") String order, @Param("start") int start);
 	
 	// product/cart
-	public List<ProductVO> selectProductsForCart (String uid);
-	public void insertCart(@Param("uid") String uid, @Param("vo") CartVO vo);
+	public List<CartVO> selectCarts (String uid);
+	public CartVO checkCart(@Param("uid") String uid, @Param("prodNo") int prodNo);
+	public void insertCart(CartVO vo);
 }

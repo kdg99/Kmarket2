@@ -1,5 +1,7 @@
 package kr.co.kmarket2.entity;
 
+import java.io.Serializable;
+
 // javax에서 jakarta로 변환
 /*
  * @Entity : 클래스를 테이블과 매핑한다고 JPA에게 알려준다. 이 어노테이션이 사용되는 클래스를 엔티티 클래스라고 한다. 
@@ -16,7 +18,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "km_member")
-public class MemberEntity {
+public class MemberEntity implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String uid;
 	private String pass1;

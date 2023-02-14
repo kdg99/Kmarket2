@@ -3,7 +3,7 @@
 이름 : 강중현
 내용 : Kmarket2 SpringBoot member terms
 -->
-<th:block th:insert="@{member/_header.html}"/>
+<th:block th:insert="~{@{member/_header.html}}"/>
 <script src="/member/member.js"></script>
         <main id="member">
             <div class="signup">
@@ -42,4 +42,4 @@
 				</div>
             </div>
         </main>        
-<th:block th:insert="@{member/_footer.html}"/>
+<th:block th:insert="~{@{member/_footer.html}}"/>

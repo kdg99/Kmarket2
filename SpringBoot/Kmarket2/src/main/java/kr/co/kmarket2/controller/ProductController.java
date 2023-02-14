@@ -54,25 +54,22 @@ public class ProductController {
 		return "product/view";
 	}
 	
+	@ResponseBody
+	@PostMapping("product/addCart")
+	public int cart(Principal principal, CartVO vo) {
+		return service.addCart(principal.getName(), vo);
+	}
 	
 	// product/cart
 	@GetMapping("product/cart")
-	public String cart(Model model, String uid) {
-		List<ProductVO> products = service.selectProductsForCart(uid);
-		model.addAttribute(products);
+	public String cart(Model model, Principal principal) {
+		List<CartVO> carts = service.selectCarts(principal.getName());
+		model.addAttribute("carts", carts);
 		
 		return "product/cart";
 	}
 	
-	@ResponseBody
-	@PostMapping("product/addCart")
-	public int cart(Principal principal, CartVO vo) {
-		System.out.println(vo.getCartNo());
-		System.out.println(vo.getCount());
-		System.out.println(vo.getPoint());
-		//service.addCart(principal.getName(), vo);
-		return 1;
-	}
+	
 	
 	
 	@GetMapping("product/order")

@@ -57,7 +57,7 @@ public class MemberController {
 	@GetMapping("member/terms")
 	public String terms(Model model) {
 		TermsVO vo = service.selectTerms();
-		log.info("vo : " + vo);
+		//log.info("vo : " + vo);
 		model.addAttribute(vo);
 		return "member/terms";
 	}

@@ -47,12 +47,21 @@ public class ProductService {
 	}
 	
 	// product/cart
-	public List<ProductVO> selectProductsForCart (String uid){
-		return dao.selectProductsForCart(uid);
+	public List<CartVO> selectCarts (String uid){
+		return dao.selectCarts(uid);
 	}
 	
-	public void addCart(String uid, CartVO vo) {
-		dao.insertCart(uid, vo);
+	public CartVO checkCart(String uid, int prodNo) {
+		return dao.checkCart(uid, prodNo);
+	}
+	
+	public int addCart(String uid, CartVO vo) {
+		vo.setUid(uid);
+		if(checkCart(uid, vo.getProdNo()) == null) {
+			dao.insertCart(vo);
+			return 1;
+		}
+		return 0;
 	}
 	
 }

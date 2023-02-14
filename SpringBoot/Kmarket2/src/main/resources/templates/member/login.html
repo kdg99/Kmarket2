@@ -3,7 +3,7 @@
 이름 : 강중현
 내용 : Kmarket2 SpringBoot member login
 -->
-<th:block th:insert="@{member/_header.html}"/>
+<th:block th:insert="~{@{member/_header.html}}"/>
 
 		<main id="member">
             <div class="login">
@@ -31,10 +31,10 @@
 						<a th:href="@{/member/join}">회원가입</a>
 					</span>
 
-                    <a href="#" class="banner"><img th:src="@{/member/images/member_login_banner.jpg}" alt="1만원 할인 쿠폰 받기"></a>
+                    <a href="#" class="banner"><img th:src="@{/images/member/member_login_banner.jpg}" alt="1만원 할인 쿠폰 받기"></a>
 
 				</form>
-				<img th:src="@{/member/images/member_certifi_logo.gif}" alt="banner">
+				<img th:src="@{/images/member/member_certifi_logo.gif}" alt="banner">
 			</div>
         </main>     
-<th:block th:insert="@{member/_footer.html}"/>
+<th:block th:insert="~{@{member/_footer.html}}"/>
