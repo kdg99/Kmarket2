@@ -4,8 +4,8 @@
 내용 : Kmarket2 SpringBoot product view
 -->
 <th:block th:insert="~{@{_header.html}}"/>
-<script type="text/javascript" th:src="@{/product/js/view.js}"></script>
-
+<script type="text/javascript" th:src="@{/js/product/view.js}"></script>
+<link rel="stylesheet" th:href="@{/css/product/product_view.css}">
         <main id="product">            
             <aside>
                 <th:block th:insert="~{@{_cate.html}}"/>
@@ -54,7 +54,7 @@
                             </div>
                         </nav>
                         <nav>
-                            <span class="free" th:if="${product.delivery == 0}">무료배송</span>
+                            <span id="delivery" class="free" th:if="${product.delivery == 0}">무료배송</span>
                       		<span id="delivery" class="delivery" th:unless="${product.delivery == 0}" th:text="${#numbers.formatInteger(product.delivery, 0, 'COMMA')}"></span>
                     
                             <span class="arrival">[[${product.getDeliDate()}]] 도착예정</span>
@@ -67,7 +67,7 @@
                         <nav>
                             <span class="origin">원산지-상세설명 참조</span>
                         </nav>
-                        <img src="/Kmarket2/images/vip_plcc_banner.png" alt="100원만 결제해도 1만원 적립!" class="banner">
+                        <img src="/Kmarket2/images/main/vip_plcc_banner.png" alt="100원만 결제해도 1만원 적립!" class="banner">
                         
                         <div class="count">
                             <button id="decrease">-</button>

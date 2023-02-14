@@ -4,7 +4,6 @@ package kr.co.kmarket2.security;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,11 +23,9 @@ public class SecurityConfig{
 		
 		//인가(접근권한) 설정
 		http.authorizeHttpRequests().requestMatchers("/**").permitAll()		// _header 로그인/비로그인 화면표시 구분으로 인해 ** 추가 (강중현)
-			.requestMatchers("/product/**").permitAll()
-			.requestMatchers("/member/**").permitAll()
-			.requestMatchers("/cs/**").permitAll()
+			.requestMatchers("/product/cart").authenticated()				// 로그인 해야만 접근가능
+			.requestMatchers("/product/cart").hasAnyRole("1","2","3")				// 로그인 해야만 접근가능
 			//static 폴더 권한
-			.requestMatchers("/file/**").permitAll()
 			.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll();
 		//http.authorizeHttpRequests().requestMatchers("/board/write").hasAnyRole("3", "4", "5");
 		

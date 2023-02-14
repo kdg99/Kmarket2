@@ -11,16 +11,12 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <link rel="stylesheet" th:href="@{/css/init.css}">
-    <link rel="stylesheet" th:href="@{/css/headfoot.css}">
-    <link rel="stylesheet" th:href="@{/css/category.css}">
-    <link rel="stylesheet" th:href="@{/css/main.css}">
-    <link rel="stylesheet" th:href="@{/product/css/product.css}">
-    <link rel="stylesheet" th:href="@{/product/css/product_list.css}">
-    <link rel="stylesheet" th:href="@{/product/css/product_order.css}">
-    <link rel="stylesheet" th:href="@{/product/css/product_cart.css}">
-    <link rel="stylesheet" th:href="@{/product/css/product_complete.css}">
-    <link rel="stylesheet" th:href="@{/product/css/product_view.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/main/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/main/init.css}">
+    <link rel="stylesheet" th:href="@{/css/main/headfoot.css}">
+    <link rel="stylesheet" th:href="@{/css/main/category.css}">
+    <link rel="stylesheet" th:href="@{/css/main/main.css}">
+    <link rel="stylesheet" th:href="@{/css/product/product.css}">
 	<script>
 	 	$(document).ready(function(){
  			$('.slider > ul').bxSlider({
@@ -74,26 +70,26 @@
                 	<p sec:authorize="isAnonymous()">
 	                    <a th:href="@{/member/login}">로그인</a>
 	                    <a th:href="@{/member/join}">회원가입</a>
-	                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+	                    <a th:href="@{/product/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
 	            	</p>
 	            	<!-- 권한이 1인(일반회원) 사용자가 보이는 블럭 -->
                 	<p sec:authorize="hasRole('1')">
                 		<a th:href="@{/member/logout}" class="logout">로그아웃</a>
                 		<a href="#">마이페이지</a>
-                		<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+                		<a th:href="@{/product/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 	</p>
                 	<!-- 권한이 3인(관리자) 사람만 보이는 블럭 -->
                 	<p sec:authorize="hasRole('3')">
                 		<a th:href="@{/admin/index}" class="logout">관리자</a>
                 		<a th:href="@{/member/logout}" class="logout">로그아웃</a>
                 		<a href="#">마이페이지</a>
-                		<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+                		<a th:href="@{/product/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 	</p>
 	            </div>
             </div>
             <div class="logo">
                 <div>
-                    <a th:href="@{/}"><img th:src="@{/images/header_logo.png}" alt="로고"></a>
+                    <a th:href="@{/}"><img th:src="@{/images/main/header_logo.png}" alt="로고"></a>
                     <form action="#">
                         <input type="text" name="keyword">
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>

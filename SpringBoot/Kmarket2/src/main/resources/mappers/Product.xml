@@ -73,8 +73,16 @@
 	</select>
 	
 	<!-- product/cart -->
-	<select id="selectProductsForCart" resultType="ProductVO">
-		SELECT * FROM `km_product_cart` WHERE `uid`=#{uid};
+	<select id="selectCarts" resultType="CartVO">
+		SELECT a.*, b.`prodName`, b.`descript`, b.`thumb1` 
+		FROM `km_product_cart` AS a 
+		JOIN `km_product` AS b 
+		ON a.`prodNo` = b.`prodNo` 
+		WHERE `uid`=#{uid};
+	</select>
+	
+	<select id="checkCart" resultType="CartVO">
+		SELECT * FROM `km_product_cart` WHERE `uid`=#{uid} AND `prodNo`=#{prodNo};
 	</select>
 	
 	<insert id="insertCart">

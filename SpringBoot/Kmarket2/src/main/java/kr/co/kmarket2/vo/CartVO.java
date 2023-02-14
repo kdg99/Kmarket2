@@ -22,4 +22,9 @@ public class CartVO {
 	private int 	delivery;
 	private int 	total;
 	private String 	rdate;
+	
+	//추가필드
+	private String prodName;
+	private String descript;
+	private String thumb1;	
 }
