@@ -8,9 +8,8 @@
 	<!-- qna -->
 
 	<select id="selectCate1" resultType="Cs_Cate1VO">
-        select a.*, b.cate2, b.c2Name from `km_cs_cate1` as a
-        join `km_cs_cate2` as b on a.cate1 = b.cate1
-        where a.cate1 = #{cate1};
+        SELECT `c1Name` FROM `km_cs_cate1`
+        WHERE `cate1` = #{cate1};
     </select>
 
     <insert id="insertQnaArticle" useGeneratedKeys="true" keyProperty="no">
@@ -32,7 +31,7 @@
         on b.cate1 = c.cate1 and a.cate2 = c.cate2 
         where `no`=#{no};
     </select>
-    
+
     <select id="selectQnaArticles" resultType="Cs_QnaVO">
         select a.*, c.c2Name from `km_cs_qna` as a 
         join `km_cs_cate1` as b 

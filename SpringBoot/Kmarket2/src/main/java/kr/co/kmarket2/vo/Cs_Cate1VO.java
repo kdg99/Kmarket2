@@ -27,4 +27,6 @@ public class Cs_Cate1VO {
 	// 추가필드
     private int cate2;
     private String c2Name;
+    
+   
 }
