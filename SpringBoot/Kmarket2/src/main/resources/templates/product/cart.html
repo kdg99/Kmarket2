@@ -4,6 +4,7 @@
 내용 : Kmarket2 SpringBoot product cart
 -->
 <th:block th:insert="~{@{_header.html}}"/>
+<script type="text/javascript" th:src="@{/js/product/cart.js}"></script>
 <link rel="stylesheet" th:href="@{/css/product/product_cart.css}">
         <main id="product">            
             <aside>
@@ -40,7 +41,7 @@
                         <td colspan="7">장바구니에 상품이 없습니다.</td>
                       </tr>
                       <tr th:each="cart:${carts}">
-                        <td><input type="checkbox" name="cartList"></td>
+                        <td><input type="checkbox" name="cartNo" th:value="${cart.prodNo}"></td>
                         <td>
                           <article>
                             <a th:href="@{/product/view(no=${cart.prodNo})}"><img th:src="@{/file/productImg/}+${cart.thumb1}" alt="상품이미지"></a>
@@ -54,8 +55,8 @@
                         <td th:text="${#numbers.formatInteger(cart.price, 0, 'COMMA')}"></td>
                         <td th:text="|${#numbers.formatInteger(cart.discount, 0, 'COMMA')}%|"></td>
                         <td th:text="${#numbers.formatInteger(cart.point, 0, 'COMMA')}"></td>
-                        <td if="${cart.delivery == 0}">무료배송</td>
-                        <td unless="${cart.delivery == 0}" th:text="${#numbers.formatInteger(cart.delivery, 0, 'COMMA')}"></td>
+                        <td th:if="${cart.delivery == 0}">무료배송</td>
+                        <td th:unless="${cart.delivery == 0}" th:text="${#numbers.formatInteger(cart.delivery, 0, 'COMMA')}"></td>
                         <td th:text="${#numbers.formatInteger(cart.total, 0, 'COMMA')}"></td>
                       </tr>
                     </tbody>
