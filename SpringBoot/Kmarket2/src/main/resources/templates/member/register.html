@@ -4,6 +4,47 @@
 내용 : Kmarket2 SpringBoot member register
 -->
 <th:block th:insert="~{@{member/_header.html}}"/>
+<script>
+
+$(function(){
+	// 아이디 중복체크
+	$('input[name=uid]').focusout(function(){
+		let uid = $(this).val();
+		$.ajax({
+			url:'/Kmarket2/member/checkUid', //Controller에서 요청 받을 주소
+			type:'post', //POST 방식으로 전달
+			data:{uid:uid},
+			dataType:'json',
+			success:function(data){ //컨트롤러에서 넘어온 chk값을 받는다
+				console.log("아이디 중복체크 : " + data.chk);
+				if(data.chk == 0){ // 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+					$('.uid_ok').css("display","inline-block");
+					$('.uid_already').css("display", "none");
+				} else { // 1일 경우 -> 이미 존재하는 아이디
+					$('.uid_already').css("display","inline-block");
+					$('.uid_ok').css("display", "none");
+// 					alert("아이디를 다시 입력해주세요");
+					$('#uid').val('');
+				}
+			}
+		});
+	});
+	
+
+});
+</script>
+<style>
+ 	.uid_ok{
+  		color : green;
+/*  		display : none; */
+ 	}
+
+ 	.uid_already{ 
+   		color : red;
+  		display : none; 
+ 	} 
+</style>
+
 		<main id="member">
             <div class="register">
                 <nav>
@@ -15,7 +56,11 @@
 							<caption>필수 정보입력</caption>
 							<tr>
 								<th><span class="essential">*</span>아이디</th>
-								<td><input type="text" name="uid" placeholder="아이디를 입력" required/><span class="msgId">영문, 숫자로 4~12자까지 설정해 주세요.</span></td>
+								<td>
+									<input type="text" id="uid" name="uid" placeholder="아이디를 입력" required/>
+									<span class="uid_ok">영문, 숫자로 4~12자까지 설정해주세요.</span>
+									<span class="uid_already">영문, 숫자로 4~12자까지 설정해주세요.</span>
+								</td>
 							</tr>
 							<tr>
 								<th><span class="essential">*</span>비밀번호</th>

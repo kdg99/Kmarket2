@@ -30,4 +30,6 @@
 			`wdate`=NOW(),
 			`rdate`=NOW(); 
 	</insert>
+	
+	
 </mapper>

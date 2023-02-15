@@ -59,6 +59,7 @@ public class MemberService {
 		return result;
 	}
 	
+	// JPA
 	public int countMember(String uid) {
 		return repo.countByUid(uid);
 	}
