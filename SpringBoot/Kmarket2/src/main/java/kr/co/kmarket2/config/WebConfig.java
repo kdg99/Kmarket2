@@ -1,3 +1,8 @@
+/*
+날짜 : 2023/02/14
+이름 : 김동근
+내용 : Kmarket2 SpringBoot External path
+*/
 package kr.co.kmarket2.config;
 
 import java.util.concurrent.TimeUnit;

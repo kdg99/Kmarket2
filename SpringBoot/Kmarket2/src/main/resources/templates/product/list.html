@@ -19,12 +19,12 @@
 
               <!-- 정렬 메뉴 -->
               <ul class="sort">
-                  <li><a th:href="@{/product/list(option='sold')}" th:classappend="${option == 'sold'} ? 'on' : ''">판매많은순</a></li>
-                  <li><a th:href="@{/product/list(option='lowprice')}" th:classappend="${option == 'lowprice'} ? 'on' : ''">낮은가격순</a></li>
-                  <li><a th:href="@{/product/list(option='price')}" th:classappend="${option == 'price'} ? 'on' : ''">높은가격순</a></li>
-                  <li><a th:href="@{/product/list(option='score')}" th:classappend="${option == 'score'} ? 'on' : ''">평점높은순</a></li>
-                  <li><a th:href="@{/product/list(option='review')}" th:classappend="${option == 'review'} ? 'on' : ''">후기많은순</a></li>
-                  <li><a th:href="@{/product/list(option='rdate')}" th:classappend="${option == 'rdate'} ? 'on' : ''">최근등록순</a></li>
+                  <li><a th:href="@{/product/list(option='sold')}" 		th:classappend="${option == 'sold'} 	? 'on' : ''">판매많은순</a></li>
+                  <li><a th:href="@{/product/list(option='lowprice')}" 	th:classappend="${option == 'lowprice'} ? 'on' : ''">낮은가격순</a></li>
+                  <li><a th:href="@{/product/list(option='price')}" 	th:classappend="${option == 'price'} 	? 'on' : ''">높은가격순</a></li>
+                  <li><a th:href="@{/product/list(option='score')}" 	th:classappend="${option == 'score'} 	? 'on' : ''">평점높은순</a></li>
+                  <li><a th:href="@{/product/list(option='review')}" 	th:classappend="${option == 'review'} 	? 'on' : ''">후기많은순</a></li>
+                  <li><a th:href="@{/product/list(option='rdate')}" 	th:classappend="${option == 'rdate'} 	? 'on' : ''">최근등록순</a></li>
               </ul>
 
               <!-- 상품목록 -->              

@@ -63,9 +63,12 @@ public class ProductController {
 	// product/cart
 	@GetMapping("product/cart")
 	public String cart(Model model, Principal principal) {
-		List<CartVO> carts = service.selectCarts(principal.getName());
-		model.addAttribute("carts", carts);
-		
+		if(principal != null) {
+			List<CartVO> carts = service.selectCarts(principal.getName());
+			model.addAttribute("carts", carts);
+		}else {
+			
+		}
 		return "product/cart";
 	}
 	
@@ -84,6 +87,8 @@ public class ProductController {
 		
 		return "product/complete";
 	}
+	
+	
 	
 }
  

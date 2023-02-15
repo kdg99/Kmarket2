@@ -1,3 +1,8 @@
+/*
+날짜 : 2023/02/8
+이름 : 김동근
+내용 : Kmarket2 SpringBoot MyBatis Config
+*/
 package kr.co.kmarket2.config;
 
 import javax.sql.DataSource;
