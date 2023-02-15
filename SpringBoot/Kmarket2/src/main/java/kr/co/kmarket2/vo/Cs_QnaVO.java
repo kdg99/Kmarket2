@@ -20,9 +20,9 @@ import lombok.ToString;
 @Builder
 public class Cs_QnaVO {
 	private int no;
-	private int comment;
-	private String cate1;
-	private String cate2;
+	private String comment;
+	private int cate1;
+	private int cate2;
 	private String title;
 	private String content;
 	private int hit;
@@ -34,7 +34,17 @@ public class Cs_QnaVO {
     private String c1Name;
     private String c2Name;
     
-    public String getrdate(){
-        return rdate.substring(2, 10);
+    public int getCate1() {
+        return cate1;
+    }
+    public void setCate1(String cate1) {
+        this.cate1 = Integer.parseInt(cate1);
+    }
+
+    public int getCate2() {
+        return cate2;
+    }
+    public void setCate2(String cate2) {
+        this.cate2 = Integer.parseInt(cate2);
     }
 }

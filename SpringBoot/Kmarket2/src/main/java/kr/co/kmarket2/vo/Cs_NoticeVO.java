@@ -21,8 +21,8 @@ import lombok.ToString;
 public class Cs_NoticeVO {
 	private int no;
 	private int comment;
-	private String cate1;
-	private String cate2;
+	private int cate1;
+	private int cate2;
 	private String title;
 	private String content;
 	private int hit;
