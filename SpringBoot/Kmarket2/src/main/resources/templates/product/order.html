@@ -4,6 +4,9 @@
 내용 : Kmarket2 HTML product order
 -->
 <th:block th:insert="~{@{_header.html}}"/>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" th:src="@{/js/product/order.js}"></script>
+<script type="text/javascript" th:src="@{/js/main/postcode.js}"></script>
 <link rel="stylesheet" th:href="@{/css/product/product_order.css}">
         <main id="product">            
             <aside>
@@ -67,31 +70,31 @@
                     <table border="0" id="totalTable">
                       <tbody><tr>
                         <td>상품수</td>
-                        <td>1</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>상품금액</td>
-                        <td>27,000</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>할인금액</td>
-                        <td>-1,000</td>
+                        <td>-0</td>
                       </tr>
                       <tr>
                         <td>배송비</td>
                         <td>0</td>
                       </tr>
                       <tr>
-                        <td>포인트 할인</td>
-                        <td>1000</td>
-                      </tr>         
-                      <tr>
                         <td>적립 포인트</td>
-                        <td>260</td>
+                        <td>0</td>
                       </tr>
                       <tr>
+                        <td>포인트 할인</td>
+                        <td>0</td>
+                      </tr>         
+                      <tr>
                         <td>전체주문금액</td>
-                        <td>26,000</td>
+                        <td>0</td>
                       </tr>
                     </tbody></table>
                     <input type="button" name="" value="결제하기">              
@@ -115,20 +118,20 @@
                       <tr>
                         <td>우편번호</td>
                         <td>
-                          <input type="text" name="zip">
-                          <input type="button" value="검색">
+                          <input type="text" name="zip" id="zip">
+                          <input type="button" id="btnPostcode" value="검색">
                         </td>
                       </tr>
                       <tr>
                         <td>기본주소</td>
                         <td>
-                          <input type="text" name="addr1">
+                          <input type="text" name="addr1" id="addr1">
                         </td>
                       </tr>
                       <tr>
                         <td>상세주소</td>
                         <td>
-                          <input type="text" name="addr2">
+                          <input type="text" name="addr2" id="addr2">
                         </td>
                       </tr>
                     </tbody></table>
@@ -139,10 +142,10 @@
                     <h1>할인정보</h1>
   
                     <div>
-                      <p>현재 포인트 : <span>7200</span>점</p>
+                      <p>현재 포인트 : <span id="userPoint">[[${userPoint}]]</span>점</p>
                       <label>
-                          <input type="text" name="point">점
-                          <input type="button" value="적용">
+                          <input type="text" name="point" value="0">점
+                          <input type="button" id="btnPoint" value="적용">
                       </label>
                       <span>포인트 5,000점 이상이면 현금처럼 사용 가능합니다.</span>
                     </div>
@@ -171,7 +174,7 @@
                               <label><input type="radio" name="payment" value="type3">휴대폰결제</label>
                               <label>
                                   <input type="radio" name="payment" value="type4">카카오페이
-                                  <img src="../img/ico_kakaopay.gif" alt="카카오페이">
+                                  <img th:src="@{/images/main/ico_kakaopay.gif}" alt="카카오페이">
                               </label>                                
                           </p>
                       </div>

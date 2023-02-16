@@ -1,5 +1,7 @@
 package kr.co.kmarket2.vo;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +13,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class MemberVO {
+public class MemberVO implements Serializable{
+	private static final long serialVersionUID = 631487524661485841L;
 	private String uid;
 	private String pass1;
 	private String pass2;

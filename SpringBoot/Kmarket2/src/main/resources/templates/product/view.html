@@ -25,17 +25,16 @@
                 <!-- 상품 전체 정보 내용 -->                
                 <article class="info">
                     <div class="image">
-                        <img th:src="@{/file/productImg/}+${product.thumb3}" alt="상품이미지">
+                        <img id="thumb1" th:src="@{/file/productImg/}+${product.thumb1}" alt="상품이미지">
                     </div>
                     <div class="summary">
-	                    <input type="hidden" name="prodNo" th:value="${ product.prodNo }"/>
                         <nav>
                             <h1>[[${product.company}]]</h1>
                             <h2>상품번호&nbsp;:&nbsp;<span id="prodNo" th:text="|${product.cate1}${product.cate2}${#numbers.formatInteger(product.prodNo, 6)}|"></span></h2>
                         </nav>                        
                         <nav>
-                            <h3>[[${product.prodName}]]</h3>
-                            <p>[[${product.descript}]]</p>
+                            <h3 id="prodName">[[${product.prodName}]]</h3>
+                            <p id="descript">[[${product.descript}]]</p>
                             <h5 class="rating star4"><a href="#">상품평보기</a></h5>
                         </nav>
                         <nav th:if="${product.discount == 0}">
