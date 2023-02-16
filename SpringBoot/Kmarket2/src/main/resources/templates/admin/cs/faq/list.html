@@ -1,0 +1,57 @@
+<!--
+날짜 : 2023/02/09
+이름 : 김훈
+내용 : Kmarket2 admin -> cs -> faq -> list
+-->
+<th:block th:insert="~{@{admin/_header.html}}"/>
+            <section id="admin-index">
+                <nav>
+                    <h3>자주묻는질문 목록</h3>
+                    <p>
+                        HOME > 고객센터 > <strong>자주묻는질문</strong>
+                    </p>
+                </nav>
+	                <div id="admin_cs_list">
+	                	<div class="group">
+	                	<select name="group" class="group">
+		                    <option value="회원">회원</option>
+		                    <option value="쿠폰/혜택/이벤트">쿠폰/혜택/이벤트</option>
+		                    <option value="주문/결제">주문/결제</option>
+		                    <option value="배송">배송</option>
+		                    <option value="취소/반품/교환">취소/반품/교환</option>
+		                    <option value="여행/숙박/항공">여행/숙박/항공</option>
+		                    <option value="안전거래">안전거래</option>
+		                </select>
+		                 <select name="cate" class="cate">
+							<option value="">2차 선택</option>
+							<option value="가입">가입</option>
+							<option value="탈퇴">탈퇴</option>
+							<option value="회원정보">회원정보</option>
+							<option value="로그인">로그인</option>
+	                 	</select>
+	               	</div>
+                    <div class="admin_cs_list_div">
+                        <table>
+                            <tr>
+                                <th><input type="checkbox" class="all"/></th>
+                                <th>번호</th>
+                                <th>1차유형</th>
+                                <th>2차유형</th>
+                                <th>제목</th>
+                                <th>조회</th>
+                                <th>날짜</th>
+                                <th>관리</th>
+                            </tr>
+				            <tr class="faq_list">
+				            	<td colspan="8" align="center">카테고리를 선택해주세요.</td> 
+				            </tr>
+                        </table>
+                        <div class="btn">
+                            <button class="btn_red selectDelete">선택 삭제</button>
+                            <button class="btn_blue">작성하기</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+<th:block th:insert="~{@{admin/_footer.html}}"/>
