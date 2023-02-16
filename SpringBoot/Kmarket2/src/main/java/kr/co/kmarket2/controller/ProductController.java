@@ -13,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.kmarket2.service.ProductService;
 import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
+import kr.co.kmarket2.vo.OrderItemVO;
 import kr.co.kmarket2.vo.ProductVO;
 import lombok.RequiredArgsConstructor;
 
@@ -47,8 +50,9 @@ public class ProductController {
 	
 	// product/view
 	@GetMapping("product/view")
-	public String view(Model model, String no) {
+	public String view(Model model, int no) {
 		ProductVO product = service.selectProduct(no);
+		service.updateProductHit(no);
 		model.addAttribute("product", product);
 		
 		return "product/view";
@@ -56,7 +60,7 @@ public class ProductController {
 	
 	@ResponseBody
 	@PostMapping("product/addCart")
-	public int cart(Principal principal, CartVO vo) {
+	public int addCart(Principal principal, CartVO vo) {
 		return service.addCart(principal.getName(), vo);
 	}
 	
@@ -72,13 +76,24 @@ public class ProductController {
 		return "product/cart";
 	}
 	
+	@ResponseBody
+	@PostMapping("product/deleteCart")
+	public int deleteCart(Principal principal, @RequestParam(value="deleteList") List<Integer> deleteList) {
+		if(principal != null) {
+			return service.deleteCart(principal.getName(), deleteList);
+		}else {
+			return 0;
+		}
+	}
 	
 	
-	
-	@GetMapping("product/order")
-	public String order() {
+	// product/order
+	@ResponseBody
+	@PostMapping("product/order")
+	public int order(Model model, @RequestBody List<OrderItemVO> orderList) {
+		System.out.println(orderList.get(0).getDiscount());
 		
-		return "product/order";
+		return 1;
 	}
 	
 

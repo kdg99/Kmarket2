@@ -24,7 +24,7 @@ public class ProductService {
 	public void insertProduct(ProductVO vo) {
 		dao.insertProduct(vo);
 	}
-	public ProductVO selectProduct(String no) {
+	public ProductVO selectProduct(int no) {
 		return dao.selectProduct(no);
 	}
 	public List<ProductVO> selectProducts(){
@@ -33,7 +33,7 @@ public class ProductService {
 	public void updateProduct(ProductVO vo) {
 		dao.updateProduct(vo);
 	}
-	public void deleteProduct(String no) {
+	public void deleteProduct(int no) {
 		dao.deleteProduct(no);
 	}
 	
@@ -44,6 +44,10 @@ public class ProductService {
 	
 	public List<ProductVO> selectProductsByCate(String cate1, String cate2, String order, int start){
 		return dao.selectProductsByCate(cate1, cate2, order, start);
+	}
+	
+	public void updateProductHit(int prodNo) {
+		dao.updateProductHit(prodNo);
 	}
 	
 	// product/cart
@@ -62,6 +66,13 @@ public class ProductService {
 			return 1;
 		}
 		return 0;
+	}
+	
+	public int deleteCart(String uid, List<Integer> prodNo) {
+		for(int no : prodNo) {
+			dao.deleteCart(uid, no);
+		}
+		return 1;
 	}
 	
 }

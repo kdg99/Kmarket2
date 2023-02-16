@@ -43,7 +43,7 @@ public class MemberController {
 		String regip = req.getRemoteAddr();
 		vo.setRegip(regip);
 		int result = service.insertMember(vo);
-		return "redirect:/user/login?success="+result;
+		return "redirect:/member/login?success="+result;
 	}
 	
 	
