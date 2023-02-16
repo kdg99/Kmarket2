@@ -1,0 +1,46 @@
+<!--
+날짜 : 2023/02/10
+이름 : 김훈
+내용 : Kmarket2 admin -> cs -> qna -> view
+-->
+<th:block th:insert="~{@{admin/_header.html}}"/>
+
+		    <section id="admin-index">
+		        <nav>
+		            <h3>문의하기</h3>
+		            <p>
+		                HOME > 고객센터 > <strong>문의하기</strong>
+		            </p>
+		        </nav>                 
+		           <input type="hidden" name="parent" value= "">
+		           <input type="hidden" name="uid" value="">
+		            <div id="admin_cs_view">
+		                <div class="admin_cs_view_div">
+							<table>
+								<tr>
+					                <th>글유형</th>
+					                <td></td>
+					            </tr>
+					            <tr>
+					                <th>제목</th>
+					                <td></td>
+					            </tr>
+					            <tr>
+					                <th>내용</th>
+					                <td></td>
+					            </tr>               
+					            <tr>
+					                <th>답변</th>
+					                <td></td>
+					            </tr>               
+				        </table>
+							<div class="btn_right">
+	                            <button class="btn_red goDelete">삭제</button>
+	                            	<input type="button" class="btn_blue commentRegister" name ="submit_board" value="답변등록">
+	                            <button class="btn_gray goList">목록</button>
+                       	    </div>               
+	                    </div>
+	                </div>
+            </section>
+         </main>
+<th:block th:insert="~{@{admin/_footer.html}}"/>

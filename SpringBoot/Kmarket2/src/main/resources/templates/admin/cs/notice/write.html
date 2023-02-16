@@ -1,0 +1,50 @@
+<!--
+날짜 : 2023/02/10
+이름 : 김훈
+내용 : Kmarket2 admin -> cs -> notice -> write
+-->
+<th:block th:insert="~{@{admin/_header.html}}"/>
+
+            <section id="admin-index">
+                <nav>
+                    <h3>공지사항</h3>
+                    <p>
+                        HOME > 고객센터 > <strong>공지사항</strong>
+                    </p>
+                </nav>
+                <div id="admin_cs_write">
+                    <div class="admin_cs_write_div">
+                       <form id="form" action="#" method="post">   
+	                        <table>
+	                            <tbody>
+	                                <tr>
+	                                    <td>유형</td>
+	                                    <td>
+	                                        <select name="cate" id="">
+	                                            <option value="고객 서비스">고객 서비스</option>
+	                                            <option value="안전거래">안전거래</option>
+	                                            <option value="위해상품">위해상품</option>
+	                                            <option value="이벤트 당첨">이벤트 당첨</option>
+	                                        </select>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <td>제목</td>
+	                                    <td><input type="text" name="title"></td>
+	                                </tr>
+	                                <tr>
+	                                    <td>내용</td>
+	                                    <td><input type="textarea" name="content" id="content" rows="22"></td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                        <div class="btn_right">
+	                            <a href="#" class="btn_gray" >목록</a> 
+	                            <input name="submit_board"  class="btn_blue" type="submit" value="작성하기">                  
+                        	</div>
+                        </form> 
+                    </div>
+                </div>
+            </section>
+        </main>
+<th:block th:insert="~{@{admin/_footer.html}}"/>
