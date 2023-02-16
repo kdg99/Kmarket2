@@ -20,6 +20,8 @@ import kr.co.kmarket2.entity.MemberEntity;
 import kr.co.kmarket2.security.MyUserDetails;
 import kr.co.kmarket2.service.CsService;
 import kr.co.kmarket2.vo.Cs_Cate1VO;
+import kr.co.kmarket2.vo.Cs_Cate2VO;
+import kr.co.kmarket2.vo.Cs_FaqVO;
 import kr.co.kmarket2.vo.Cs_QnaVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,7 +51,23 @@ public class CsController {
     
     /* Faq */
     @GetMapping(value = {"cs/faq/list"})
-    public String FaqList(){
+    public String FaqList(Model model, String cate1){
+    	
+        if(cate1 == null || cate1.equals("")){
+            cate1 = "10";
+        }
+
+        List<Cs_Cate1VO> vo1 = service.selectCs_cate1();
+        List<Cs_Cate2VO> vo2 = service.selectCs_cate2(cate1);
+        List<Cs_FaqVO> vo = service.selectCsFaqList();
+
+        model.addAttribute("vo", vo);
+        model.addAttribute("vo1", vo1);
+        model.addAttribute("vo2", vo2);
+        model.addAttribute("cate1", cate1);
+
+
+    	
         return "cs/faq/list";
     }
     

@@ -12,26 +12,41 @@ import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.CsDAO;
 import kr.co.kmarket2.vo.Cs_Cate1VO;
+import kr.co.kmarket2.vo.Cs_Cate2VO;
+import kr.co.kmarket2.vo.Cs_FaqVO;
 import kr.co.kmarket2.vo.Cs_QnaVO;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Service
 public class CsService {
 		
 		@Autowired
 		private CsDAO dao;
 		
-		public Cs_Cate1VO selectCate1(String cate1){
-	        return dao.selectCate1(cate1);
-	    }
+		
 		
 		/* index */
 				
 		/* Notice */
 		
 		/* Faq */
+		public List<Cs_Cate1VO> selectCs_cate1() {
+		        return dao.selectCs_cate1();
+		}
+		public List<Cs_Cate2VO> selectCs_cate2(String cate1) {
+	        return dao.selectCs_cate2(cate1);
+	    }
+		
+		public List<Cs_FaqVO> selectCsFaqList() {
+		        return dao.selectCsFaqList();
+		}
 		
 		/* Qna */
+		public Cs_Cate1VO selectCate1(String cate1){
+	        return dao.selectCate1(cate1);
+	    }
+		
 		public int insertQnaArticle(Cs_QnaVO vo){
 			
 	        int result = dao.insertQnaArticle(vo);
