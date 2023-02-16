@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,7 +43,7 @@ public class MemberController {
 		String regip = req.getRemoteAddr();
 		vo.setRegip(regip);
 		int result = service.insertMember(vo);
-		return "redirect:/user/login?success="+result;
+		return "redirect:/member/login?success="+result;
 	}
 	
 	
@@ -54,7 +52,13 @@ public class MemberController {
 		return "member/registerSeller";
 	}
 	
-	
+//	@PostMapping("member/registerSeller")
+//	public String registerSeller(MemberVO vo, HttpServletRequest req) {
+//		String regip = req.getRemoteAddr();
+//		vo.setRegip(regip);
+//		int result = service.insertMemberSeller(vo);
+//		return "redirect:/member/login?success="+result;
+//	}
 
 	@GetMapping("member/terms")
 	public String terms(Model model) {
@@ -64,24 +68,16 @@ public class MemberController {
 		return "member/terms";
 	}
 	
-//	@ResponseBody
-//	@GetMapping("member/checkUid")
-//	public Map<String, Integer> checkUid(String uid) {
-//		int result = service.countMember(uid);
-//		Map<String, Integer> map = new HashMap<>();
-//		map.put("result", result);
-//		
-//		return map;
-//	}
-	
 	//아이디 중복체크
-	@PostMapping("member/checkUid")
 	@ResponseBody
-	public Map<String, Integer> checkUid(String uid) {
-		int chk = service.countMember(uid);
-		Map<String, Integer> cnt = new HashMap<>();
-		cnt.put("chk", chk);
-		return cnt;
-	}
+    @GetMapping("member/checkUid")
+    public Map<String, Integer> checkUid(String uid) {
+        int result = service.countMember(uid);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("result", result);
+
+        return map;
+    }
+	
 	
 }

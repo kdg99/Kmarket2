@@ -63,5 +63,6 @@ public class MemberService {
 	public int countMember(String uid) {
 		return repo.countByUid(uid);
 	}
+	
 
 }
