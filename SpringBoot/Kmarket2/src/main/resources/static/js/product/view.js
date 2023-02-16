@@ -78,7 +78,7 @@ $(function(){
 		
 	});
 	
-/* 주문 */
+	/* 주문 */
 	$('.order').click(function(){
 		let orderList = [];
 		let prodInfoList = [];
@@ -96,6 +96,10 @@ $(function(){
 		let delivery= $('#delivery').text().replace('무료배송', '0').split(',').join("");
 		let total 	= $('#total').text().split(',').join("");
 		let point	= parseInt(price) / 100;
+		let prodName= $('#prodName').text()
+		let descript= $('#descript').text()
+		let src = $('#thumb1').attr('src')
+		let thumb1	= src.slice(src.lastIndexOf("/")+1);
 		
 		let prodInfo = {
 			'prodNo'	: prodNo,
@@ -104,7 +108,10 @@ $(function(){
 			'discount' 	: discount,
 			'point'		: point,
 			'delivery' 	: delivery,
-			'total' 	: total
+			'total' 	: total,
+			'prodName'	: prodName,
+			'descript'	: descript,
+			'thumb1'	: thumb1
 		};
 		orderList.push(prodInfo);
 		console.log(orderList);
@@ -115,7 +122,9 @@ $(function(){
 			dataType: 'json',
 			contentType: 'application/json',
 			success: function(data){
-				alert('성공');
+				if(confirm('구매하시겠습니까?')){
+					location.href="/Kmarket2/product/order"
+				}
 			},
 			error: function() {
           		alert('error 주문하기');

@@ -6,6 +6,7 @@
 package kr.co.kmarket2.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import kr.co.kmarket2.config.SessionConst;
+import kr.co.kmarket2.repository.MemberRepo;
 import kr.co.kmarket2.service.ProductService;
 import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
@@ -30,6 +35,8 @@ public class ProductController {
 	
 	@Autowired
 	ProductService service;
+	@Autowired
+	private MemberRepo repo;
 	
 	// product/list
 	@GetMapping("product/list")
@@ -86,13 +93,26 @@ public class ProductController {
 		}
 	}
 	
+	@GetMapping("product/order")
+	public String order(Principal principal, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		List<?> list = (List<?>) session.getAttribute(SessionConst.PRODUCT_ORDER);
+		List<OrderItemVO> orderList = new ArrayList<>();
+		for (Object object : list) {
+			orderList.add((OrderItemVO)object);
+		}
+		model.addAttribute("orders", orderList);
+		model.addAttribute("userPoint", repo.findById(principal.getName()).get().getPoint());
+		return "product/order";
+	}
 	
 	// product/order
 	@ResponseBody
 	@PostMapping("product/order")
-	public int order(Model model, @RequestBody List<OrderItemVO> orderList) {
-		System.out.println(orderList.get(0).getDiscount());
-		
+	public int order(HttpServletRequest request, @RequestBody List<OrderItemVO> orderList) {
+		HttpSession session = request.getSession();
+		session.removeAttribute(SessionConst.PRODUCT_ORDER);
+		session.setAttribute(SessionConst.PRODUCT_ORDER, orderList);
 		return 1;
 	}
 	
