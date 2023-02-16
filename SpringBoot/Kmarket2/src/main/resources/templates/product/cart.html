@@ -1,5 +1,5 @@
 <!--
-날짜 : 2023/02/13
+날짜 : 2023/02/13~16
 이름 : 김동근
 내용 : Kmarket2 SpringBoot product cart
 -->
@@ -57,7 +57,7 @@
                         <td th:text="${#numbers.formatInteger(cart.point, 0, 'COMMA')}"></td>
                         <td th:if="${cart.delivery == 0}">무료배송</td>
                         <td th:unless="${cart.delivery == 0}" th:text="${#numbers.formatInteger(cart.delivery, 0, 'COMMA')}"></td>
-                        <td th:text="${#numbers.formatInteger(cart.total, 0, 'COMMA')}"></td>
+                        <td th:text="${#numbers.formatInteger(cart.total + cart.delivery, 0, 'COMMA')}"></td>
                       </tr>
                     </tbody>
                   </table>
@@ -66,7 +66,7 @@
                   <!-- 장바구니 전체합계 -->
                   <div class="total">
                     <h2>전체합계</h2>
-                    <table border="0">
+                    <table border="0" id="totalTable">
                       <tbody><tr>
                         <td>상품수</td>
                         <td>1</td>
@@ -84,7 +84,7 @@
                         <td>0</td>
                       </tr>              
                       <tr>
-                        <td>포인트</td>
+                        <td>적립 포인트</td>
                         <td>260</td>
                       </tr>
                       <tr>

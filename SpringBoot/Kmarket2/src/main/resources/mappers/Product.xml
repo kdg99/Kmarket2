@@ -72,6 +72,10 @@
 		</if>
 	</select>
 	
+	<update id="updateProductHit">
+		UPDATE `km_product` SET `hit` = `hit`+1 WHERE `prodNo`=#{prodNo};
+	</update>
+	
 	<!-- product/cart -->
 	<select id="selectCarts" resultType="CartVO">
 		SELECT a.*, b.`prodName`, b.`descript`, b.`thumb1` 
@@ -95,8 +99,45 @@
 			point 	= #{point},
 			delivery= #{delivery},
 			total 	= #{total},
-			rdate 	= NOW()
+			rdate 	= NOW();
 	</insert>
 	
+	<delete id="deleteCart">
+		DELETE FROM `km_product_cart` WHERE `uid`=#{uid} AND `prodNo`=#{prodNo};
+	</delete>
+	
+	<!-- product/order -->
+	<insert id="insertOrder">
+		INSERT INTO `km_product_order` SET 
+		uid			= #{uid},
+		ordComplete = '1',
+		ordDate 	= NOW();
+	</insert>
+	
+	<select id="checkOrder">
+		SELECT COUNT(*) FROM `km_product_order`
+		WHERE uid = #{uid} AND ordComplete = '1';
+	</select>
+	
+	<update id="updateOrder">
+		UPDATE `km_product_order` SET 
+		uid 		= #{uid},
+		ordCount	= #{ordCount},
+		ordPrice	= #{ordPrice},
+		ordDiscount	= #{ordDiscount},
+		ordDelivery	= #{ordDelivery},
+		savePoint	= #{savePoint},
+		usedPoint	= #{usedPoint},
+		ordTotPrice	= #{ordTotPrice},
+		recipName	= #{recipName},
+		recipHp		= #{recipHp},
+		recipZip	= #{recipZip},
+		recipAddr1	= #{recipAddr1},
+		recipAddr2	= #{recipAddr2},
+		ordPayment	= #{ordPayment},
+		ordComplete	= #{ordComplete},
+		ordDate		= NOW();
+		WHERE uid = #{uid} AND ordComplete = '1';
+	</update>
 	
 </mapper>
