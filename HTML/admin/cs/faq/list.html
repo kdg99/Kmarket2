@@ -1,0 +1,138 @@
+<!--
+날짜 : 2023/02/09
+이름 : 김훈
+내용 : Kmarket2 admin -> cs -> faq -> list
+-->
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>케이마켓::관리자</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/HTML/admin/css/main.css">
+</head>
+<body>
+    <div id="admin-wrapper">
+        <header>
+            <div>
+                <a href="./index.html" class="logo"><img src="/HTML/admin/img/admin_logo.png" alt="admin_logo"/></a>
+                <p>
+                    <span>홍길동님 반갑습니다.</span>
+                    <a href="#">HOME |</a>
+                    <a href="#">로그아웃 |</a>
+                    <a href="#">고객센터</a>
+                </p>
+            </div>
+        </header>
+        <main>
+            <aside>
+                <ul id="gnb">
+                    <li>
+                        <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>환경설정</a>
+                        <ol>
+                            <li><a href="#">기본환경설정</a></li>
+                            <li><a href="#">배너관리</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-store" aria-hidden="true"></i>상점관리</a>
+                        <ol>
+                            <li><a href="#">판매자현황</a></li>
+                            <li><a href="#">재고관리</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i>회원관리</a>
+                        <ol>
+                            <li><a href="#">회원현황</a></li>
+                            <li><a href="#">포인트관리</a></li>
+                            <li><a href="#">비회원관리</a></li>
+                            <li><a href="#">접속자집계</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
+                        <ol>
+                            <li><a href="#">상품목록</a></li>
+                            <li><a href="#">상품등록</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i>주문관리</a>
+                        <ol>
+                            <li><a href="#">주문현황</a></li>
+                            <li><a href="#">매출현황</a></li>
+                            <li><a href="#">결제관리</a></li>
+                            <li><a href="#">배송관리</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
+                        <ol>
+                            <li><a href="#">게시판현황</a></li>
+                            <li><a href="#">고객문의</a></li>
+                        </ol>
+                    </li>
+                </ul>
+            </aside>
+            <section id="admin-index">
+                <nav>
+                    <h3>자주묻는질문 목록</h3>
+                    <p>
+                        HOME > 고객센터 > <strong>자주묻는질문</strong>
+                    </p>
+                </nav>
+	                <div id="admin_cs_list">
+	                	<div class="group">
+	                	<select name="group" class="group">
+		                    <option value="회원">회원</option>
+		                    <option value="쿠폰/혜택/이벤트">쿠폰/혜택/이벤트</option>
+		                    <option value="주문/결제">주문/결제</option>
+		                    <option value="배송">배송</option>
+		                    <option value="취소/반품/교환">취소/반품/교환</option>
+		                    <option value="여행/숙박/항공">여행/숙박/항공</option>
+		                    <option value="안전거래">안전거래</option>
+		                </select>
+		                 <select name="cate" class="cate">
+							<option value="">2차 선택</option>
+							<option value="가입">가입</option>
+							<option value="탈퇴">탈퇴</option>
+							<option value="회원정보">회원정보</option>
+							<option value="로그인">로그인</option>
+	                 	</select>
+	               	</div>
+                    <div class="admin_cs_list_div">
+                        <table>
+                            <tr>
+                                <th><input type="checkbox" class="all"/></th>
+                                <th>번호</th>
+                                <th>1차유형</th>
+                                <th>2차유형</th>
+                                <th>제목</th>
+                                <th>조회</th>
+                                <th>날짜</th>
+                                <th>관리</th>
+                            </tr>
+				            <tr class="faq_list">
+				            	<td colspan="8" align="center">카테고리를 선택해주세요.</td> 
+				            </tr>
+                        </table>
+                        <div class="btn">
+                            <button class="btn_red selectDelete">선택 삭제</button>
+                            <button class="btn_blue" onclick = "location.href = '/Kmarket/admin/cs/faq/write.do' ">작성하기</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div>
+                <p>Copyright ©kmarket.co.kr All rights reserved. KMARKET ADMINISTRATOR Version 5.4.1.2</p>
+            </div>
+        </footer>
+        </div>    
+        </body>
+        </html>

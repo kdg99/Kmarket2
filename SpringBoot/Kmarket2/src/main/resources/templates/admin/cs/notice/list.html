@@ -1,0 +1,48 @@
+<!--
+날짜 : 2023/02/09
+이름 : 김훈
+내용 : Kmarket2 admin -> cs -> notice -> list
+-->
+<th:block th:insert="~{@{admin/_header.html}}"/>
+
+            <section id="admin-index">
+                <nav>
+                    <h3>공지사항</h3>
+                    <p>
+                        HOME > 고객센터 > <strong>공지사항</strong>
+                    </p>
+                </nav>
+                <div id="admin_cs_list">
+                <div class="group">
+                    <select name="cate" id="cate">
+                    	<option value="전체보기">전체보기</option>
+	                    <option value="고객 서비스">고객 서비스</option>
+	                    <option value="안전거래">안전거래</option>
+	                    <option value="위해상품">위해상품</option>
+	                    <option value="이벤트 당첨">이벤트 당첨</option>
+                	</select>
+                	</div>
+                    <div class="admin_cs_list_div">
+                        <table>
+                           <tr>
+                               <th><input type="checkbox" class="all"/></th>
+                               <th>번호</th>
+                               <th>유형</th>
+                               <th>제목</th>
+                               <th>조회</th>
+                               <th>날짜</th>
+                               <th>관리</th>
+                           </tr>
+                          <tr class="notice_list"></tr>
+                        </table>
+                        <div class="btn">
+                            <button class="btn_gray selectDelete">선택삭제</button>
+                            <button class="btn_blue register">작성하기</button>
+                        </div>
+                        <div class="page">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+<th:block th:insert="~{@{admin/_footer.html}}"/>
