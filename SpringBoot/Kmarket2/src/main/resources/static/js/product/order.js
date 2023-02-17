@@ -131,9 +131,81 @@
 		}
 	});
 	
+	function makeOrderList(){
+		let tds = $(this).parent().parent().children();
+		count 	= makeNum(tds[2].innerText);
+		price 	= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText));
+		discount= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText) - makeNum(tds[7].innerText) + makeNum(tds[6].innerText));
+		point 	= (makeNum(tds[5].innerText) * makeNum(tds[2].innerText));
+		delivery= makeNum(tds[6].innerText);
+		total	= makeNum(tds[7].innerText);
+	}
 	
-	
-	/* 제출 */
+	/* 구매 */
+	$('.order').click(function(){
+		let orderList = [];
+		let prodInfo = [];
+		//선택확인
+		//전부 체크해제시 전부 추가
+		if($("input:checkbox[name='cartNo']").is(":checked")==false) {
+			$('input[name=cartNo]').each(function(){
+				//함수
+			});
+		}else { // 선택된 것만 추가
+			$('input[name=cartNo]').each(function(){
+				//함수
+			});
+		}
+		
+		let prodNo 	= $('#prodNo').text().slice(4);
+		for(var i = 0 ; i < 6 ; i++){
+			if(prodNo[i] != 0){
+				prodNo = prodNo.slice(i);
+				break;
+			}
+		}		
+		let count 	= $('#count').val();
+		let price 	= $('#price').text().split(',').join("");
+		let discount= $('#discount').text();
+		let delivery= $('#delivery').text().replace('무료배송', '0').split(',').join("");
+		let total 	= $('#total').text().split(',').join("");
+		let point	= parseInt(price) / 100;
+		let prodName= $('#prodName').text()
+		let descript= $('#descript').text()
+		let src = $('#thumb1').attr('src')
+		let thumb1	= src.slice(src.lastIndexOf("/")+1);
+		
+		let prodInfod = {
+			'prodNo'	: prodNo,
+			'count' 	: count,
+			'price'		: price,
+			'discount' 	: discount,
+			'point'		: point,
+			'delivery' 	: delivery,
+			'total' 	: total,
+			'prodName'	: prodName,
+			'descript'	: descript,
+			'thumb1'	: thumb1
+		};
+		orderList.push(prodInfo);
+		console.log(orderList);
+		$.ajax({
+			url: '/Kmarket2/product/complete',
+			method: 'POST',
+			data: JSON.stringify(orderList),
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(data){
+				if(confirm('구매하시겠습니까?')){
+					location.href="/Kmarket2/product/complete"
+				}
+			},
+			error: function() {
+          		alert('error 주문하기');
+        	}
+		});
+		
+	});
 
 	
 });
