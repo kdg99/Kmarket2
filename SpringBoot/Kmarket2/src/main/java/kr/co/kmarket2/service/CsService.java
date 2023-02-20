@@ -34,12 +34,12 @@ public class CsService {
 		public List<Cs_Cate1VO> selectCs_cate1() {
 		        return dao.selectCs_cate1();
 		}
-		public List<Cs_Cate2VO> selectCs_cate2(String cate1) {
+		public List<Cs_Cate2VO> selectCs_cate2(Integer cate1) {
 	        return dao.selectCs_cate2(cate1);
 	    }
 		
-		public List<Cs_FaqVO> selectCsFaqList() {
-		        return dao.selectCsFaqList();
+		public List<Cs_FaqVO> selectCsFaqList(Integer cate1, Integer cate2) {
+		        return dao.selectCsFaqList(cate1, cate2);
 		}
 		
 		/* Qna */

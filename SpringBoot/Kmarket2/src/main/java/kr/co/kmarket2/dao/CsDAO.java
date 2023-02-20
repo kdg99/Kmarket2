@@ -27,8 +27,8 @@ public interface CsDAO {
 		
 		/* Faq */
 		public List<Cs_Cate1VO> selectCs_cate1();
-		public List<Cs_Cate2VO> selectCs_cate2(String cate1);
-		public List<Cs_FaqVO> selectCsFaqList();
+		public List<Cs_Cate2VO> selectCs_cate2(Integer cate1);
+		public List<Cs_FaqVO> selectCsFaqList(Integer cate1, Integer cate2);
 		
 		/* Qna */
 		public Cs_Cate1VO selectCate1(@Param("cate1")String cate1);
