@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
+import kr.co.kmarket2.vo.OrderItemVO;
 import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProductVO;
 
@@ -36,8 +37,8 @@ public interface ProductDAO {
 	public void insertCart(CartVO vo);
 	public void deleteCart(@Param("uid") String uid, @Param("prodNo") int prodNo);
 	
-	// product/order
-	public void insertOrder(String uid);
-	public int checkOrder(String uid);
-	public void updateOrder(OrderVO vo);
+	// product/complete
+	public void insertOrder(OrderVO vo);
+	public void insertOrderItem(OrderItemVO vo);
+	public void updateOrder(int ordComplete, int ordNo);
 }

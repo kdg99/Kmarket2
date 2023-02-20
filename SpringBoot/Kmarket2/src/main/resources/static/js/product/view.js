@@ -114,7 +114,6 @@ $(function(){
 			'thumb1'	: thumb1
 		};
 		orderList.push(prodInfo);
-		console.log(orderList);
 		$.ajax({
 			url: '/Kmarket2/product/order',
 			method: 'POST',

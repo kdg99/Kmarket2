@@ -26,6 +26,7 @@ import kr.co.kmarket2.service.ProductService;
 import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
 import kr.co.kmarket2.vo.OrderItemVO;
+import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProductVO;
 import lombok.RequiredArgsConstructor;
 
@@ -93,6 +94,9 @@ public class ProductController {
 		}
 	}
 	
+	
+	
+	// product/order
 	@GetMapping("product/order")
 	public String order(Principal principal, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -103,10 +107,11 @@ public class ProductController {
 		}
 		model.addAttribute("orders", orderList);
 		model.addAttribute("userPoint", repo.findById(principal.getName()).get().getPoint());
+		model.addAttribute("userName", repo.findById(principal.getName()).get().getName());
+		model.addAttribute("userHp", repo.findById(principal.getName()).get().getHp());
 		return "product/order";
 	}
 	
-	// product/order
 	@ResponseBody
 	@PostMapping("product/order")
 	public int order(HttpServletRequest request, @RequestBody List<OrderItemVO> orderList) {
@@ -116,11 +121,23 @@ public class ProductController {
 		return 1;
 	}
 	
-
+	
+	// product/complete
 	@GetMapping("product/complete")
-	public String complete() {
-		
+	public String complete(Principal principal, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		OrderVO orderInfo = (OrderVO) session.getAttribute(SessionConst.PRODUCT_COMEPLETE);
+		service.completeOrder(principal.getName(), orderInfo);
 		return "product/complete";
+	}
+	
+	@ResponseBody
+	@PostMapping("product/complete")
+	public int complete(HttpServletRequest request, @RequestBody OrderVO orderInfo) {
+		HttpSession session = request.getSession();
+		session.removeAttribute(SessionConst.PRODUCT_COMEPLETE);
+		session.setAttribute(SessionConst.PRODUCT_COMEPLETE, orderInfo);
+		return 1;
 	}
 	
 	

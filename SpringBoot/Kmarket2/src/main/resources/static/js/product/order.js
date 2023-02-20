@@ -5,7 +5,6 @@
 */
 
  $(function(){
-	let cartList= [];
 	let count 	= 0;
 	let price 	= 0;
 	let discount= 0;
@@ -15,6 +14,7 @@
 	
 	$(document).ready(function(){
 		sumAll();
+		$('input[name=payment][value="1"]').attr('checked', true);
 	})
 	
 	/* 체크박스 처리 */
@@ -70,7 +70,7 @@
 			let tds = $(this).parent().parent().children();
 			count 	+= makeNum(tds[2].innerText);
 			price 	+= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText));
-			discount+= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText) - makeNum(tds[7].innerText));
+			discount+= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText) - makeNum(tds[7].innerText) + makeNum(tds[6].innerText));
 			point 	+= (makeNum(tds[5].innerText) * makeNum(tds[2].innerText));
 			delivery+= makeNum(tds[6].innerText);
 			total	+= makeNum(tds[7].innerText);
@@ -79,7 +79,6 @@
 	}
 	
 	function initVal(){
-		cartList.length = 0;
 		count 	= 0;
 		price 	= 0;
 		discount= 0;
@@ -96,7 +95,7 @@
 		//값 넣기
 		trs[0].children[1].innerText = count.toLocaleString();
 		trs[1].children[1].innerText = price.toLocaleString();
-		trs[2].children[1].innerText = '-' + discount.toLocaleString();
+		trs[2].children[1].innerText = discount.toLocaleString();
 		trs[3].children[1].innerText = delivery.toLocaleString();
 		trs[4].children[1].innerText = point.toLocaleString();
 		trs[5].children[1].innerText = pointDis.toLocaleString();
@@ -131,68 +130,59 @@
 		}
 	});
 	
-	function makeOrderList(){
-		let tds = $(this).parent().parent().children();
-		count 	= makeNum(tds[2].innerText);
-		price 	= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText));
-		discount= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText) - makeNum(tds[7].innerText) + makeNum(tds[6].innerText));
-		point 	= (makeNum(tds[5].innerText) * makeNum(tds[2].innerText));
-		delivery= makeNum(tds[6].innerText);
-		total	= makeNum(tds[7].innerText);
-	}
 	
 	/* 구매 */
-	$('.order').click(function(){
+	$('#btnOrder').click(function(e){
+		e.preventDefault();
 		let orderList = [];
-		let prodInfo = [];
 		//선택확인
 		//전부 체크해제시 전부 추가
 		if($("input:checkbox[name='cartNo']").is(":checked")==false) {
 			$('input[name=cartNo]').each(function(){
-				//함수
+				orderList.push(makeProdInfo($(this)));
 			});
 		}else { // 선택된 것만 추가
 			$('input[name=cartNo]').each(function(){
-				//함수
+				orderList.push(makeProdInfo($(this)));
 			});
 		}
+		let trs = $('#totalTable > tbody').children();
+		let ordCount 	= makeNum(trs[0].children[1].innerText);
+		let ordPrice 	= makeNum(trs[1].children[1].innerText);
+		let ordDiscount	= makeNum(trs[2].children[1].innerText);
+		let ordDelivery = makeNum(trs[3].children[1].innerText);
+		let savePoint	= makeNum(trs[4].children[1].innerText);
+		let usedPoint	= makeNum(trs[5].children[1].innerText);
+		let ordTotPrice	= makeNum(trs[6].children[1].innerText);
+		let recipName 	= $('#orderer').val();
+		let recipHp		= $('#hp').val();
+		let recipZip 	= $('#zip').val();
+		let recipAddr1	= $('#addr1').val();
+		let recipAddr2	= $('#addr2').val();
+		let ordPayment 	= $('input[name=payment]:checked').val();
 		
-		let prodNo 	= $('#prodNo').text().slice(4);
-		for(var i = 0 ; i < 6 ; i++){
-			if(prodNo[i] != 0){
-				prodNo = prodNo.slice(i);
-				break;
-			}
-		}		
-		let count 	= $('#count').val();
-		let price 	= $('#price').text().split(',').join("");
-		let discount= $('#discount').text();
-		let delivery= $('#delivery').text().replace('무료배송', '0').split(',').join("");
-		let total 	= $('#total').text().split(',').join("");
-		let point	= parseInt(price) / 100;
-		let prodName= $('#prodName').text()
-		let descript= $('#descript').text()
-		let src = $('#thumb1').attr('src')
-		let thumb1	= src.slice(src.lastIndexOf("/")+1);
+		let orderInfo = {
+			'ordCount' 	: ordCount,
+			'ordPrice' 	: ordPrice,
+			'ordDiscount': ordDiscount,
+			'ordDelivery': ordDelivery,
+			'savePoint' : savePoint,
+			'usedPoint' : usedPoint,
+			'ordTotPrice': ordTotPrice,
+			'recipName' : recipName,
+			'recipHp'	: recipHp,
+			'recipZip'	: recipZip,
+			'recipAddr1': recipAddr1,
+			'recipAddr2': recipAddr2,
+			'orderList'	: orderList,
+			'ordPayment': ordPayment
+		}
+		console.log(orderInfo);
 		
-		let prodInfod = {
-			'prodNo'	: prodNo,
-			'count' 	: count,
-			'price'		: price,
-			'discount' 	: discount,
-			'point'		: point,
-			'delivery' 	: delivery,
-			'total' 	: total,
-			'prodName'	: prodName,
-			'descript'	: descript,
-			'thumb1'	: thumb1
-		};
-		orderList.push(prodInfo);
-		console.log(orderList);
 		$.ajax({
 			url: '/Kmarket2/product/complete',
 			method: 'POST',
-			data: JSON.stringify(orderList),
+			data: JSON.stringify(orderInfo),
 			dataType: 'json',
 			contentType: 'application/json',
 			success: function(data){
@@ -206,6 +196,28 @@
 		});
 		
 	});
+	
+	function makeProdInfo(me){
+		let tds = me.parent().parent().children();
+		let prodNo	= makeNum(me.val());
+		count 	= makeNum(tds[2].innerText);
+		price 	= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText));
+		discount= makeNum(tds[4].innerText);
+		point 	= (makeNum(tds[5].innerText) * makeNum(tds[2].innerText));
+		delivery= makeNum(tds[6].innerText);
+		total	= makeNum(tds[7].innerText);
+		let prodInfo = {
+			'prodNo'	: prodNo,
+			'count' 	: count,
+			'price'		: price,
+			'discount' 	: discount,
+			'point'		: point,
+			'delivery' 	: delivery,
+			'total' 	: total
+		};
+		return prodInfo
+	}
+	
 
 	
 });

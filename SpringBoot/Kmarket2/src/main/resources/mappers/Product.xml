@@ -106,21 +106,9 @@
 		DELETE FROM `km_product_cart` WHERE `uid`=#{uid} AND `prodNo`=#{prodNo};
 	</delete>
 	
-	<!-- product/order -->
-	<insert id="insertOrder">
+	<!-- product/complete -->
+	<insert id="insertOrder" useGeneratedKeys="true" keyColumn="ordNo" keyProperty="ordNo">
 		INSERT INTO `km_product_order` SET 
-		uid			= #{uid},
-		ordComplete = '1',
-		ordDate 	= NOW();
-	</insert>
-	
-	<select id="checkOrder">
-		SELECT COUNT(*) FROM `km_product_order`
-		WHERE uid = #{uid} AND ordComplete = '1';
-	</select>
-	
-	<update id="updateOrder">
-		UPDATE `km_product_order` SET 
 		uid 		= #{uid},
 		ordCount	= #{ordCount},
 		ordPrice	= #{ordPrice},
@@ -135,9 +123,26 @@
 		recipAddr1	= #{recipAddr1},
 		recipAddr2	= #{recipAddr2},
 		ordPayment	= #{ordPayment},
-		ordComplete	= #{ordComplete},
+		ordComplete	= '1',
 		ordDate		= NOW();
-		WHERE uid = #{uid} AND ordComplete = '1';
+	</insert>
+	
+	<insert id="insertOrderItem">
+		INSERT INTO `km_product_order_item` SET 
+		ordNo	=#{ordNo},
+		prodNo	=#{prodNo},
+		count	=#{count},
+		price	=#{price},
+		discount=#{discount},
+		point	=#{point},
+		delivery=#{delivery},
+		total	=#{total}
+	</insert>
+	
+	<update id="updateOrder">
+		UPDATE `km_product_order` SET 
+		ordComplete	= #{ordComplete} 
+		WHERE ordNo = #{ordNo};
 	</update>
 	
 </mapper>

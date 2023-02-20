@@ -29,4 +29,7 @@ public class OrderVO {
 	private int 	ordPayment;
 	private int 	ordComplete;
 	private String 	ordDate;
+	
+	//추가필드
+	public OrderItemVO[] orderList;
 }
