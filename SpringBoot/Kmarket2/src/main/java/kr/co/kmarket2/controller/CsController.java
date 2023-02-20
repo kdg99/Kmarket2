@@ -51,22 +51,27 @@ public class CsController {
     
     /* Faq */
     @GetMapping(value = {"cs/faq/list"})
-    public String FaqList(Model model, String cate1){
+    public String FaqList(Model model,  Integer cate1, Integer cate2){
     	
         if(cate1 == null || cate1.equals("")){
-            cate1 = "10";
+            cate1 = 10;
         }
 
         List<Cs_Cate1VO> vo1 = service.selectCs_cate1();
         List<Cs_Cate2VO> vo2 = service.selectCs_cate2(cate1);
-        List<Cs_FaqVO> vo = service.selectCsFaqList();
+        List<Cs_FaqVO> vo = service.selectCsFaqList(cate1, cate2);
 
+        /*
+        log.info("vo : " + vo);
+        log.info("vo1 : " + vo1);
+        log.info("vo2 : " + vo2);
+        log.info("csCate1 : " + csCate1);
+        */
+        
         model.addAttribute("vo", vo);
         model.addAttribute("vo1", vo1);
         model.addAttribute("vo2", vo2);
         model.addAttribute("cate1", cate1);
-
-
     	
         return "cs/faq/list";
     }

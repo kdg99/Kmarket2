@@ -29,5 +29,4 @@ public class Cs_FaqVO {
 	private String uid;
 	private String regip;
 	private String rdate;
-	
 }
