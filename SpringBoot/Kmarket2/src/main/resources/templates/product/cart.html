@@ -44,10 +44,10 @@
                         <td><input type="checkbox" name="cartNo" th:value="${cart.prodNo}"></td>
                         <td>
                           <article>
-                            <a th:href="@{/product/view(no=${cart.prodNo})}"><img th:src="@{/file/productImg/}+${cart.thumb1}" alt="상품이미지"></a>
+                            <a th:href="@{/product/view(no=${cart.prodNo})}"><img class="thumb1" th:src="@{/file/productImg/}+${cart.thumb1}" alt="상품이미지"></a>
                             <div>
-                              <h2><a th:href="@{/product/view(no=${cart.prodNo})}">[[${cart.prodName}]]</a></h2>
-                              <p>[[${cart.descript}]]</p>
+                              <h2><a class="prodName" th:href="@{/product/view(no=${cart.prodNo})}">[[${cart.prodName}]]</a></h2>
+                              <p class="descript">[[${cart.descript}]]</p>
                             </div>
                           </article>
                         </td>
@@ -69,15 +69,15 @@
                     <table border="0" id="totalTable">
                       <tbody><tr>
                         <td>상품수</td>
-                        <td>1</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>상품금액</td>
-                        <td>27,000</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>할인금액</td>
-                        <td>-1,000</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>배송비</td>
@@ -85,14 +85,14 @@
                       </tr>              
                       <tr>
                         <td>적립 포인트</td>
-                        <td>260</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>전체주문금액</td>
-                        <td>26,000</td>
+                        <td>0</td>
                       </tr>
                     </tbody></table>
-                    <input type="submit" name="" value="주문하기">    
+                    <input type="submit" id="btnOrder" value="주문하기">    
                   </div>
   
                 </form>

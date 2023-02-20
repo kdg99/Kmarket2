@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import kr.co.kmarket2.dao.ProductDAO;
 import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
+import kr.co.kmarket2.vo.OrderItemVO;
+import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProductVO;
 
 @Service
@@ -73,6 +75,20 @@ public class ProductService {
 			dao.deleteCart(uid, no);
 		}
 		return 1;
+	}
+	
+	// product/Complete
+	public void completeOrder(String uid, OrderVO orderInfo) {
+		orderInfo.setUid(uid);
+		//주문 인서트
+		dao.insertOrder(orderInfo);
+		int ordNo = orderInfo.getOrdNo();
+		for (OrderItemVO orderItem : orderInfo.getOrderList()) {
+			//주문상품 인서트
+			orderItem.setOrdNo(ordNo);
+			dao.insertOrderItem(orderItem);
+		}
+		//유저 정보 업뎃, 상품 정보 업뎃, 장바구니 삭제
 	}
 	
 }

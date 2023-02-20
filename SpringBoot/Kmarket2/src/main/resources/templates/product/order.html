@@ -59,7 +59,7 @@
                         <td th:text="${#numbers.formatInteger(order.point, 0, 'COMMA')}"></td>
                         <td th:if="${order.delivery == 0}">무료배송</td>
                         <td th:unless="${order.delivery == 0}" th:text="${#numbers.formatInteger(order.delivery, 0, 'COMMA')}"></td>
-                        <td th:text="${#numbers.formatInteger(order.total + order.delivery, 0, 'COMMA')}"></td>
+                        <td th:text="${#numbers.formatInteger(order.total, 0, 'COMMA')}"></td>
                       </tr>
                     </tbody>
                   </table>                 
@@ -78,7 +78,7 @@
                       </tr>
                       <tr>
                         <td>할인금액</td>
-                        <td>-0</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>배송비</td>
@@ -97,7 +97,7 @@
                         <td>0</td>
                       </tr>
                     </tbody></table>
-                    <input type="button" name="" value="결제하기">              
+                    <input type="button" id="btnOrder" value="결제하기">              
                   </div>
                     
                   <!-- 배송정보 -->
@@ -106,26 +106,26 @@
                     <table>
                       <tbody><tr>
                         <td>주문자</td>
-                        <td><input type="text" name="orderer"></td>
+                        <td><input type="text" id="orderer" th:value="${userName}" placeholder="수령자를 입력해주세요"></td>
                       </tr>
                       <tr>
                         <td>휴대폰</td>
                         <td>
-                          <input type="text" name="hp">
+                          <input type="text" id="hp"  th:value="${userHp}" placeholder="010-0000-0000">
                           <span>- 포함 입력</span>
                         </td>
                       </tr>
                       <tr>
                         <td>우편번호</td>
                         <td>
-                          <input type="text" name="zip" id="zip">
+                          <input type="text" name="zip" id="zip" readonly placeholder="주소를 검색해주세요">
                           <input type="button" id="btnPostcode" value="검색">
                         </td>
                       </tr>
                       <tr>
                         <td>기본주소</td>
                         <td>
-                          <input type="text" name="addr1" id="addr1">
+                          <input type="text" name="addr1" id="addr1" readonly placeholder="주소를 검색해주세요">
                         </td>
                       </tr>
                       <tr>
@@ -157,23 +157,23 @@
                       <div>
                           <span>신용카드</span>
                           <p>
-                              <label><input type="radio" name="payment" value="type1">신용카드 결제</label>
-                              <label><input type="radio" name="payment" value="type2">체크카드 결제</label>                                
+                              <label><input type="radio" name="payment" value="1">신용카드 결제</label>
+                              <label><input type="radio" name="payment" value="2">체크카드 결제</label>                                
                           </p>
                       </div>
                       <div>
                           <span>계좌이체</span>
                           <p>
-                              <label><input type="radio" name="payment" value="type3">실시간 계좌이체</label>
-                              <label><input type="radio" name="payment" value="type4">무통장 입금</label>                                
+                              <label><input type="radio" name="payment" value="3">실시간 계좌이체</label>
+                              <label><input type="radio" name="payment" value="4">무통장 입금</label>                                
                           </p>
                       </div>
                       <div>
                           <span>기타</span>
                           <p>
-                              <label><input type="radio" name="payment" value="type3">휴대폰결제</label>
+                              <label><input type="radio" name="payment" value="5">휴대폰결제</label>
                               <label>
-                                  <input type="radio" name="payment" value="type4">카카오페이
+                                  <input type="radio" name="payment" value="6">카카오페이
                                   <img th:src="@{/images/main/ico_kakaopay.gif}" alt="카카오페이">
                               </label>                                
                           </p>
