@@ -61,10 +61,11 @@ public class MemberController {
 //	}
 
 	@GetMapping("member/terms")
-	public String terms(Model model) {
+	public String terms(Model model, String type) {
 		TermsVO vo = service.selectTerms();
 		//log.info("vo : " + vo);
-		model.addAttribute(vo);
+		model.addAttribute("type", type);	// seller, buyer terms
+		model.addAttribute("termsVO", vo);
 		return "member/terms";
 	}
 	

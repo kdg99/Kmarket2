@@ -42,11 +42,8 @@ public class MemberService {
 	// 약관
 	public TermsVO selectTerms() {
 		return dao.selectTerms();
-	}
+	};
 	
-	public TermsVO selectTermsSeller() {
-		return dao.selectTerms();
-	}
 	
 	
 	
