@@ -1,5 +1,5 @@
 /*
-날짜 : 2023/02/08
+날짜 : 2023/02/08~21
 이름 : 김동근
 내용 : Kmarket2 SpringBoot product service
 */
@@ -16,6 +16,7 @@ import kr.co.kmarket2.vo.NavCateVO;
 import kr.co.kmarket2.vo.OrderItemVO;
 import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProductVO;
+import kr.co.kmarket2.vo.ReviewVO;
 
 @Service
 public class ProductService {
@@ -39,6 +40,7 @@ public class ProductService {
 		dao.deleteProduct(no);
 	}
 	
+	
 	// product/list
 	public NavCateVO selectNavByCate(String cate1, String cate2) {
 		return dao.selectNavByCate(cate1, cate2);
@@ -51,6 +53,21 @@ public class ProductService {
 	public void updateProductHit(int prodNo) {
 		dao.updateProductHit(prodNo);
 	}
+	public int selectProductCountByCate(String cate1, String cate2) {
+		return dao.selectProductCountByCate(cate1, cate2);
+	}
+	
+	
+	// product/view
+	public List<ReviewVO> selectReviews(int prodNo, int start){
+		return dao.selectReviews(prodNo, start);
+	}
+	public int selectReviewCount(int prodNo) {
+		return dao.selectReviewCount(prodNo);
+	}
+	
+	
+	
 	
 	// product/cart
 	public List<CartVO> selectCarts (String uid){
@@ -77,18 +94,26 @@ public class ProductService {
 		return 1;
 	}
 	
+	
 	// product/Complete
 	public void completeOrder(String uid, OrderVO orderInfo) {
 		orderInfo.setUid(uid);
+		//결제 확인후
 		//주문 인서트
 		dao.insertOrder(orderInfo);
 		int ordNo = orderInfo.getOrdNo();
 		for (OrderItemVO orderItem : orderInfo.getOrderList()) {
-			//주문상품 인서트
+			//주문상품 인서트, 장바구니 삭제, 상품 정보 갱신
 			orderItem.setOrdNo(ordNo);
 			dao.insertOrderItem(orderItem);
+			dao.deleteCart(uid, orderItem.getProdNo());
+			dao.updateProductStockSold(orderItem.getCount(), orderItem.getProdNo());
 		}
-		//유저 정보 업뎃, 상품 정보 업뎃, 장바구니 삭제
+		//포인트, 유저 정보 갱신
+		int point = orderInfo.getSavePoint() - orderInfo.getUsedPoint();
+		dao.insertPoint(uid, ordNo, point);
+		dao.updateMemberPoint(uid, point);
+		
 	}
 	
 }

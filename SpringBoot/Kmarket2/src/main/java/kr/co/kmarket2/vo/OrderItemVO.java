@@ -28,4 +28,9 @@ public class OrderItemVO implements Serializable{
 	private String prodName;
 	private String descript;
 	private String thumb1;	
+	
+	//할인가격 조회
+	public int getDiscountPrice() {
+		return (int)(this.price * (this.discount / 100.0));
+	}
 }

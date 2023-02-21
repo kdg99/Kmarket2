@@ -174,38 +174,41 @@
 			'recipZip'	: recipZip,
 			'recipAddr1': recipAddr1,
 			'recipAddr2': recipAddr2,
-			'orderList'	: orderList,
-			'ordPayment': ordPayment
+			'ordPayment': ordPayment,
+			'orderList'	: orderList
 		}
 		console.log(orderInfo);
-		
-		$.ajax({
-			url: '/Kmarket2/product/complete',
-			method: 'POST',
-			data: JSON.stringify(orderInfo),
-			dataType: 'json',
-			contentType: 'application/json',
-			success: function(data){
-				if(confirm('구매하시겠습니까?')){
+		if(confirm('구매하시겠습니까?')){
+			$.ajax({
+				url: '/Kmarket2/product/complete',
+				method: 'POST',
+				data: JSON.stringify(orderInfo),
+				dataType: 'json',
+				contentType: 'application/json',
+				success: function(data){
 					location.href="/Kmarket2/product/complete"
-				}
-			},
-			error: function() {
-          		alert('error 주문하기');
-        	}
-		});
-		
+				},
+				error: function() {
+	          		alert('error 주문하기');
+	        	}
+			});
+		}
 	});
 	
-	function makeProdInfo(me){
-		let tds = me.parent().parent().children();
-		let prodNo	= makeNum(me.val());
-		count 	= makeNum(tds[2].innerText);
-		price 	= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText));
-		discount= makeNum(tds[4].innerText);
-		point 	= (makeNum(tds[5].innerText) * makeNum(tds[2].innerText));
-		delivery= makeNum(tds[6].innerText);
-		total	= makeNum(tds[7].innerText);
+	function makeProdInfo(arg){
+		let tds 	= arg.parent().parent().children();
+		let prodNo	= makeNum(arg.val());
+		count 		= makeNum(tds[2].innerText);
+		price 		= (makeNum(tds[3].innerText) * makeNum(tds[2].innerText));
+		discount	= makeNum(tds[4].innerText);
+		point 		= (makeNum(tds[5].innerText) * makeNum(tds[2].innerText));
+		delivery	= makeNum(tds[6].innerText);
+		total		= makeNum(tds[7].innerText);
+		let prodName= arg.parent().parent().children('td:nth-child(2)').children('article').children('div').children('h2').children('a').text();
+		let descript= arg.parent().parent().children('td:nth-child(2)').children('article').children('div').children('p').text();
+		let src 	= arg.parent().parent().children('td:nth-child(2)').children('article').children('a').children('img').attr('src');
+		let thumb1	= src.slice(src.lastIndexOf("/")+1);
+		
 		let prodInfo = {
 			'prodNo'	: prodNo,
 			'count' 	: count,
@@ -213,7 +216,10 @@
 			'discount' 	: discount,
 			'point'		: point,
 			'delivery' 	: delivery,
-			'total' 	: total
+			'total' 	: total,
+			'prodName'	: prodName,
+			'descript'	: descript,
+			'thumb1'	: thumb1
 		};
 		return prodInfo
 	}

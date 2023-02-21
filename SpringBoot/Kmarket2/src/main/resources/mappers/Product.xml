@@ -51,6 +51,7 @@
 	</delete>
 	
 	
+	
 	<!-- product/list -->
 	<select id="selectNavByCate" resultType="NavCateVO">
 		SELECT a.`c1Name`, b.`c2Name` 
@@ -75,6 +76,27 @@
 	<update id="updateProductHit">
 		UPDATE `km_product` SET `hit` = `hit`+1 WHERE `prodNo`=#{prodNo};
 	</update>
+	
+	<select id="selectProductCountByCate" resultType="int">
+		SELECT COUNT(`prodNo`) FROM `km_product` 
+		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2};
+	</select>
+	
+	
+	
+	<!-- product/view -->
+	<select id="selectReviews" resultType="ReviewVO">
+		SELECT * FROM `km_product_review` 
+		WHERE prodNo=#{prodNo} 
+		ORDER BY `rdate` LIMIT #{start}, 5;
+	</select>
+	
+	<select id="selectReviewCount" resultType="int">
+		SELECT COUNT(`revNo`) FROM `km_product_review`
+		WHERE prodNo=#{prodNo};
+	</select>
+	
+	
 	
 	<!-- product/cart -->
 	<select id="selectCarts" resultType="CartVO">
@@ -105,6 +127,8 @@
 	<delete id="deleteCart">
 		DELETE FROM `km_product_cart` WHERE `uid`=#{uid} AND `prodNo`=#{prodNo};
 	</delete>
+	
+	
 	
 	<!-- product/complete -->
 	<insert id="insertOrder" useGeneratedKeys="true" keyColumn="ordNo" keyProperty="ordNo">
@@ -143,6 +167,27 @@
 		UPDATE `km_product_order` SET 
 		ordComplete	= #{ordComplete} 
 		WHERE ordNo = #{ordNo};
+	</update>
+	
+	<insert id="insertPoint">
+		INSERT INTO `km_member_point` SET
+		uid 	= #{uid},
+		ordNo	= #{ordNo},
+		point	= #{point},
+		pointDate=NOW();
+	</insert>
+	
+	<update id="updateMemberPoint">
+		UPDATE `km_member` SET 
+		point	= point + #{point}
+		WHERE uid = #{uid};
+	</update>
+	
+	<update id="updateProductStockSold">
+		UPDATE `km_product` SET
+		stock 	= stock - #{amount},
+		sold 	= sold + #{amount}
+		WHERE prodNo = #{prodNo};
 	</update>
 	
 </mapper>

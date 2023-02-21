@@ -1,11 +1,12 @@
 /*
-날짜 : 2023/02/08~
+날짜 : 2023/02/08~21
 이름 : 김동근
 내용 : Kmarket2 SpringBoot product controller
 */
 package kr.co.kmarket2.controller;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import kr.co.kmarket2.config.Pager;
 import kr.co.kmarket2.config.SessionConst;
 import kr.co.kmarket2.repository.MemberRepo;
 import kr.co.kmarket2.service.ProductService;
@@ -28,6 +30,7 @@ import kr.co.kmarket2.vo.NavCateVO;
 import kr.co.kmarket2.vo.OrderItemVO;
 import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProductVO;
+import kr.co.kmarket2.vo.ReviewVO;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -41,16 +44,25 @@ public class ProductController {
 	
 	// product/list
 	@GetMapping("product/list")
-	public String list(Model model, String option) {
+	public String list(Model model, String option, String pg) {
 		//네비 가져오기 -> cate1, cate2 추가할 것
 		NavCateVO navCate = service.selectNavByCate("10", "10");
 		model.addAttribute("navCate", navCate);
+		
 		//정렬 옵션
 		if(option == null) { option = "sold"; }
 		model.addAttribute("option", option);
+		
+		//페이징
+		Pager pager = null;
+		if(pg == null) { pager = new Pager(10, 1, service.selectProductCountByCate("10", "10")); }
+		else { pager = new Pager(10, Integer.parseInt(pg), service.selectProductCountByCate("10", "10")); }
+		model.addAttribute("pager", pager);
 		//상품 가져오기 -> cate1, cate2 추가할 것
-		List<ProductVO> products = service.selectProductsByCate("10", "10", option, 0);
+		List<ProductVO> products = service.selectProductsByCate("10", "10", option, pager.getStart());
 		model.addAttribute("products", products);
+		
+		
 		
 		return "product/list";
 	}
@@ -58,11 +70,19 @@ public class ProductController {
 	
 	// product/view
 	@GetMapping("product/view")
-	public String view(Model model, int no) {
+	public String view(Model model, int no, String pg) {
+		//상품 정보 조회, 조회수 갱신
 		ProductVO product = service.selectProduct(no);
 		service.updateProductHit(no);
 		model.addAttribute("product", product);
-		
+		//리뷰 페이징
+		Pager pager = null;
+		if(pg == null) { pager = new Pager(5, 1, service.selectReviewCount(no)); }
+		else { pager = new Pager(5, Integer.parseInt(pg), service.selectReviewCount(no)); }
+		model.addAttribute("pager", pager);
+		//리뷰 조회
+		List<ReviewVO> reviews = service.selectReviews(no, pager.getStart());
+		model.addAttribute("reviews", reviews);
 		return "product/view";
 	}
 	
@@ -106,9 +126,7 @@ public class ProductController {
 			orderList.add((OrderItemVO)object);
 		}
 		model.addAttribute("orders", orderList);
-		model.addAttribute("userPoint", repo.findById(principal.getName()).get().getPoint());
-		model.addAttribute("userName", repo.findById(principal.getName()).get().getName());
-		model.addAttribute("userHp", repo.findById(principal.getName()).get().getHp());
+		model.addAttribute("user", repo.findById(principal.getName()).get());
 		return "product/order";
 	}
 	
@@ -127,16 +145,20 @@ public class ProductController {
 	public String complete(Principal principal, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		OrderVO orderInfo = (OrderVO) session.getAttribute(SessionConst.PRODUCT_COMEPLETE);
-		service.completeOrder(principal.getName(), orderInfo);
+		model.addAttribute("orderInfo", orderInfo);
+		model.addAttribute("orderList", orderInfo.getOrderList());
+		model.addAttribute("user", repo.findById(principal.getName()).get());
+		model.addAttribute("localDateTime", LocalDateTime.now());
 		return "product/complete";
 	}
 	
 	@ResponseBody
 	@PostMapping("product/complete")
-	public int complete(HttpServletRequest request, @RequestBody OrderVO orderInfo) {
+	public int complete(Principal principal, HttpServletRequest request, @RequestBody OrderVO orderInfo) {
 		HttpSession session = request.getSession();
 		session.removeAttribute(SessionConst.PRODUCT_COMEPLETE);
 		session.setAttribute(SessionConst.PRODUCT_COMEPLETE, orderInfo);
+		service.completeOrder(principal.getName(), orderInfo);
 		return 1;
 	}
 	
