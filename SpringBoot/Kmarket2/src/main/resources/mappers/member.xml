@@ -5,14 +5,9 @@
 <mapper namespace="kr.co.kmarket2.dao.MemberDAO">
 	
 	<select id="selectTerms" resultType="TermsVO">
-		SELECT * from `km_member_terms`
+		select * from `km_member_terms`;
 	</select>
-<!-- 	<select id="selectTerms" resultType="TermsVO">
-		SELECT `terms`,`finance`,`privacy`,`location` from `km_member_terms`
-	</select> -->
-	<select id="selectTermsSeller" resultType="TermsVO">
-		SELECT `tax`,`finance`,`privacy` from `km_member_terms`;
-	</select>
+	
 	
 	<insert id="insertMember">
 		insert into `km_member` set
