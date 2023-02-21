@@ -22,6 +22,7 @@ import kr.co.kmarket2.service.CsService;
 import kr.co.kmarket2.vo.Cs_Cate1VO;
 import kr.co.kmarket2.vo.Cs_Cate2VO;
 import kr.co.kmarket2.vo.Cs_FaqVO;
+import kr.co.kmarket2.vo.Cs_NoticeVO;
 import kr.co.kmarket2.vo.Cs_QnaVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,8 +41,41 @@ public class CsController {
     
     /* Notice */
     @GetMapping(value = {"cs/notice/list"})
-    public String NoticeList(){
-        return "cs/notice/list";
+    public String NoticeList(Model model, String pg, String cate){
+    	  pg = (pg == null) ? "1" : pg;
+
+          if (cate == null || cate.equals("")) {
+              cate = "%%";
+          }
+
+          if (!cate.equals("%%") && !cate.equals("10") && !cate.equals("11") && !cate.equals("12") && !cate.equals("13")) {
+              return "alert";
+          }
+
+          int currentPage = service.getCurrentPage(pg);
+          int start = service.getLimitStart(currentPage);
+          long total = service.getNoticeTotalCount(cate);
+          int lastPage = service.getLastPageNum(total);
+          int pageStartNum = service.getPageStartNum(total, start);
+          int groups[] = service.getPageGroup(currentPage, lastPage);
+
+          List<Cs_NoticeVO> NoticeArts = service.selectNoticeArticlesAll(start);
+          List<Cs_NoticeVO> vo = service.selectNoticeArticles(start, cate);
+
+          /*
+          log.info("vo : " + vo);
+          log.info("NoticeArts : " + NoticeArts);
+          */
+          
+          model.addAttribute("NoticeArts", NoticeArts);
+          model.addAttribute("vo", vo);
+          model.addAttribute("currentPage", currentPage);
+          model.addAttribute("lastPage", lastPage);
+          model.addAttribute("pageStartNum", pageStartNum);
+          model.addAttribute("groups", groups);
+          model.addAttribute("cate1", cate);
+
+          return "cs/notice/list";
     }
     
     @GetMapping(value = {"cs/notice/view"})
@@ -65,7 +99,7 @@ public class CsController {
         log.info("vo : " + vo);
         log.info("vo1 : " + vo1);
         log.info("vo2 : " + vo2);
-        log.info("csCate1 : " + csCate1);
+        log.info("cate1 : " + cate1);
         */
         
         model.addAttribute("vo", vo);
