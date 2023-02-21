@@ -1,5 +1,5 @@
 <!--
-날짜 : 2023/02/16
+날짜 : 2023/02/16~21
 이름 : 김동근
 내용 : Kmarket2 HTML product order
 -->
@@ -106,12 +106,12 @@
                     <table>
                       <tbody><tr>
                         <td>주문자</td>
-                        <td><input type="text" id="orderer" th:value="${userName}" placeholder="수령자를 입력해주세요"></td>
+                        <td><input type="text" id="orderer" th:value="${user.name}" placeholder="수령자를 입력해주세요"></td>
                       </tr>
                       <tr>
                         <td>휴대폰</td>
                         <td>
-                          <input type="text" id="hp"  th:value="${userHp}" placeholder="010-0000-0000">
+                          <input type="text" id="hp"  th:value="${user.hp}" placeholder="010-0000-0000">
                           <span>- 포함 입력</span>
                         </td>
                       </tr>
@@ -142,7 +142,7 @@
                     <h1>할인정보</h1>
   
                     <div>
-                      <p>현재 포인트 : <span id="userPoint">[[${userPoint}]]</span>점</p>
+                      <p>현재 포인트 : <span id="userPoint">[[${user.point}]]</span>점</p>
                       <label>
                           <input type="text" name="point" value="0">점
                           <input type="button" id="btnPoint" value="적용">

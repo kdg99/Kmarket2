@@ -25,7 +25,7 @@
 
 #product h6.rating {
     font-size: 11px;
-    background-image: url('/Kmarket2/images/rating_star.png');
+    background-image: url('/Kmarket2/images/main/rating_star.png');
     background-repeat: no-repeat;
     background-position: 36px 0px;
     background-size: auto 100%;
@@ -41,12 +41,12 @@
     width: 150px;
     height: 20px;
     font-size: 0px;
-    background-image: url(/Kmarket2/images/ico_rating_star.png);
+    background-image: url(/Kmarket2/images/main/ico_rating_star.png);
     background-repeat: no-repeat;
     background-position: 36px 0px;
     text-indent: 86px;
 }
-#product h5.rating.star0 {background-position: 0 -20px;}
+#product h5.rating.star0 {background-position: 0 -0px;}
 #product h5.rating.star1 {background-position: 0 -40px;}
 #product h5.rating.star2 {background-position: 0 -80px;}
 #product h5.rating.star3 {background-position: 0 -120px;}
@@ -60,10 +60,10 @@
     background-repeat: no-repeat;
 }
 
-#product .badge.power {background-image: url('/Kmarket2/images/ico_power_dealer.gif');}
-#product .badge.great {background-image: url('/Kmarket2/images/ico_great_seller.gif');}
+#product .badge.power {background-image: url('/Kmarket2/images/main/ico_power_dealer.gif');}
+#product .badge.great {background-image: url('/Kmarket2/images/main/ico_great_seller.gif');}
 #product .badge.power.great {
-    background: url('/Kmarket2/images/ico_power_dealer.gif') no-repeat, url('/Kmarket2/images/ico_great_seller.gif') no-repeat 63px;
+    background: url('/Kmarket2/images/main/ico_power_dealer.gif') no-repeat, url('/Kmarket2/images/main/ico_great_seller.gif') no-repeat 63px;
     width: 160px;
 }
 
@@ -199,13 +199,13 @@
   font-size: 16px;
   text-decoration: none;
 }
-#product.search > table .org-price::after {content: "ì›";}
-#product.search > table .dis-price::after {content: "ì›";}
+#product.search > table .org-price::after {content: "원";}
+#product.search > table .dis-price::after {content: "원";}
 #product.search > table .discount {
   color: #eb000a;
   font-size: 10px;
 }
-#product.search > table .discount::after {content: "â†“";}
+#product.search > table .discount::after {content: "↓";}
 
 #product.search > table .free-delivery {
   display: inline-block;
@@ -213,7 +213,7 @@
   vertical-align: text-bottom;
   width: 55px;
   height: 13px;
-  background: url('/Kmarket2/images/ico_free_delivery.gif') no-repeat;
+  background: url('/Kmarket2/images/main/ico_free_delivery.gif') no-repeat;
   margin-top: 4px;
 }
 

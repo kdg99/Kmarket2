@@ -1,7 +1,7 @@
 <!--
-날짜 : 2023/02/07
+날짜 : 2023/02/16~21
 이름 : 김동근
-내용 : Kmarket2 HTML product complete
+내용 : Kmarket2 SpringBoot product complete
 -->
 <th:block th:insert="~{@{_header.html}}"/>
 <link rel="stylesheet" th:href="@{/css/product/product_complete.css}">
@@ -32,78 +32,52 @@
                 <article class="info">
                   <h1>상품정보</h1>
                   <table border="0">
-                    <tbody><tr>
+                    <tbody>
+                    <tr>
                       <th>상품명</th>
                       <th>상품금액</th>
                       <th>할인금액</th>
                       <th>수량</th>
+                      <th>배송비</th>
                       <th>주문금액</th>
                     </tr>
-                    <tr>
+                    <tr th:each="order:${orderList}">
                       <td>
                         <article>
-                          <img src="https://via.placeholder.com/80x80" alt="">
+                          <img th:src="@{/file/productImg/}+${order.thumb1}" alt="">
                           <div>
-                            <h2><a href="#">상품명</a></h2>
-                            <p>상품설명</p>
+                            <h2><a th:href="@{/product/view(no=${order.prodNo})}">[[${order.prodName}]]</a></h2>
+                            <p>[[${order.descript}]]</p>
                           </div>
                         </article>
                       </td>
-                      <td>17,000원</td>
-                      <td>1,000원</td>
-                      <td>1</td>
-                      <td>16,000원</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <article>
-                          <img src="https://via.placeholder.com/80x80" alt="">
-                          <div>
-                            <h2><a href="#">상품명</a></h2>
-                            <p>상품설명</p>
-                          </div>
-                        </article>
-                      </td>
-                      <td>17,000원</td>
-                      <td>1,000원</td>
-                      <td>1</td>
-                      <td>16,000원</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <article>
-                          <img src="https://via.placeholder.com/80x80" alt="">
-                          <div>
-                            <h2><a href="#">상품명</a></h2>
-                            <p>상품설명</p>
-                          </div>
-                        </article>
-                      </td>
-                      <td>17,000원</td>
-                      <td>1,000원</td>
-                      <td>1</td>
-                      <td>16,000원</td>
+                      <td>[[${order.price}]]원</td>
+                      <td>[[${order.getDiscountPrice}]]원</td>
+                      <td>[[${order.count}]]</td>
+                      <td th:if="${order.delivery} == 0">무료배송</td>
+                      <td th:unless="${order.delivery} == 0">[[${order.delivery}]]원</td>
+                      <td><strong>[[${order.total}]]</strong>원</td>
                     </tr>
                     
                     <tr class="total">
-                      <td colspan="4"></td>
+                      <td colspan="5"></td>
                       <td>
                         <table border="0">
                           <tbody><tr>
                             <td>총 상품금액</td>
-                            <td><span>34,000</span>원</td>
+                            <td><span th:text="${#numbers.formatInteger(#aggregates.sum(orderList.![price]), 0, 'COMMA')}"></span>원</td>
                           </tr>
                           <tr>
                             <td>총 할인금액</td>
-                            <td><span>-2,000</span>원</td>
+                            <td><span th:text="|-${#numbers.formatInteger(#aggregates.sum(orderList.![getDiscountPrice])+orderInfo.usedPoint, 0, 'COMMA')}|"></span>원</td>
                           </tr>
                           <tr>
                             <td>배송비</td>
-                            <td><span>3,000</span>원</td>
+                            <td><span th:text="${#numbers.formatInteger(#aggregates.sum(orderList.![delivery]), 0, 'COMMA')}"></span>원</td>
                           </tr>
                           <tr>
                             <td>총 결제금액</td>
-                            <td><span>35,000</span>원</td>
+                            <td><span th:text="${#numbers.formatInteger(#aggregates.sum(orderList.![total])-orderInfo.usedPoint, 0, 'COMMA')}"></span>원</td>
                           </tr>
                         </tbody></table>                      
                       </td>
@@ -117,17 +91,22 @@
                   <table border="0">
                     <tbody><tr>
                       <td>주문번호</td>
-                      <td>2008101324568</td>
+                      <td th:text="|${#temporals.format(localDateTime, 'yyyyMMdd')}${#numbers.formatInteger(orderInfo.ordNo, 5)}|"></td>
                       <td rowspan="3">총 결제금액</td>
-                      <td rowspan="3"><span>35,000</span>원</td>
+                      <td rowspan="3"><span th:text="${#numbers.formatInteger(#aggregates.sum(orderList.![total]), 0, 'COMMA')}"></span>원</td>
                     </tr>
                     <tr>
                       <td>결제방법</td>
-                      <td>신용카드</td>
+                      <td th:if="${orderInfo.ordPayment} == 1">신용카드</td>
+                      <td th:if="${orderInfo.ordPayment} == 2">체크카드</td>
+                      <td th:if="${orderInfo.ordPayment} == 3">실시간 계좌이체</td>
+                      <td th:if="${orderInfo.ordPayment} == 4">무통장 입금</td>
+                      <td th:if="${orderInfo.ordPayment} == 5">휴대폰 결제</td>
+                      <td th:if="${orderInfo.ordPayment} == 6">카카오페이</td>
                     </tr>
                     <tr>
                       <td>주문자/연락처</td>
-                      <td>홍길동/010-1234-1234</td>
+                      <td>[[${user.name}]]/[[${user.hp}]]</td>
                     </tr>
                   </tbody></table>
                 </article>
@@ -143,15 +122,15 @@
                     </tr>
                     <tr>
                       <td>연락처</td>
-                      <td>010-1234-1234</td>
+                      <td>[[${orderInfo.recipHp}]]</td>
                       <td rowspan="2">
-                        홍길동<br>
-                        010-1234-1234
+                        [[${user.name}]]<br>
+                        [[${user.hp}]]
                       </td>
                     </tr>
                     <tr>
                       <td>배송지 주소</td>
-                      <td>부산광역시 강남구 대연동 123 10층</td>
+                      <td>[[${orderInfo.recipAddr1}]] [[${orderInfo.recipAddr2}]]</td>
                     </tr>
                   </tbody></table>
                 </article>
