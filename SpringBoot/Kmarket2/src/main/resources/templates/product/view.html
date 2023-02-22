@@ -16,11 +16,9 @@
 
                 <!-- 제목, 페이지 네비게이션 -->
                 <nav>
-                    <h1>상품보기</h1>
-                    <p>
-                        HOME &gt; <span>패션·의류·뷰티</span> &gt; <strong>남성의류</strong>
-                    </p>
-                </nav>
+	                <h1>상품보기</h1>
+	                <p>HOME &gt; <span>[[${navCate?.c1Name}]]</span> &gt; <strong>[[${navCate?.c2Name}]]</strong></p>
+	            </nav>
 
                 <!-- 상품 전체 정보 내용 -->                
                 <article class="info">
@@ -35,7 +33,7 @@
                         <nav>
                             <h3 id="prodName">[[${product.prodName}]]</h3>
                             <p id="descript">[[${product.descript}]]</p>
-                            <h5 class="rating star4"><a href="#">상품평보기</a></h5>
+                            <h5 class="rating star4"><a href="#review">상품평보기</a></h5>
                         </nav>
                         <nav th:if="${product.discount == 0}">
                             <div class="org_price">
@@ -189,7 +187,7 @@
                 </article>
                 
                 <!-- 상품 리뷰 내용 -->
-                <article class="review">
+                <article class="review" id="review">
                     <nav>
                         <h1>상품리뷰</h1>
                     </nav>
@@ -204,23 +202,23 @@
                                 <h5 class="rating star0" th:if="${review.rating < 0.5}">상품평</h5>
                                 <span>seo******	[[${review.rdate}]]</span>
                             </div>
-                            <h3>[[${product.prodName}]]</h3>
+                            <h3 th:text="|${#strings.substring(review.uid, 0, 3)}${'*'*(#strings.length(review.uid)-3)}|"></h3>
                             <p>[[${review.content}]]</p>
                         </li>
                     </ul>
                     <!-- 리뷰목록 페이지번호 -->
 		              <div class="paging">
 		                <span class="prev" th:if="${pager.groupStart > 1}">
-		                  <a th:href="@{/product/view(no=${product.prodNo}, pg=${pager.groupStart-1})}">&lt;&nbsp;이전</a>
+		                  <a th:href="@{/product/view(cate1=${pi.cate1}, cate2=${pi.cate2}, no=${product.prodNo}, pg=${pager.groupStart-1})}">&lt;&nbsp;이전</a>
 		                </span>
 		                
 		                <span th:each="num:${#numbers.sequence(pager.groupStart, pager.groupEnd)}">
-		                  <a th:href="@{/product/view(no=${product.prodNo},pg=${num})}"
+		                  <a th:href="@{/product/view(cate1=${pi.cate1}, cate2=${pi.cate2}, no=${product.prodNo},pg=${num})}"
 		               		 th:class="${num==pager.currentPage?'num current':'num'}">[[${num}]]</a>
 		                </span>
 		                
 		                <span class="next" th:if="${pager.groupEnd < pager.totalPage}">
-		                  <a th:href="@{/product/view(no=${product.prodNo}, pg=${pager.groupEnd+1})}">다음&nbsp;&gt;</a>
+		                  <a th:href="@{/product/view(cate1=${pi.cate1}, cate2=${pi.cate2}, no=${product.prodNo}, pg=${pager.groupEnd+1})}">다음&nbsp;&gt;</a>
 		                </span>
 		              </div>
 

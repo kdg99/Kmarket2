@@ -29,6 +29,7 @@ import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.NavCateVO;
 import kr.co.kmarket2.vo.OrderItemVO;
 import kr.co.kmarket2.vo.OrderVO;
+import kr.co.kmarket2.vo.PageInfoVO;
 import kr.co.kmarket2.vo.ProductVO;
 import kr.co.kmarket2.vo.ReviewVO;
 import lombok.RequiredArgsConstructor;
@@ -44,22 +45,21 @@ public class ProductController {
 	
 	// product/list
 	@GetMapping("product/list")
-	public String list(Model model, String option, String pg) {
-		//네비 가져오기 -> cate1, cate2 추가할 것
-		NavCateVO navCate = service.selectNavByCate("10", "10");
+	public String list(Model model, PageInfoVO pageInfo) {
+		model.addAttribute("pi", pageInfo);
+		//네비 가져오기
+		NavCateVO navCate = service.selectNavByCate(pageInfo.getCate1(), pageInfo.getCate2());
 		model.addAttribute("navCate", navCate);
-		
 		//정렬 옵션
-		if(option == null) { option = "sold"; }
-		model.addAttribute("option", option);
-		
+		if(pageInfo.getOption() == null) { pageInfo.setOption("sold"); }
+		model.addAttribute("option", pageInfo.getOption());
 		//페이징
 		Pager pager = null;
-		if(pg == null) { pager = new Pager(10, 1, service.selectProductCountByCate("10", "10")); }
-		else { pager = new Pager(10, Integer.parseInt(pg), service.selectProductCountByCate("10", "10")); }
+		if(pageInfo.getPg() == null) { pager = new Pager(10, 1, service.selectProductCountByCate(pageInfo.getCate1(), pageInfo.getCate2())); }
+		else { pager = new Pager(10, Integer.parseInt(pageInfo.getPg()), service.selectProductCountByCate(pageInfo.getCate1(), pageInfo.getCate2())); }
 		model.addAttribute("pager", pager);
-		//상품 가져오기 -> cate1, cate2 추가할 것
-		List<ProductVO> products = service.selectProductsByCate("10", "10", option, pager.getStart());
+		//상품 가져오기
+		List<ProductVO> products = service.selectProductsByCate(pageInfo.getCate1(), pageInfo.getCate2(), pageInfo.getOption(), pager.getStart());
 		model.addAttribute("products", products);
 		
 		
@@ -70,18 +70,22 @@ public class ProductController {
 	
 	// product/view
 	@GetMapping("product/view")
-	public String view(Model model, int no, String pg) {
+	public String view(Model model, PageInfoVO pageInfo) {
+		model.addAttribute("pi", pageInfo);
+		//네비 가져오기
+		NavCateVO navCate = service.selectNavByCate(pageInfo.getCate1(), pageInfo.getCate2());
+		model.addAttribute("navCate", navCate);
 		//상품 정보 조회, 조회수 갱신
-		ProductVO product = service.selectProduct(no);
-		service.updateProductHit(no);
+		ProductVO product = service.selectProduct(pageInfo.getNo());
+		service.updateProductHit(pageInfo.getNo());
 		model.addAttribute("product", product);
 		//리뷰 페이징
 		Pager pager = null;
-		if(pg == null) { pager = new Pager(5, 1, service.selectReviewCount(no)); }
-		else { pager = new Pager(5, Integer.parseInt(pg), service.selectReviewCount(no)); }
+		if(pageInfo.getPg() == null) { pager = new Pager(5, 1, service.selectReviewCount(pageInfo.getNo())); }
+		else { pager = new Pager(5, Integer.parseInt(pageInfo.getPg()), service.selectReviewCount(pageInfo.getNo())); }
 		model.addAttribute("pager", pager);
 		//리뷰 조회
-		List<ReviewVO> reviews = service.selectReviews(no, pager.getStart());
+		List<ReviewVO> reviews = service.selectReviews(pageInfo.getNo(), pager.getStart());
 		model.addAttribute("reviews", reviews);
 		return "product/view";
 	}
