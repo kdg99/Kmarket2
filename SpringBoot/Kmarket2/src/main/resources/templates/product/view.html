@@ -200,9 +200,9 @@
                                 <h5 class="rating star2" th:if="${2.5 > review.rating and review.rating >= 1.5}">상품평</h5>
                                 <h5 class="rating star1" th:if="${1.5 > review.rating and review.rating >= 0.5}">상품평</h5>
                                 <h5 class="rating star0" th:if="${review.rating < 0.5}">상품평</h5>
-                                <span>seo******	[[${review.rdate}]]</span>
+                                <span th:text="|${#strings.substring(review.uid, 0, 3)}${'*'*(#strings.length(review.uid)-3)} ${review.rdate}|"></span>
                             </div>
-                            <h3 th:text="|${#strings.substring(review.uid, 0, 3)}${'*'*(#strings.length(review.uid)-3)}|"></h3>
+                            <h3>[[${product.prodName}]]</h3>
                             <p>[[${review.content}]]</p>
                         </li>
                     </ul>

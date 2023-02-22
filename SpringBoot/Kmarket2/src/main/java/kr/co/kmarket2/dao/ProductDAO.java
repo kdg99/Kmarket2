@@ -50,4 +50,12 @@ public interface ProductDAO {
 	public void updateProductStockSold(@Param("amount") int amount, @Param("prodNo") int prodNo);
 	public void insertPoint(@Param("uid") String uid, @Param("ordNo") int ordNo, @Param("point") int point);
 	public void updateMemberPoint(@Param("uid") String uid, @Param("point") int point);
+	
+	
+	
+	
+	
+	// myPage/home
+	public OrderVO selectMyLatest(String uid);
+	
 }

@@ -1,0 +1,86 @@
+/* my - review */
+#my > .review > section > article > table {
+    width: 100%;
+    height: auto;
+    border-top: 2px solid #444;
+    margin-top: 6px;
+    border-collapse: collapse;            
+}
+#my > .review > section > article > table * {
+    font-family: 'Malgun Gothic';
+    color: #444;
+}
+
+#my > .review > section > article > table th {
+    padding: 6px;
+    background-color: #a5a7a5;
+    box-sizing: border-box;
+    color: #fff;
+}
+#my > .review > section > article > table td {
+    padding: 10px;            
+    border-left: 1px solid #f1f1f1;
+    border-bottom: 1px solid #aaa;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#my > .review > section > article > table td:first-child {border-left: none;}
+
+#my > .review > section > article > table ul {
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+#my > .review > section > article > table ul > li {
+    margin: 4px 0;
+}        
+
+#my > .review > section > article > table .prodName {
+    text-decoration: underline;
+}
+
+        
+#my > .review > section > article > table .rating {
+    display: block;
+    width: 84px;
+    height: 20px;
+    font-size: 0px;
+    background-image: url('/Kmarket2/images/my/my_rating_star.png');
+    background-repeat: no-repeat;
+    background-position: 36px 0px;    
+}
+#my > .review > section > article > table .rating.star1 {background-position: 0 -40px;}
+#my > .review > section > article > table .rating.star2 {background-position: 0 -80px;}
+#my > .review > section > article > table .rating.star3 {background-position: 0 -120px;}
+#my > .review > section > article > table .rating.star4 {background-position: 0 -160px;}
+#my > .review > section > article > table .rating.star5 {background-position: 0 -200px;}
+
+
+#my > .review > section > article > .page {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#my > .review > section > article > .page > a {
+    display: inline-block;
+    width: 19px;
+    height: 19px;            
+    box-sizing: border-box;
+    vertical-align: top;
+    color: #777;
+}
+#my > .review > section > article > .page > a.on {
+    font-weight: bold;
+    color: #1179ea;
+}
+
+#my > .review > section > article > .page > .prev {
+    background: url('/Kmarket2/images/my/my_sprites2.png') no-repeat 0 -300px;
+    font-size: 0;
+}
+
+#my > .review > section > article > .page > .next {
+    background: url('/Kmarket2/images/my/my_sprites2.png') no-repeat -120px -300px;
+    font-size: 0;
+}
