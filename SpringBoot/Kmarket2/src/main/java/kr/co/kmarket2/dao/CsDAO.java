@@ -23,10 +23,14 @@ public interface CsDAO {
 
 		
 		/* index */
-		
+		public List<Cs_NoticeVO> selectCsNoticeList();
+	    public List<Cs_QnaVO> selectCsQnaList();
+	    
 		/* Notice */
 		public List<Cs_NoticeVO> selectNoticeArticlesAll(@Param("start") int start);
-		public List<Cs_NoticeVO> selectNoticeArticles(@Param("start") int start,@Param("cate1") String no);
+		public List<Cs_NoticeVO> selectNoticeArticles(@Param("start") int start,@Param("cate1") String cate);
+		public Cs_NoticeVO selectNoticeArticle(@Param("no") Integer no);
+		public int selectNoticeCountTotalAll();
 		public int selectNoticeCountTotal(String cate);
 		
 		/* Faq */

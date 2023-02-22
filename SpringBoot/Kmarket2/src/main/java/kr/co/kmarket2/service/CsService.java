@@ -27,16 +27,31 @@ public class CsService {
 		private CsDAO dao;
 		
 		
-		
 		/* index */
+		public List<Cs_NoticeVO> selectCsNoticeList(){
+	        return dao.selectCsNoticeList();
+	    }
+	    public List<Cs_QnaVO> selectCsQnaList(){
+	        return dao.selectCsQnaList();
+	    }
 				
 		/* Notice */
-		public List<Cs_NoticeVO> selectNoticeArticlesAll(int start){
-	        return dao.selectNoticeArticlesAll(start);
+		
+		public List<Cs_NoticeVO> selectNoticeArticles(int start, String cate){
+			if(cate == null) {
+				return dao.selectNoticeArticlesAll(start);
+			}else {
+				return dao.selectNoticeArticles(start, cate);	
+			}
 	    }
-		public List<Cs_NoticeVO> selectNoticeArticles(@Param("start") int start, String no){
-	        return dao.selectNoticeArticles(start, no);
+		public Cs_NoticeVO selectNoticeArticle(Integer no){
+	        Cs_NoticeVO vo = dao.selectNoticeArticle(no);
+	        return vo;
 	    }
+		
+		public int getNoticeCountTotalAll() {
+			return dao.selectNoticeCountTotalAll();
+		}
 		public long getNoticeTotalCount(String cate){
 		    return dao.selectNoticeCountTotal(cate);
 		}
