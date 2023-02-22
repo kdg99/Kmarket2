@@ -7,6 +7,7 @@ package kr.co.kmarket2.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import kr.co.kmarket2.dao.CsDAO;
 import kr.co.kmarket2.vo.Cs_Cate1VO;
 import kr.co.kmarket2.vo.Cs_Cate2VO;
 import kr.co.kmarket2.vo.Cs_FaqVO;
+import kr.co.kmarket2.vo.Cs_NoticeVO;
 import kr.co.kmarket2.vo.Cs_QnaVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,6 +31,15 @@ public class CsService {
 		/* index */
 				
 		/* Notice */
+		public List<Cs_NoticeVO> selectNoticeArticlesAll(int start){
+	        return dao.selectNoticeArticlesAll(start);
+	    }
+		public List<Cs_NoticeVO> selectNoticeArticles(@Param("start") int start, String no){
+	        return dao.selectNoticeArticles(start, no);
+	    }
+		public long getNoticeTotalCount(String cate){
+		    return dao.selectNoticeCountTotal(cate);
+		}
 		
 		/* Faq */
 		public List<Cs_Cate1VO> selectCs_cate1() {
