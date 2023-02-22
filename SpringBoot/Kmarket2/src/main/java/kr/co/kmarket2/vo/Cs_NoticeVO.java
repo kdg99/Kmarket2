@@ -30,4 +30,10 @@ public class Cs_NoticeVO {
 	private String regip;
 	private String rdate;
 	
+    public int getNo() {
+        return no;
+    }
+    public void setNo(String no) {
+        this.no = Integer.parseInt(no);
+    }
 }

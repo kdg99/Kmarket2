@@ -18,5 +18,4 @@ public interface MemberDAO {
 	public void updateMember(MemberVO vo);
 	public void deleteMember(String uid);
 	public TermsVO selectTerms();
-	public TermsVO selectTermsSeller();
 }

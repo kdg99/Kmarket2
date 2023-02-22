@@ -15,15 +15,12 @@
 		<form th:action="@{/admin/product/list}">
 			<div>
 				<select name="searchField">
-					<option value="prodName"
-						th:selected="${ph.sc.searchField == 'prodName'}">상품명</option>
-					<option value="prodNo"
-						th:selected="${ph.sc.searchField == 'prodNo'}">상품코드</option>
-					<option value="seller"
-						th:selected="${ph.sc.searchField == 'seller'}">판매자</option>
-				</select> <input type="text" name="searchWord" placeholder="검색하기"
-					th:value="${param.searchWord}" /> <input type="submit"
-					class="searchButton" value="검색하기" />
+					<option value="prodName">상품명</option>
+					<option value="prodNo">상품코드</option>
+					<option value="seller">판매자</option>
+				</select>
+				<input type="text" name="searchWord" placeholder="검색하기"/> 
+				<input type="submit" class="searchButton" value="검색하기" />
 			</div>
 		</form>
 		<table>
@@ -42,20 +39,20 @@
 				<th>관리</th>
 			</tr>
 			<!-- 게시글이 있는 경우 -->
-			<th:block th:if="${#lists.size(products) != 0}">
-				<tr th:each="product,i:${products}">
-					<td><input type="checkbox" name="check"
-						th:value="${product.prodNo}" /></td>
-					<td><a th:href="@{/product/list(prodNo=${product.prodNo})}">
-							<img th:src="@{/file/} + ${product.thumb1}" class="thumb">
-					</a></td>
+				<tr th:each="product:${products}">
+					<td><input type="checkbox" name="check" th:value="${product.prodNo}" /></td>
+					<td>
+						<a th:href="@{/product/list(prodNo=${product.prodNo})}">
+							<img th:src="@{/file/productImg/}+${product.thumb1}" class="thumb">
+						</a>
+					</td>
 					<td class="prodNo">[[${product.prodNo}]]</td>
 					<td class="prodName"><a
 						th:href="@{/product/list(prodNo=${product.prodNo})}"
 						th:text="|${product.prodName}|"></a></td>
 					<td>[[${product.price}]]</td>
 					<!-- 세자리 수 콤마 [[${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}]] -->
-					<td>[[${product.discount}]]</td>
+					<td>[[${product.discount}]]%</td>
 					<td>[[${product.point}]]</td>
 					<td>[[${product.stock}]]</td>
 					<td class="seller">[[${product.seller}]]</td>
@@ -64,17 +61,23 @@
 						<a href="#" class="modify" th:data-no="${product.prodNo}">[수정]</a>
 					</td>
 				</tr>
-			</th:block>
 		</table>
 		<input type="button" value="선택삭제">
-		<div class="paging">
-			<span class="prev"> <a href="#"><&nbsp;이전</a>
-			</span> <span class="num"> <a href="#" class="on">1</a> <a href="#">2</a>
-				<a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>
-				<a href="#">7</a>
-			</span> <span class="next"> <a href="#">다음&nbsp;</a>
-			</span>
-		</div>
+		<!-- 상품목록 페이지번호 -->
+              <div class="paging">
+                <span class="prev" th:if="${pager.groupStart > 1}">
+                  <a th:href="@{/admin/product/list(pg=${pager.groupStart-1})}">&lt;&nbsp;이전</a>
+                </span>
+                
+                <span th:each="num:${#numbers.sequence(pager.groupStart, pager.groupEnd)}">
+                  <a th:href="@{/admin/product/list(pg=${num})}"
+               		 th:class="${num==pager.currentPage?'num current':'num'}">[[${num}]]</a>
+                </span>
+                
+                <span class="next" th:if="${pager.groupEnd < pager.totalPage}">
+                  <a th:href="@{/admin/product/list(pg=${pager.groupEnd+1})}">다음&nbsp;&gt;</a>
+                </span>
+              </div>
 	</section>
 	<p class="ico info">
 		<strong>Tip!</strong> 전자상거래 등에서의 상품 등의 정보제공에 관한 고시에 따라 총 35개 상품군에 대해

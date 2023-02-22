@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,8 +52,7 @@ public class ProductVO {
 	private String rdate;
 	//추가필드
 	private int level;
-	
-	
+    private MultipartFile[] file; // 관리자 상품 등록 MultipartFile 추가 필드
 	
 	//할인가격 조회
 	public int getDisPrice() {

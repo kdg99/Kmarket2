@@ -7,6 +7,7 @@ package kr.co.kmarket2.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import kr.co.kmarket2.dao.CsDAO;
 import kr.co.kmarket2.vo.Cs_Cate1VO;
 import kr.co.kmarket2.vo.Cs_Cate2VO;
 import kr.co.kmarket2.vo.Cs_FaqVO;
+import kr.co.kmarket2.vo.Cs_NoticeVO;
 import kr.co.kmarket2.vo.Cs_QnaVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,10 +27,34 @@ public class CsService {
 		private CsDAO dao;
 		
 		
-		
 		/* index */
+		public List<Cs_NoticeVO> selectCsNoticeList(){
+	        return dao.selectCsNoticeList();
+	    }
+	    public List<Cs_QnaVO> selectCsQnaList(){
+	        return dao.selectCsQnaList();
+	    }
 				
 		/* Notice */
+		
+		public List<Cs_NoticeVO> selectNoticeArticles(int start, String cate){
+			if(cate == null) {
+				return dao.selectNoticeArticlesAll(start);
+			}else {
+				return dao.selectNoticeArticles(start, cate);	
+			}
+	    }
+		public Cs_NoticeVO selectNoticeArticle(Integer no){
+	        Cs_NoticeVO vo = dao.selectNoticeArticle(no);
+	        return vo;
+	    }
+		
+		public int getNoticeCountTotalAll() {
+			return dao.selectNoticeCountTotalAll();
+		}
+		public long getNoticeTotalCount(String cate){
+		    return dao.selectNoticeCountTotal(cate);
+		}
 		
 		/* Faq */
 		public List<Cs_Cate1VO> selectCs_cate1() {

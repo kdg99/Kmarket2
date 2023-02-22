@@ -555,6 +555,8 @@ select {
     margin-top: 10px;
 }
 
+
+
 #admin-product-list .paging {
     width: 100%;
     padding: 30px 0;
@@ -562,9 +564,20 @@ select {
 }
 
 #admin-product-list .paging>span>a {
-    color: #777;
-    font-size: 11px;
-    letter-spacing: -1px;
+    display: inline-block;
+    min-width: 14px;
+    margin: 0 2px;
+    padding: 8px 9px;
+    border: 1px solid #c4c4c4;
+    background: url() 0 0 repeat-x;
+    color: #000;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+#admin-product-list .paging>span>a.current {
+	color: #fe434c;
+    font-weight: bold;
 }
 
 #admin-product-list .paging>span>a:hover {

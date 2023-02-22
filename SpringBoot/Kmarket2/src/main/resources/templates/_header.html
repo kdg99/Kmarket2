@@ -2,64 +2,108 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">    
-    <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/main/favicon.ico}">
-    <script type="text/javascript" th:src="@{/js/main/main.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/main/init.css}">
-    <link rel="stylesheet" th:href="@{/css/main/headfoot.css}">
-    <link rel="stylesheet" th:href="@{/css/main/category.css}">
-    <link rel="stylesheet" th:href="@{/css/main/main.css}">
-    <link rel="stylesheet" th:href="@{/css/product/product.css}">
+	<meta charset="UTF-8">
+	<title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{/images/main/favicon.ico}">
+	<script type="text/javascript" th:src="@{/js/main/main.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/main/init.css}">
+	<link rel="stylesheet" th:href="@{/css/main/headfoot.css}">
+	<link rel="stylesheet" th:href="@{/css/main/category.css}">
+	<link rel="stylesheet" th:href="@{/css/main/main.css}">
+	<link rel="stylesheet" th:href="@{/css/product/product.css}">
+	
 	<script>
-	 	$(document).ready(function(){
- 			$('.slider > ul').bxSlider({
- 				auto: true,		// 자동회전
- 				pause: 4000,	// 4초마다 페이지 넘김
- 	            easing:'linear',
- 	            speed: 500,		// 이동속도
- 	            maxSlides: 5	// 최대 노출 개수
- 	          });
- 			
+		$(document).ready(function(){
+			
+			$('.slider > ul').bxSlider({
+				auto: true,		// 자동회전
+				pause: 4000,	// 4초마다 페이지 넘김
+				easing:'linear',
+				speed: 500,		// 이동속도
+				maxSlides: 5	// 최대 노출 개수
+			});
+			
+			// 상단 이동
+			$('#top').click(function(){
+				$(window).scrollTop(0);
+			});
+			
 			// 스크롤 시 사이드 따라오기
-	        var best = $("aside > .best");
-	
-	        $(window).scroll(function(){
-	          var t = $(this).scrollTop();
-	
-	          if(t > 620){
-	              best.css({
-	                  position:"fixed",
-	                  top:"0",
-	              });
-	          }else{
-	              best.css({
-	                  position:"static",
-	              });
-	          }
-	        });
-	        
-	        // 상단 이동
-	        $('#top').click(function(){
-	            $(window).scrollTop(0);
-	        });
-	        
-	        // 작업중 (강중현)
-	        /* function fnMove(seq){
-	        	var offset = $("#div" + seq).offset();
-	        	$('html, body').animate({scrollTop : offset.top}, 400);
-	        } */
-	        
-	        
-	        
-	 	});
+			var best = $("aside > .best");
+			$(window).scroll(function(){
+				var t = $(this).scrollTop();
+				
+				if(t > 620){		// 620 : top 에서 아래까지 620px
+					best.css({
+						position:"fixed",
+						top:"50px",
+					});
+				}else{
+					best.css({
+						position:"static",
+					});
+				}
+			});
+			
+			// 스크롤시 menu 따라오기
+			var menu = $(".menu");
+			$(window).scroll(function(){
+				var t = $(this).scrollTop();
+				
+				if(t > 620){	// 620 : top 에서 아래까지 620px
+					menu.css({
+						position:"fixed",
+						top:"0",
+					});
+				}else{
+					menu.css({
+						position:"static",
+					});
+				}
+			});
+		
+			// 스크롤 이동
+			$('.scrollBtnHit').on('click', function(e){
+				e.preventDefault();
+				let location = document.querySelector(".hit").offsetTop;
+				
+				window.scrollTo({top:location, behavior:'smooth'});
+				
+			});
+			
+			$('.scrollBtnScore').on('click', function(e){
+				e.preventDefault();
+				let location = document.querySelector(".recommend").offsetTop;
+				
+				window.scrollTo({top:location, behavior:'smooth'});
+				
+			});
+			
+			$('.scrollBtnNew').on('click', function(e){
+				e.preventDefault();
+				let location = document.querySelector(".new").offsetTop;
+				
+				window.scrollTo({top:location, behavior:'smooth'});
+				
+			});
+			
+			$('.scrollBtnDiscount').on('click', function(e){
+				e.preventDefault();
+				let location = document.querySelector(".discount").offsetTop;
+				
+				window.scrollTo({top:location, behavior:'smooth'});
+				
+			});
+			
+		});
+			
     </script>
 </head>
 <body>
@@ -96,16 +140,14 @@
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>                
                 </div>
-                
             </div>
             <div class="menu">
                 <div>
                     <ul>
-                        <li><a th:href="@{/}">히트상품</a></li>
-                        <li><a href="#">추천상품</a></li>
-                        <li><a href="#">최신상품</a></li>
-                        <li><a href="#">인기상품</a></li>
-                        <li><a href="#">할인상품</a></li>
+                        <li><a href="#" class="scrollBtnHit">히트상품</a></li>
+                        <li><a href="#" class="scrollBtnScore">추천상품</a></li>
+                        <li><a href="#" class="scrollBtnNew">최신상품</a></li>
+                        <li><a href="#" class="scrollBtnDiscount">할인상품</a></li>
                     </ul>
                     <ul>
                         <li><a href="#">공지사항</a></li>

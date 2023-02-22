@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.kmarket2.vo.Cs_Cate1VO;
 import kr.co.kmarket2.vo.Cs_Cate2VO;
 import kr.co.kmarket2.vo.Cs_FaqVO;
+import kr.co.kmarket2.vo.Cs_NoticeVO;
 import kr.co.kmarket2.vo.Cs_QnaVO;
 
 @Repository
@@ -22,8 +23,15 @@ public interface CsDAO {
 
 		
 		/* index */
-		
+		public List<Cs_NoticeVO> selectCsNoticeList();
+	    public List<Cs_QnaVO> selectCsQnaList();
+	    
 		/* Notice */
+		public List<Cs_NoticeVO> selectNoticeArticlesAll(@Param("start") int start);
+		public List<Cs_NoticeVO> selectNoticeArticles(@Param("start") int start,@Param("cate1") String cate);
+		public Cs_NoticeVO selectNoticeArticle(@Param("no") Integer no);
+		public int selectNoticeCountTotalAll();
+		public int selectNoticeCountTotal(String cate);
 		
 		/* Faq */
 		public List<Cs_Cate1VO> selectCs_cate1();
@@ -36,5 +44,7 @@ public interface CsDAO {
 		public Cs_QnaVO selectQnaArticle(@Param("no")int no);
 		public List<Cs_QnaVO> selectQnaArticles(@Param("start")int start,@Param("cate1") String cate1);
 		public Cs_QnaVO selectCsQnaNo(int no);
+		
+		
 		public int selectCountTotal(@Param("cate1")String cate1);
 }

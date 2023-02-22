@@ -22,6 +22,7 @@ import kr.co.kmarket2.service.CsService;
 import kr.co.kmarket2.vo.Cs_Cate1VO;
 import kr.co.kmarket2.vo.Cs_Cate2VO;
 import kr.co.kmarket2.vo.Cs_FaqVO;
+import kr.co.kmarket2.vo.Cs_NoticeVO;
 import kr.co.kmarket2.vo.Cs_QnaVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,18 +35,68 @@ public class CsController {
 	
 	/* index */
     @GetMapping(value = {"cs", "cs/index"})
-    public String index(){
+    public String Csindex(Model model){
+    	
+    	List<Cs_NoticeVO> CsNoticeList = service.selectCsNoticeList();
+        List<Cs_QnaVO> CsQnaList = service.selectCsQnaList();
+
+        model.addAttribute("CsNoticeList", CsNoticeList);
+        model.addAttribute("CsQnaList", CsQnaList);
+
         return "cs/index";
     }	
     
     /* Notice */
     @GetMapping(value = {"cs/notice/list"})
-    public String NoticeList(){
-        return "cs/notice/list";
+    public String NoticeList(Model model, String pg, String cate){
+    	  pg = (pg == null) ? "1" : pg;
+    	  
+          int currentPage = service.getCurrentPage(pg);
+          int start = service.getLimitStart(currentPage);
+          long total = 0;
+          if(cate == null) {
+        	  total = service.getNoticeCountTotalAll();
+          }else {
+        	  total = service.getNoticeTotalCount(cate);
+          }
+          int lastPage = service.getLastPageNum(total);
+          int pageStartNum = service.getPageStartNum(total, start);
+          int groups[] = service.getPageGroup(currentPage, lastPage);
+
+          
+          List<Cs_NoticeVO> noticeArticles = service.selectNoticeArticles(start, cate);
+
+          /*
+          log.info("NoticeArts : " + noticeArticles);
+          log.info("currentPage : " + currentPage);
+          log.info("start : " + start);
+          log.info("total : " + total);
+          log.info("lastPage : " + lastPage);
+          log.info("pageStartNum : " + pageStartNum);
+          log.info("groups : " + groups);
+          log.info("cate : " + cate);
+          */
+          
+          model.addAttribute("NoticeArts", noticeArticles);
+          model.addAttribute("currentPage", currentPage);
+          model.addAttribute("lastPage", lastPage);
+          model.addAttribute("pageStartNum", pageStartNum);
+          model.addAttribute("groups", groups);
+          model.addAttribute("cate1", cate);
+
+          return "cs/notice/list";
     }
     
     @GetMapping(value = {"cs/notice/view"})
-    public String NoticeView(){
+    public String NoticeView(Model model, String cate, Integer no){
+        
+    	Cs_NoticeVO vo = service.selectNoticeArticle(no);
+
+        log.info("vo : " + vo);
+
+        model.addAttribute("vo", vo);
+        model.addAttribute("cate1", cate);
+
         return "cs/notice/view";
     }
     
@@ -65,7 +116,7 @@ public class CsController {
         log.info("vo : " + vo);
         log.info("vo1 : " + vo1);
         log.info("vo2 : " + vo2);
-        log.info("csCate1 : " + csCate1);
+        log.info("cate1 : " + cate1);
         */
         
         model.addAttribute("vo", vo);
