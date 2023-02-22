@@ -15,7 +15,7 @@
        <aside>
          <h2>공지사항</h2>
          <ul>
-             <li th:classappend="${cate1 == null || cate1 == '%%'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list}">전체</a></li>
+             <li th:classappend="${cate1 == null} ? 'on' : 'off'"><a th:href="@{/cs/notice/list}">전체</a></li>
              <li th:classappend="${cate1 == '10'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=10}">고객서비스</a></li>
              <li th:classappend="${cate1 == '11'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=11}">안전거래</a></li>
              <li th:classappend="${cate1 == '12'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=12}">위해상품</a></li>
@@ -23,7 +23,7 @@
          </ul>
        </aside>
        <article>
-         <nav th:if="${cate1 == null || cate1 == '%%'}">
+         <nav th:if="${cate1 == null}">
            <h1>전체</h1>
            <h2>공지사항 전체 내용입니다.</h2>
          </nav>
@@ -44,28 +44,23 @@
              <h2>이벤트당첨 공지사항 내용입니다.</h2>
          </nav>
          
-         <th:block th:with="Arts=${cate1 == null || cate1 == ''}">
-          <table th:if="${Arts}">
+          <table>
            <tr th:each="arts:${NoticeArts}">
              <td><a th:href="@{/cs/notice/view(cate1=${cate1},no=${arts.no})}" th:text="${arts.title}"></a></td>
              <td>[[${(arts.rdate).substring(2, 10)}]]</td>
            </tr>
          </table>
- 		 <table th:unless="${Arts}">
-           <tr th:each="vo:${vo}">
-               <td><a th:href="@{/cs/notice/view(no=${cate1},no=${vo.no})}" th:text="${vo.title}"></a></td>
-               <td>[[${(vo.rdate).substring(2, 10)}]]</td>
-           </tr>
-          </table>
-          </th:block>
-         <div class="page">
-           <a href="#" class="prev">이전</a>
-           <a href="#" class="num on">1</a>
-           <a href="#" class="num">2</a>
-           <a href="#" class="num">3</a>
-           <a href="#" class="next">다음</a>
-         </div>
-
+          <div class="page">
+		      <th:block th:if="${groups[0] > 1}">
+		          <a th:href="@{/cs/notice/list(cate=${cate1},pg=${groups[0]- 1})}" class="prev">이전</a>
+		      </th:block>
+		      <th:block th:each="num:${#numbers.sequence(groups[0], groups[1])}">
+		          <a th:href="@{/cs/notice/list(cate=${cate1},pg=${num})}" th:class="${num == currentPage ? 'on' : 'off'}">[[${num}]]</a>
+		      </th:block>
+		      <th:block th:if="${groups[1] < lastPage}">
+		          <a th:href="@{/cs/notice/list(cate=${cate1},pg=${groups[1] + 1})}" class="next">다음</a>
+		  </th:block>
+   		  </div>	
        </article>
      </section>
    </div>
