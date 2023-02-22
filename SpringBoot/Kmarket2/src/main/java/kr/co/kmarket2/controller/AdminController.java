@@ -82,7 +82,7 @@ public class AdminController {
     
     
     /* product */
-    @GetMapping("/product/list")
+    @GetMapping("admin/product/list")
 	public String ProductList() {
 		return "admin/product/list";
 	}

@@ -1,0 +1,99 @@
+
+/* my - qna */
+#my > .qna > section > article > table {
+    width: 100%;
+    height: auto;
+    border-top: 2px solid #444;
+    margin-top: 6px;
+    border-collapse: collapse;            
+}
+#my > .qna > section > article > table * {
+    font-family: 'Malgun Gothic';
+    color: #444;
+}
+
+#my > .qna > section > article > table th {
+    padding: 6px;
+    background-color: #a5a7a5;
+    box-sizing: border-box;
+    color: #fff;
+}
+#my > .qna > section > article > table td {
+    padding: 10px;            
+    border-left: 1px solid #f1f1f1;
+    border-bottom: 1px solid #aaa;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#my > .qna > section > article > table td:first-child {border-left: none;}
+#my > .qna > section > article > table td.tit a:hover {
+    text-decoration: underline;
+}
+
+#my > .qna > section > article > table ul .prodName > a {
+    font-size: 11px;
+    color: #999;
+}
+#my > .qna > section > article > table ul > li {
+    margin: 2px 0;
+}
+
+#my > .qna > section > article > table .notAnswerYet {color: #999;}
+#my > .qna > section > article > table .answered {color: #01a900;}
+
+#my > .qna > section > article > table .answerRow {
+    display: none;
+    background-color: #fafafa;            
+}
+#my > .qna > section > article > table .answerRow td {}
+#my > .qna > section > article > table .answerRow div {
+    padding-left: 26px;
+    padding-top: 26px;
+    box-sizing: border-box;
+}
+#my > .qna > section > article > table .answerRow div.question {
+    background: url('/Kmarket2/images/my/my_ico_question.gif') no-repeat 0px 24px;
+}
+#my > .qna > section > article > table .answerRow div.answer {
+    background: url('/Kmarket2/images/my/my_ico_answer.gif') no-repeat 0px 24px;
+}
+#my > .qna > section > article > table .answerRow div > p {
+    margin-bottom: 10px;
+}
+#my > .qna > section > article > table .answerRow div > p.tit {
+    font-weight: bold;
+    color: #666;
+}
+#my > .qna > section > article > table .answerRow div > p.tit > .date {
+    float: right;
+    color: #888;
+}
+#my > .qna > section > article > table .answerRow div > p.content {}
+
+#my > .qna > section > article > .page {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#my > .qna > section > article > .page > a {
+    display: inline-block;
+    width: 19px;
+    height: 19px;            
+    box-sizing: border-box;
+    vertical-align: top;
+    color: #777;
+}
+#my > .qna > section > article > .page > a.on {
+    font-weight: bold;
+    color: #1179ea;
+}
+
+#my > .qna > section > article > .page > .prev {
+    background: url('/Kmarket2/images/my/my_sprites2.png') no-repeat 0 -300px;
+    font-size: 0;
+}
+
+#my > .qna > section > article > .page > .next {
+    background: url('/Kmarket2/images/my/my_sprites2.png') no-repeat -120px -300px;
+    font-size: 0;
+}

@@ -32,4 +32,8 @@ public class OrderVO {
 	
 	//추가필드
 	public OrderItemVO[] orderList;
+	
+	public String getOrdDate() {
+        return ordDate.substring(2,10);
+    }
 }
