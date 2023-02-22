@@ -16,10 +16,10 @@
           <h2>공지사항</h2>
           <ul>
            <li th:classappend="${cate1 == null} ? 'on' : 'off'"><a th:href="@{/cs/notice/list}">전체</a></li>
-           <li th:classappend="${cate1 == '10'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?noCate=10}">고객서비스</a></li>
-           <li th:classappend="${cate1 == '11'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?noCate=11}">안전거래</a></li>
-           <li th:classappend="${cate1 == '12'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?noCate=12}">위해상품</a></li>
-           <li th:classappend="${cate1 == '13'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?noCate=13}">이벤트당첨</a></li>
+           <li th:classappend="${cate1 == '10'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=10}">고객서비스</a></li>
+           <li th:classappend="${cate1 == '11'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=11}">안전거래</a></li>
+           <li th:classappend="${cate1 == '12'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=12}">위해상품</a></li>
+           <li th:classappend="${cate1 == '13'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=13}">이벤트당첨</a></li>
           </ul>
         </aside>
         <article>
