@@ -10,26 +10,12 @@
 	    <section class="notice">
 	      <h1>공지사항<a th:href="@{/cs/notice/list}">전체보기</a></h1>
 	      <ul>
+	       <th:block th:each="cl1:${CsNoticeList}">
 	        <li>
-	          <a th:href="@{/cs/notice/view}" class="title">[안내] 해외결제 사칭 문자 주의</a>
-	          <span class="date">22.10.31</span>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-	          <span class="date">22.10.31</span>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-	          <span class="date">22.10.31</span>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-	          <span class="date">22.10.31</span>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-	          <span class="date">22.10.31</span>
-	        </li>
+             <a th:href="@{/cs/notice/view(cate=${cl1.cate1},no=${cl1.no})}" class="title">[[${cl1.title}]]</a>
+             <span class="date" th:text="${#strings.substring(cl1.rdate, 2, 10)}"></span>
+            </li>
+            </th:block>
 	      </ul>
 	    </section>
 	  
@@ -38,25 +24,25 @@
 	      </h1>
 	      <ol>
 	        <li>
-	          <a href="#"><span>회원</span></a>
+	          <a th:href="@{/cs/faq/list?cate1=10}"><span>회원</span></a>
 	        </li>
 	        <li>
-	          <a href="#"><span>쿠폰/이벤트</span></a>
+	          <a th:href="@{/cs/faq/list?cate1=11}"><span>쿠폰/이벤트</span></a>
 	        </li>
 	        <li>
-	          <a href="#"><span>주문/결제</span></a>
+	          <a th:href="@{/cs/faq/list?cate1=12}"><span>주문/결제</span></a>
 	        </li>
 	        <li>
-	          <a href="#"><span>배송</span></a>
+	          <a th:href="@{/cs/faq/list?cate1=13}"><span>배송</span></a>
 	        </li>
 	        <li>
-	          <a href="#"><span>취소/반품/교환</span></a>
+	          <a th:href="@{/cs/faq/list?cate1=14}"><span>취소/반품/교환</span></a>
 	        </li>
 	        <li>
-	          <a href="#"><span>여행/숙박/항공</span></a>
+	          <a th:href="@{/cs/faq/list?cate1=15}"><span>여행/숙박/항공</span></a>
 	        </li>
 	        <li>
-	          <a href="#"><span>안전거래</span></a>
+	          <a th:href="@{/cs/faq/list?cate1=16}"><span>안전거래</span></a>
 	        </li>
 	      </ol>
 	    </section>
@@ -67,43 +53,17 @@
 	        <a th:href="@{/cs/qna/list(cate1=10)}">전체보기</a>
 	      </h1>
 	      <ul>
+	      	<th:block th:each="cl2:${CsQnaList}">
 	        <li>
-	          <a th:href="@{/cs/qna/list}" class="title">[회원] 개인회원과 법인회원에 차이가 있나요?</a>
-	          <p>
-	            <span class="uid">chh**</span>
-	            <span class="date">22.10.31</span>
-	          </p>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[쿠폰/이벤트] 스마일포인트는 어디에 사용하나요?</a>
-	          <p>
-	            <span class="uid">chh**</span>
-	            <span class="date">22.10.31</span>
-	          </p>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[주문/결제] 신용카드 결제 중 오류가 난 경우 어떻게 하나요?</a>
-	          <p>
-	            <span class="uid">chh**</span>
-	            <span class="date">22.10.31</span>
-	          </p>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[배송] 주문한 상품은 언제 배송되나요?</a>
-	          <p>
-	            <span class="uid">chh**</span>
-	            <span class="date">22.10.31</span>
-	          </p>
-	        </li>
-	        <li>
-	          <a href="#" class="title">[취소/반품/교환] 주문을 취소하고 싶어요.</a>
-	          <p>
-	            <span class="uid">chh**</span>
-	            <span class="date">22.10.31</span>
-	          </p>
-	        </li>
+	         <a th:href="@{/cs/qna/view(cate1=${cl2.cate1},no=${cl2.no})}" th:text="${'['+cl2.c2Name+'] '+cl2.title}"class="title"></a>
+                <p>
+                    <span class="uid">[[${#strings.substring(cl2.uid, 0, 4)}]]<th:block th:begin="5" end="${fn:length(cl2.uid)}" step="1">*</th:block></span>
+                    <span class="date">[[${#strings.substring(cl2.rdate, 2, 10)}]]</span>
+                </p>
+             </li>
+             </th:block>
 	      </ul>
-	      <a href="#" class="ask">문의글 작성 ></a>
+	      <a th:href="@{/cs/qna/write(cate1=10)}" class="ask">문의글 작성 ></a>
 	    </section>
 	
 	    <section class="tel">

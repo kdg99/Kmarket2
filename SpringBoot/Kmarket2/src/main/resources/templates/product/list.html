@@ -19,22 +19,22 @@
 
               <!-- 정렬 메뉴 -->
               <ul class="sort">
-                  <li><a th:href="@{/product/list(option='sold')}" 		th:classappend="${option == 'sold'} 	? 'on' : ''">판매많은순</a></li>
-                  <li><a th:href="@{/product/list(option='lowprice')}" 	th:classappend="${option == 'lowprice'} ? 'on' : ''">낮은가격순</a></li>
-                  <li><a th:href="@{/product/list(option='price')}" 	th:classappend="${option == 'price'} 	? 'on' : ''">높은가격순</a></li>
-                  <li><a th:href="@{/product/list(option='score')}" 	th:classappend="${option == 'score'} 	? 'on' : ''">평점높은순</a></li>
-                  <li><a th:href="@{/product/list(option='review')}" 	th:classappend="${option == 'review'} 	? 'on' : ''">후기많은순</a></li>
-                  <li><a th:href="@{/product/list(option='rdate')}" 	th:classappend="${option == 'rdate'} 	? 'on' : ''">최근등록순</a></li>
+                  <li><a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option='sold')}" 		th:classappend="${option == 'sold'} 	? 'on' : ''">판매많은순</a></li>
+                  <li><a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option='lowprice')}" 	th:classappend="${option == 'lowprice'} ? 'on' : ''">낮은가격순</a></li>
+                  <li><a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option='price')}" 	th:classappend="${option == 'price'} 	? 'on' : ''">높은가격순</a></li>
+                  <li><a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option='score')}" 	th:classappend="${option == 'score'} 	? 'on' : ''">평점높은순</a></li>
+                  <li><a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option='review')}" 	th:classappend="${option == 'review'} 	? 'on' : ''">후기많은순</a></li>
+                  <li><a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option='rdate')}" 	th:classappend="${option == 'rdate'} 	? 'on' : ''">최근등록순</a></li>
               </ul>
 
               <!-- 상품목록 -->              
               <table border="0">                  
                 <tbody>
                 <tr th:each="product:${products}">
-                  <td><a th:href="@{/product/view(no=${product.prodNo})}" class="thumb"><img th:src="@{/file/productImg/}+${product.thumb1}" alt="상품이미지"></a></td>
+                  <td><a th:href="@{/product/view(cate1=${pi.cate1}, cate2=${pi.cate2}, no=${product.prodNo})}" class="thumb"><img th:src="@{/file/productImg/}+${product.thumb1}" alt="상품이미지"></a></td>
                   <td>
                     <h3>
-                    	<a th:href="@{/product/view(no=${product.prodNo})}" class="name">[[${product.prodName}]]</a>
+                    	<a th:href="@{/product/view(cate1=${pi.cate1}, cate2=${pi.cate2}, no=${product.prodNo})}" class="name">[[${product.prodName}]]</a>
                     </h3>
                     <span class="desc">[[${product.descript}]]</span>
                   </td>
@@ -65,16 +65,16 @@
               <!-- 상품목록 페이지번호 -->
               <div class="paging">
                 <span class="prev" th:if="${pager.groupStart > 1}">
-                  <a th:href="@{/product/list(pg=${pager.groupStart-1})}">&lt;&nbsp;이전</a>
+                  <a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option=${pi.option}, pg=${pager.groupStart-1})}">&lt;&nbsp;이전</a>
                 </span>
                 
                 <span th:each="num:${#numbers.sequence(pager.groupStart, pager.groupEnd)}">
-                  <a th:href="@{/product/list(pg=${num})}"
+                  <a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option=${pi.option}, pg=${num})}"
                		 th:class="${num==pager.currentPage?'num current':'num'}">[[${num}]]</a>
                 </span>
                 
                 <span class="next" th:if="${pager.groupEnd < pager.totalPage}">
-                  <a th:href="@{/product/list(pg=${pager.groupEnd+1})}">다음&nbsp;&gt;</a>
+                  <a th:href="@{/product/list(cate1=${pi.cate1}, cate2=${pi.cate2}, option=${pi.option}, pg=${pager.groupEnd+1})}">다음&nbsp;&gt;</a>
                 </span>
               </div>
 

@@ -5,6 +5,23 @@
 
 <mapper namespace="kr.co.kmarket2.dao.CsDAO">
 
+	<!-- Index -->
+    <select id="selectCsNoticeList" resultType="Cs_NoticeVO">
+        select * from `km_cs_notice`
+        order by `no` desc
+        limit 5;
+    </select>
+
+    <select id="selectCsQnaList" resultType="Cs_QnaVO">
+        select a.*, c.c2Name from `km_cs_qna` as a 
+        join `km_cs_cate1` as b 
+        on a.cate1 = b.cate1 
+        join `km_cs_cate2` as c 
+        on b.cate1 = c.cate1 and a.cate2 = c.cate2 
+        order by `no` DESC
+		LIMIT 5 ;
+    </select>
+
 	<!-- Notice -->
 	<select id="selectNoticeArticlesAll" resultType="Cs_NoticeVO">
         select * from `km_cs_notice`
@@ -20,7 +37,16 @@
         order by `no` desc
         limit #{start}, 10;
     </select>
+    
+    <select id="selectNoticeArticle" resultType="Cs_NoticeVO">
+        select * from `km_cs_notice`
+        where `no`=#{no};
+    </select>
 
+	<select id="selectNoticeCountTotalAll" resultType="int">
+        select count(`no`) from `km_cs_notice`;
+    </select>
+    
     <select id="selectNoticeCountTotal" resultType="int">
         select count(`no`) from `km_cs_notice` where `cate1` = #{cate1};
     </select>
