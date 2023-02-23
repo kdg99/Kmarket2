@@ -40,7 +40,7 @@
 			$(window).scroll(function(){
 				var t = $(this).scrollTop();
 				
-				if(t > 620){		// 620 : top 에서 아래까지 620px
+				if(t > 620){		// 620 : top 에서 아래까지 620
 					best.css({
 						position:"fixed",
 						top:"50px",
@@ -52,12 +52,12 @@
 				}
 			});
 			
-			// 스크롤시 menu 따라오기
+			// 스크롤 시 menu 따라오기
 			var menu = $(".menu");
 			$(window).scroll(function(){
 				var t = $(this).scrollTop();
 				
-				if(t > 620){	// 620 : top 에서 아래까지 620px
+				if(t > 620){	// 620 : top 에서 아래까지 620
 					menu.css({
 						position:"fixed",
 						top:"0",
@@ -71,7 +71,8 @@
 		
 			// 스크롤 이동
 			$('.scrollBtnHit').on('click', function(e){
-				e.preventDefault();
+				e.preventDefault();		
+				// a 태그나 submit 태그는 누르게 되면 href 를 통해 이동하거나 창이 새로고침하여 실행되지만, preventDefault 를 통해 새로고침을 정지시켜줌
 				let location = document.querySelector(".hit").offsetTop;
 				
 				window.scrollTo({top:location, behavior:'smooth'});
