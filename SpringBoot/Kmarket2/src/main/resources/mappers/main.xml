@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kmarket2.dao.MainDAO">
+
+	<select id="selectProdSold" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` order by `sold` desc limit 5;
+	</select>
+
+	<select id="selectProdHit" resultType="ProductVO">
+		select * from `km_product` order by `hit` desc limit 8;
+	</select>
+
+	<select id="selectProdScore" resultType="ProductVO">
+		select * from `km_product` order by `score` desc limit 8;
+	</select>
+
+	<select id="selectProdNew" resultType="ProductVO">
+		select * from `km_product` order by `rdate` desc limit 8;
+	</select>
+
+	<select id="selectProdDiscount" resultType="ProductVO">
+		select * from `km_product` order by `discount` desc limit 8;
+	</select>
+
+
+</mapper>
