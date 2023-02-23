@@ -69,7 +69,15 @@
         ON b.cate1 = c.cate1 AND a.cate2 = c.cate2
         WHERE a.cate1 = c.cate1 AND a.cate2 = c.cate2;
     </select>
-
+    
+	<select id="selectCsFaqNo" resultType="Cs_FaqVO">
+        select a.*, b.c1Name, c.c2Name from `km_cs_faq` as a
+        join `km_cs_cate1` as b
+        on a.cate1 = b.cate1
+        join `km_cs_cate2` as c
+        on a.cate2 = c.cate2 and a.cate1 = c.cate1
+        where a.no = #{no};
+    </select>
 	
 	
 	<!-- qna -->

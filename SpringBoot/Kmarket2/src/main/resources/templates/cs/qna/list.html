@@ -29,9 +29,11 @@
             <h1 th:text="${ccv.c1Name}"></h1>
             <h2>[[${ccv.c1Name}]] 문의 내용입니다.</h2>
           </nav>
-          <table>
+         <table>
             <tr th:each="cate1s:${cate1s}">
               <td><a th:href="@{/cs/qna/view(cate1=${cate1},no=${cate1s.no})}" th:text="${'['+cate1s.c2Name+'] '+cate1s.title}"></a></td>
+              <td th:if="${cate1s.comment} eq null" class="answerIng">검토중</td>
+              <td th:unless="${cate1s.comment} eq null" class="answerComplete">답변완료</td>
               <td>[[${(cate1s.uid).substring(0, 4)}]]**</td>
               <td>[[${(cate1s.rdate).substring(2, 10)}]]</td>
             </tr>

@@ -15,51 +15,55 @@
        <aside>
          <h2>공지사항</h2>
          <ul>
-             <li th:classappend="${cate1 == null} ? 'on' : 'off'"><a th:href="@{/cs/notice/list}">전체</a></li>
-             <li th:classappend="${cate1 == '10'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=10}">고객서비스</a></li>
-             <li th:classappend="${cate1 == '11'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=11}">안전거래</a></li>
-             <li th:classappend="${cate1 == '12'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=12}">위해상품</a></li>
-             <li th:classappend="${cate1 == '13'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?cate=13}">이벤트당첨</a></li>
+             <li th:classappend="${cate1 eq null} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?group=notice}">전체</a></li>
+             <li th:classappend="${cate1 eq '10'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?group=notice&cate=10}">고객서비스</a></li>
+             <li th:classappend="${cate1 eq '11'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?group=notice&cate=11}">안전거래</a></li>
+             <li th:classappend="${cate1 eq '12'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?group=notice&cate=12}">위해상품</a></li>
+             <li th:classappend="${cate1 eq '13'} ? 'on' : 'off'"><a th:href="@{/cs/notice/list?group=notice&cate=13}">이벤트당첨</a></li>
          </ul>
        </aside>
        <article>
-         <nav th:if="${cate1 == null}">
+         <nav th:if="${cate1} eq null">
            <h1>전체</h1>
            <h2>공지사항 전체 내용입니다.</h2>
          </nav>
- 		 <nav th:if="${cate1 == '10'}">
+ 		 <nav th:if="${cate1} eq '10'">
              <h1>고객서비스</h1>
              <h2>고객서비스 공지사항 내용입니다.</h2>
          </nav>
-         <nav th:if="${cate1 == '11'}">
+         <nav th:if="${cate1} eq '11'">
              <h1>안전거래</h1>
              <h2>안전거래 공지사항 내용입니다.</h2>
          </nav>
-         <nav th:if="${cate1 == '12'}">
+         <nav th:if="${cate1} eq '12'">
              <h1>위해상품</h1>
              <h2>위해상품 공지사항 내용입니다.</h2>
          </nav>
-         <nav th:if="${cate1 == '13'}">
+         <nav th:if="${cate1} eq '13'">
              <h1>이벤트당첨</h1>
              <h2>이벤트당첨 공지사항 내용입니다.</h2>
          </nav>
-         
           <table>
            <tr th:each="arts:${NoticeArts}">
              <td><a th:href="@{/cs/notice/view(cate1=${cate1},no=${arts.no})}" th:text="${arts.title}"></a></td>
              <td>[[${(arts.rdate).substring(2, 10)}]]</td>
            </tr>
          </table>
-          <div class="page">
-		      <th:block th:if="${groups[0] > 1}">
-		          <a th:href="@{/cs/notice/list(cate=${cate1},pg=${groups[0]- 1})}" class="prev">이전</a>
-		      </th:block>
-		      <th:block th:each="num:${#numbers.sequence(groups[0], groups[1])}">
-		          <a th:href="@{/cs/notice/list(cate=${cate1},pg=${num})}" th:class="${num == currentPage ? 'on' : 'off'}">[[${num}]]</a>
-		      </th:block>
-		      <th:block th:if="${groups[1] < lastPage}">
-		          <a th:href="@{/cs/notice/list(cate=${cate1},pg=${groups[1] + 1})}" class="next">다음</a>
-		  </th:block>
+		  <div class="page">
+        	<th:block th:if="${groups[0] > 1}">
+            	<a th:href="@{/cs/notice/list(cate=${cate1},pg=${groups[0] - 1})}" class="prev">이전</a>
+            </th:block>
+            <th:block th:each="num: ${#numbers.sequence(groups[0], groups[1])}">
+            <th:block th:if="${cate1 eq null}">
+            	<a th:href="@{/cs/notice/list(pg=${num},group='notice')}" th:class="${num == currentPage ? 'on' : 'off'}">[[${num}]]</a>
+            </th:block>
+            <th:block th:unless="${cate1 eq null}">
+            	<a th:href="@{/cs/notice/list(pg=${num},cate=${cate1},group='notice')}" th:class="${num == currentPage ? 'on' : 'off'}">[[${num}]]</a>
+            </th:block>
+            </th:block>
+            <th:block th:if="${groups[1] < lastPage}">
+            <a th:href="@{/cs/notice/list(pg=${groups[1] + 1})}" class="next">다음</a>
+	      </th:block>
    		  </div>	
        </article>
      </section>

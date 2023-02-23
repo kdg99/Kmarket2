@@ -4,6 +4,7 @@
 내용 : Kmarket2 STS cs faq list
 -->
 <th:block th:insert="~{@{cs/_header.html}}"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/cs/cs.js}"></script>
 <section id="cs">
   <div class="faq">
@@ -29,19 +30,20 @@
           </th:block>
           <h2>가장 자주 묻는 질문입니다.</h2>
         </nav>
-       	 <th:block th:each="vo2:${vo2}">
-           <div>
-               <h3>[[${vo2.c2Name}]]</h3>
-	            <ul>
-                 <th:block th:each="vo, voStat : ${vo}">
-                   <th:block th:if="${vo.cate2 eq vo2.cate2} and ${vo.cate1 eq vo2.cate1}">
-                     <th:block th:with="count=${voStat.count + 1}">
-                       <li th:classappend="${count > 3} ? 'hide' : ''"><a th:href="@{/cs/faq/view(no=${vo.no},cate1=${vo.cate1})}"><span>Q.</span>[[${vo.title}]]</a></li>
-                    </th:block>
-                  </th:block>
+       	  <div th:each="vo2: ${vo2}">
+            <h3 th:text="${vo2.c2Name}"></h3>
+            <ul class="faq-list">
+              <th:block th:each="vo: ${vo}" th:if="${vo.cate1 eq vo2.cate1 and vo.cate2 eq vo2.cate2}">
+                 <li class="faq-arts">
+                  <a th:href="@{/cs/faq/view(no=${vo.no},cate1=${vo.cate1})}">
+                    <span>Q.</span>
+                    [[${vo.title}]]
+                  </a>
+                 </li>
+           </th:block>
            		  <li th:if="${count == 0}"><a>등록된 게시물이 없습니다.</a></li>
        	  		</th:block>
-             <li class="more" onclick="moreView(this)"><a href="#">더보기</a></li>
+            <li class="more"><a href="#">더보기</a></li>
           </ul>
         </div>
 	   </th:block>

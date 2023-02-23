@@ -36,7 +36,8 @@ public interface CsDAO {
 		/* Faq */
 		public List<Cs_Cate1VO> selectCs_cate1();
 		public List<Cs_Cate2VO> selectCs_cate2(Integer cate1);
-		public List<Cs_FaqVO> selectCsFaqList(Integer cate1, Integer cate2);
+		public List<Cs_FaqVO> selectCsFaqList(@Param("cate1") Integer cate1,@Param("cate2") Integer cate2);
+		public Cs_FaqVO selectCsFaqNo(@Param("no") Integer no);
 		
 		/* Qna */
 		public Cs_Cate1VO selectCate1(@Param("cate1")String cate1);
@@ -44,7 +45,5 @@ public interface CsDAO {
 		public Cs_QnaVO selectQnaArticle(@Param("no")int no);
 		public List<Cs_QnaVO> selectQnaArticles(@Param("start")int start,@Param("cate1") String cate1);
 		public Cs_QnaVO selectCsQnaNo(int no);
-		
-		
 		public int selectCountTotal(@Param("cate1")String cate1);
 }
