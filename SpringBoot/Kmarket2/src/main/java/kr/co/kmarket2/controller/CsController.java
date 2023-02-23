@@ -74,7 +74,7 @@ public class CsController {
           log.info("lastPage : " + lastPage);
           log.info("pageStartNum : " + pageStartNum);
           log.info("groups : " + groups);
-          log.info("cate : " + cate);
+          log.info("cate1 : " + cate1);
           */
           
           model.addAttribute("NoticeArts", noticeArticles);
@@ -91,8 +91,10 @@ public class CsController {
     public String NoticeView(Model model, String cate, Integer no){
         
     	Cs_NoticeVO vo = service.selectNoticeArticle(no);
-
+    	
+    	/*
         log.info("vo : " + vo);
+		*/
 
         model.addAttribute("vo", vo);
         model.addAttribute("cate1", cate);
@@ -128,7 +130,16 @@ public class CsController {
     }
     
     @GetMapping(value = {"cs/faq/view"})
-    public String FaqView(){
+    public String FaqView(Model model, Integer no){
+    	
+        List<Cs_Cate1VO> vo1 = service.selectCs_cate1();
+        Cs_FaqVO vo2 = service.selectCsFaqNo(no);
+
+        model.addAttribute("vo1", vo1);
+        model.addAttribute("vo2", vo2);
+        model.addAttribute("no", no);
+        model.addAttribute("cate1", vo2.getCate1());
+
         return "cs/faq/view";
     }
     

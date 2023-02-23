@@ -67,7 +67,9 @@ public class CsService {
 		public List<Cs_FaqVO> selectCsFaqList(Integer cate1, Integer cate2) {
 		        return dao.selectCsFaqList(cate1, cate2);
 		}
-		
+		public Cs_FaqVO selectCsFaqNo(Integer no) {
+	        return dao.selectCsFaqNo(no);
+	    }
 		/* Qna */
 		public Cs_Cate1VO selectCate1(String cate1){
 	        return dao.selectCate1(cate1);
