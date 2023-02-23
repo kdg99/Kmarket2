@@ -264,6 +264,10 @@ main > aside {
     overflow: hidden;
     text-align: center;
   }
+  main > section > section > article .thumb > img{
+	  width: 100%;
+	  background-size: cover;
+  }
   
   main > section > section > article h2 {
     font-size: 15px;
@@ -341,3 +345,5 @@ main > aside {
   }
   main > section > .discount {
   }
+  
+  

@@ -17,8 +17,8 @@
 							<li>
 								<a href="#">
 									<div class="thumb">
-										<i>1</i>
-										<img th:src="${sold.thumb1}" alt="item1">
+										<i th:text="${soldStat.count}"></i>
+										<img th:src="@{/file/productImg/}+${sold.thumb1}" alt="item1"/>
 									</div>
 									<h2>[[${sold.prodName}]]</h2>
 									<div class="org_price">
@@ -56,7 +56,7 @@
 						<article>
 							<a href="#">
 								<div class="thumb">
-									<img src="https://via.placeholder.com/230x230" alt="t1"/>
+									<img th:src="@{/file/productImg/}+${hit.thumb1}" alt="t1"/>
 								</div>
 								<h2>[[${hit.prodName}]]</h2>
 								<p>[[${hit.descript}]]</p>
@@ -85,7 +85,7 @@
 						<article>
 							<a href="#">
 								<div class="thumb">
-									<img src="https://via.placeholder.com/230x230" alt="t1"/>
+									<img th:src="@{/file/productImg/}+${score.thumb1}" alt="t1"/>
 								</div>
 									<h2>[[${score.prodName}]]</h2>
 									<p>[[${score.descript}]]</p>
@@ -113,7 +113,7 @@
 					<article th:each="i : ${news}">
 						<a href="#">
 							<div class="thumb">
-								<img src="https://via.placeholder.com/230x230" alt="t1"/>
+								<img th:src="@{/file/productImg/}+${i.thumb1}" alt="t1"/>
 							</div>
 								<h2 th:text="${i.prodName}"></h2>
 								<p>[[${i.descript}]]</p>
@@ -141,7 +141,7 @@
 						<article>
 							<a href="#">
 								<div class="thumb">
-									<img src="https://via.placeholder.com/230x230" alt="t1"/>
+									<img th:src="@{/file/productImg/}+${discount.thumb1}" alt="t1"/>
 								</div>
 								<h2>[[${discount.prodName}]]</h2>
 									<p>[[${discount.descript}]]</p>
