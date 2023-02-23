@@ -35,7 +35,6 @@ public class AdminController {
 	public String ProductList(Model model, String pg) {
     	
     	//페이징
-    	//페이징
 		Pager pager = null;
 		if(pg == null) { pager = new Pager(10, 1, service.selectCountProducts()); }
 		else { pager = new Pager(10, Integer.parseInt(pg), service.selectCountProducts()); }
@@ -48,8 +47,10 @@ public class AdminController {
     	return "admin/product/list";
 	}
     
+    /* product - regiater*/
     @GetMapping("admin/product/register")
     public String ProductRegister() {
+    	
     	return "admin/product/register";
     }
 }
