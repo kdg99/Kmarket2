@@ -50,8 +50,7 @@
 					<td class="prodName"><a
 						th:href="@{/product/list(prodNo=${product.prodNo})}"
 						th:text="|${product.prodName}|"></a></td>
-					<td>[[${product.price}]]</td>
-					<!-- 세자리 수 콤마 [[${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}]] -->
+					<td th:text="${#numbers.formatInteger(product.price, 0, 'COMMA')}"></td>
 					<td>[[${product.discount}]]%</td>
 					<td>[[${product.point}]]</td>
 					<td>[[${product.stock}]]</td>
