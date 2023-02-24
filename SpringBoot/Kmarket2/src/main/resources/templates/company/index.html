@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, user-scalable=no">
     <title>Kmarket Inc. 상상하는 모든것</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/main/favicon.ico}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" th:href="@{/css/company/style.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script src="./js/header.js"></script>
+    <script th:src="@{/js/company/header.js}"></script>
     <script>
         $(function() {        
             
@@ -61,7 +61,7 @@
     <div class="swiper">
         <header>
             <div>
-                <a href="./index.html"><img src="./img/company_header_logo1.png" width="200" alt="로고"></a>
+                <a th:href="@{/}"><img th:src="@{/images/company/company_header_logo1.png}" width="200" alt="로고"></a>
                 <ul>
                     <li><a href="./introduce.html">회사소개</a></li>
                     <li><a href="./notice.html">전자공시</a></li>
@@ -75,7 +75,7 @@
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide slide1">
-            <video src="./img/movie.mp4" loop autoplay muted></video>
+            <video th:src="@{/images/company/movie.mp4}" loop autoplay muted></video>
             <div class="scroll-icon">
                 <span></span>
                 <span></span>
