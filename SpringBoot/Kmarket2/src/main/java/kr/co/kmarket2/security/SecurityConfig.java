@@ -36,11 +36,8 @@ public class SecurityConfig{
 		
 		//인가(접근권한) 설정
 		http.authorizeHttpRequests()
-			.requestMatchers("/**").permitAll()
-			.requestMatchers("/member/**").permitAll()
-			.requestMatchers("/product/cart").authenticated()	// 로그인 해야만 접근가능
-			.requestMatchers("/product/**").permitAll()
-			.requestMatchers("/file/**").permitAll();			//외부링크 허용
+			.requestMatchers("/product/cart", "/my/**").authenticated()	// 로그인 해야만 접근가능
+			.requestMatchers("/", "/file/**", "/member/**", "/product/**", "/cs/**", "/company/**", "/termsPolicy/**").permitAll();
 		//http.authorizeHttpRequests().requestMatchers("/board/write").hasAnyRole("3", "4", "5");
 
 		
