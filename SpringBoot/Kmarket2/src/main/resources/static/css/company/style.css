@@ -108,7 +108,7 @@ p.desc {
 .slide4 .desc {left: 160px; bottom: 120px;}
 
 
-/* Swiper 관련 */
+/* Swiper */
 .swiper {
     position: fixed;
     width: 100%;
@@ -134,9 +134,9 @@ p.desc {
     min-width: 1600px;
     height: auto;            
 }
-.slide2 {background-image: url('../img/bg_system_sec.jpg');}
-.slide3 {background-image: url('../img/bg_product_sec.jpg');}
-.slide4 {background-image: url('../img/bg_service_sec.jpg');}
+.slide2 {background-image: url('/Kmarket2/images/company/bg_system_sec.jpg');}
+.slide3 {background-image: url('/Kmarket2/images/company/bg_product_sec.jpg');}
+.slide4 {background-image: url('/Kmarket2/images/company/bg_service_sec.jpg');}
 
 .scroll-icon {
     position: absolute;
@@ -180,7 +180,7 @@ p.desc {
     }
 }
 
-/* 서브공통 */
+/* main */
 #wrapper {}
 #wrapper > header {
     border-bottom: 1px solid rgb(255 255 255 / 10%);
@@ -243,9 +243,9 @@ main > .content > p {
     margin-bottom: 80px;
 }
 
-/* 회사소개 */
+/* introduce */
 #introduce > .cover {
-    background-image: url('../img/bg_company_introduce.jpg');
+    background-image: url('/Kmarket2/images/company/bg_company_introduce.jpg');
 }
 
 #introduce img {
@@ -254,9 +254,9 @@ main > .content > p {
     margin: 28px auto;
 }
 
-/* 전자공시 */
+/* notice */
 #notice > .cover {
-    background-image: url('../img/bg_company_notice.jpg');
+    background-image: url('/Kmarket2/images/company/bg_company_notice.jpg');
 }
 
 #notice img {
@@ -265,10 +265,10 @@ main > .content > p {
     margin: 28px auto;
 }
 
-/* 홍보채널 */
+/* promote */
 #promote {}
 #promote > .cover {
-    background-image: url('../img/bg_company_promote.jpg');
+    background-image: url('/Kmarket2/images/company/bg_company_promote.jpg');
 }
 #promote > .content {}
 #promote > .content > article {
@@ -292,9 +292,9 @@ main > .content > p {
     font-size: 18px;
 }
 
-/* 투명경영 */
+/* manage */
 #manage > .cover {
-    background-image: url('../img/bg_company_manage.jpg');
+    background-image: url('/Kmarket2/images/company/bg_company_manage.jpg');
 }
 
 #manage > .content > ul {

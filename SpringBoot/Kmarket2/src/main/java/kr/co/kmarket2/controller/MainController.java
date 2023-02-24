@@ -37,10 +37,16 @@ public class MainController {
     }
 	
 	
+	@GetMapping(value = {"termsPolicy/", "termsPolicy/index"})
+    public String termsIndex(Model model){
+		return "termsPolicy/index";
+	}
 	
 	
-	
-	
+	@GetMapping(value = {"company/", "company/index"})
+    public String companyIndex(Model model){
+		return "company/index";
+	}
 	
 	
 }
