@@ -26,6 +26,12 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	implementation group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	//implementation 'org.hibernate:hibernate-core:6.1.6.Final'
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+	//implementation 'org.hibernate:hibernate-entitymanager:5.6.15.Final'
+	// https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api
+	//implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
