@@ -4,19 +4,19 @@
                 <th:block th:insert="~{@{_cate.html}}"/>
             </aside>
             
-            <section class="buyer">
+            <section class="finance">
                 <nav>
                   <h1>KMARKET 서비스 이용약관</h1>
                   <ul>
                     <li><a th:href="@{/termsPolicy/buyer}">구매회원 약관</a></li>
                     <li><a th:href="@{/termsPolicy/seller}">판매회원 약관</a></li>                    
-                    <li><a th:href="@{/termsPolicy/finance}">전자금융거래 약관</a></li>
+                    <li class="on"><a th:href="@{/termsPolicy/finance}">전자금융거래 약관</a></li>
                     <li><a th:href="@{/termsPolicy/location}">위치정보이용 약관</a></li>                      
-                    <li class="on"><a th:href="@{/termsPolicy/privacy}">개인정보수집 방침</a></li>
+                    <li><a th:href="@{/termsPolicy/privacy}">개인정보수집 방침</a></li>
                   </ul>
                 </nav>
                 <article>
-                  <h2>개인정보처리방침</h2>
+                  <h2>판매회원 이용약관</h2>
                   <p>
                     <span class="tit">제1조(목적)</span>
                     <span class="content" th:text="${terms}"></span>
@@ -28,7 +28,7 @@
                       2. 회사는 약관의규제에관한법률, 전자문서 및 전자거래기본법, 전자서명법, 정보통신망이용촉진및정보보호등에관한법률, 전자상거래등에서의소비자보호에관한법률, 전자금융거래법 등 관련법을 위배하지 않는 범위에서 본 약관을 개정할 수 있습니다.<br>
                       3. 회사가 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행 약관과 함께 초기화면에 그 적용일자 14일 이전부터 적용일자 전일까지 공지합니다.다만, 변경 내용이 중대하거나 구매회원에게 불리한 경우에는 그 적용일자 30일 이전부터 적용일자 전일까지 공지하고 구매회원에게 개별 통지합니다.변경된 약관은 그 적용일자 이전으로 소급하여 적용되지 아니합니다.<br>
                     </span>
-                  </p>                  
+                  </p>
                   <p>
                     <span class="tit">제3조</span>
                     <span class="content">약관 내용 별도 제공</span>

@@ -63,14 +63,13 @@
             <div>
                 <a th:href="@{/}"><img th:src="@{/images/company/company_header_logo1.png}" width="200" alt="로고"></a>
                 <ul>
-                    <li><a href="./introduce.html">회사소개</a></li>
-                    <li><a href="./notice.html">전자공시</a></li>
-                    <li><a href="./promote.html">홍보채널</a></li>
-                    <li><a href="./manage.html">투명경영</a></li>
+                    <li><a th:href="@{/company/introduce}">회사소개</a></li>
+                    <li><a th:href="@{/company/notice}">전자공시</a></li>
+                    <li><a th:href="@{/company/promote}">홍보채널</a></li>
+                    <li><a th:href="@{/company/manage}">투명경영</a></li>
                 </ul>
             </div>
         </header>
-
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
           <!-- Slides -->
