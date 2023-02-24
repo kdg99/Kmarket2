@@ -15,7 +15,7 @@
 					<ol>
 						<th:block th:each="sold:${solds}">
 							<li>
-								<a href="#">
+								<a th:href="@{/product/view(cate1=${sold.cate1}, cate2=${sold.cate2}, no=${sold.prodNo})}">
 									<div class="thumb">
 										<i th:text="${soldStat.count}"></i>
 										<img th:src="@{/file/productImg/}+${sold.thumb1}" alt="item1"/>
@@ -30,6 +30,12 @@
 									<div class="dis_price">
 										<th:block th:if="${sold.discount == 0}">
 											<ins class="dis-price" data-th-text="${#numbers.formatInteger(sold.price, 3, 'COMMA')}">[[${sold.price}]]</ins>
+										</th:block>
+										<th:block th:if="${sold.discount != 0}">
+											<ins class="dis-price" data-th-text="${#numbers.formatInteger(sold.price*(100-sold.discount)/100, 3, 'COMMA')}"></ins>
+										</th:block>
+										<th:block th:if="${sold.delivery == 0}">
+											<span class="free">무료배송</span>
 										</th:block>
 									</div>
 								</a>
@@ -54,7 +60,7 @@
 					<h3><span>히트상품</span></h3>
 					<th:block th:each="hit:${hits}">
 						<article>
-							<a href="#">
+							<a th:href="@{/product/view(cate1=${hit.cate1}, cate2=${hit.cate2}, no=${hit.prodNo})}">
 								<div class="thumb">
 									<img th:src="@{/file/productImg/}+${hit.thumb1}" alt="t1"/>
 								</div>
@@ -70,7 +76,10 @@
 									<th:block th:if="${hit.discount == 0}">
 										<ins class="dis-price" data-th-text="${#numbers.formatInteger(hit.price, 3, 'COMMA')}">[[${hit.price}]]</ins>
 									</th:block>
-									<th:block th:if="${hit.discount == 0}">
+									<th:block th:if="${hit.discount != 0}">
+										<ins class="dis-price" data-th-text="${#numbers.formatInteger(hit.price*(100-hit.discount)/100, 3, 'COMMA')}"></ins>
+									</th:block>
+									<th:block th:if="${hit.delivery == 0}">
 										<span class="free">무료배송</span>
 									</th:block>
 								</div>
@@ -83,7 +92,7 @@
 					<h3><span>추천상품</span></h3>
 					<th:block th:each="score : ${scores}">
 						<article>
-							<a href="#">
+							<a th:href="@{/product/view(cate1=${score.cate1}, cate2=${score.cate2}, no=${score.prodNo})}">
 								<div class="thumb">
 									<img th:src="@{/file/productImg/}+${score.thumb1}" alt="t1"/>
 								</div>
@@ -99,7 +108,10 @@
 									<th:block th:if="${score.discount == 0}">
 										<ins class="dis-price" data-th-text="${#numbers.formatInteger(score.price, 3, 'COMMA')}">[[${score.price}]]</ins>
 									</th:block>
-									<th:block th:if="${score.discount == 0}">
+									<th:block th:if="${score.discount != 0}">
+										<ins class="dis-price" data-th-text="${#numbers.formatInteger(score.price*(100-score.discount)/100, 3, 'COMMA')}"></ins>
+									</th:block>
+									<th:block th:if="${score.delivery == 0}">
 										<span class="free">무료배송</span>
 									</th:block>
 								</div>
@@ -111,7 +123,7 @@
 				<section class="new">
 					<h3><span>최신상품</span></h3>
 					<article th:each="i : ${news}">
-						<a href="#">
+						<a th:href="@{/product/view(cate1=${i.cate1}, cate2=${i.cate2}, no=${i.prodNo})}">
 							<div class="thumb">
 								<img th:src="@{/file/productImg/}+${i.thumb1}" alt="t1"/>
 							</div>
@@ -127,7 +139,10 @@
 								<th:block th:if="${i.discount == 0}">
 									<ins class="dis-price" data-th-text="${#numbers.formatInteger(i.price, 3, 'COMMA')}">[[${i.price}]]</ins>
 								</th:block>
-								<th:block th:if="${i.discount == 0}">
+								<th:block th:if="${i.discount != 0}">
+									<ins class="dis-price" data-th-text="${#numbers.formatInteger(i.price*(100-i.discount)/100, 3, 'COMMA')}"></ins>
+								</th:block>
+								<th:block th:if="${i.delivery == 0}">
 									<span class="free">무료배송</span>
 								</th:block>
 							</div>
@@ -139,7 +154,7 @@
 					<h3><span>할인상품</span></h3>
 					 <th:block th:each="discount:${discounts}">
 						<article>
-							<a href="#">
+							<a th:href="@{/product/view(cate1=${discount.cate1}, cate2=${discount.cate2}, no=${discount.prodNo})}">
 								<div class="thumb">
 									<img th:src="@{/file/productImg/}+${discount.thumb1}" alt="t1"/>
 								</div>
@@ -153,9 +168,12 @@
 								</div>
 								<div class="dis_price">
 									<th:block th:if="${discount.discount == 0}">
-										<ins class="dis-price" data-th-text="${#numbers.formatInteger(discount.price, 3, 'COMMA')}">[[${discount.price}]]</ins>
+										<ins class="dis-price" data-th-text="${#numbers.formatInteger(discount.price, 0, 'COMMA')}">[[${discount.price}]]</ins>
 									</th:block>
-									<th:block th:if="${discount.discount == 0}">
+									<th:block th:if="${discount.discount != 0}">
+										<ins class="dis-price" data-th-text="${#numbers.formatInteger(discount.price*(100-discount.discount)/100, 0, 'COMMA')}"></ins>
+									</th:block>
+									<th:block th:if="${discount.delivery == 0}">
 										<span class="free">무료배송</span>
 									</th:block>
 								</div>
