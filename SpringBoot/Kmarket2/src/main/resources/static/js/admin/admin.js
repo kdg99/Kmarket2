@@ -1,3 +1,13 @@
+// aside 하위항목 숨기기 및 보이기 기능
+    $(function(){
+		$('#gnb > li > ol').hide();
+		
+        $('#gnb > li > a').click(function(){
+            $(this).siblings().slideToggle(300);
+        });
+    });
+
+// 상품 카테고리
 function optionChange(){
 
 	// category2에 속하는 것들 배열로 추가
@@ -58,3 +68,5 @@ function optionChange(){
 		$('.category2').append(option);
 	}
 }
+
+
