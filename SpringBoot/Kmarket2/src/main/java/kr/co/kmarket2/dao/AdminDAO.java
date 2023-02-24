@@ -21,5 +21,5 @@ public interface AdminDAO {
 	public int selectCountProducts();
 	
 	// 제품 등록
-	public void regiaterProduct(ProductVO vo);
+	public void insertProduct(ProductVO vo);
 }

@@ -12,7 +12,7 @@
                     </p>
                 </nav>
               <article>
-                <form th:action="@{/admin/product/register}">
+                <form th:action="@{/admin/product/register}" method="post" enctype="multipart/form-data">
                     <section>
                         <h4>상품분류</h4>
                         <p>
@@ -76,7 +76,7 @@
                         <td>할인율</td>
                         <td>
                             <span>0을 입력하면 할인율 없음</span>
-                            <input type="text" name="#"/>원
+                            <input type="text" name="#"/>%
                         </td>
                     </tr>
                     <tr>
