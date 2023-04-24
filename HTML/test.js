@@ -1,0 +1,1 @@
+document.getElementById('hey').parentNode.child
