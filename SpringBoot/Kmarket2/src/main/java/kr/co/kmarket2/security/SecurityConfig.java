@@ -37,6 +37,7 @@ public class SecurityConfig{
 		//인가(접근권한) 설정
 		http.authorizeHttpRequests()
 			.requestMatchers("/**").permitAll()
+			.requestMatchers("/admin/**").permitAll()
 			.requestMatchers("/member/**").permitAll()
 			.requestMatchers("/product/cart").authenticated()	// 로그인 해야만 접근가능
 			.requestMatchers("/product/**").permitAll()
