@@ -36,7 +36,7 @@ public class SecurityConfig{
 		
 		//인가(접근권한) 설정
 		http.authorizeHttpRequests()
-			.requestMatchers("/product/cart", "/my/**").authenticated()	// 로그인 해야만 접근가능
+			.requestMatchers("/product/cart", "/my/**", "/admin/**").authenticated()	// 로그인 해야만 접근가능
 			.requestMatchers("/", "/file/**", "/member/**", "/product/**", "/cs/**", "/company/**", "/termsPolicy/**").permitAll();
 		//http.authorizeHttpRequests().requestMatchers("/board/write").hasAnyRole("3", "4", "5");
 

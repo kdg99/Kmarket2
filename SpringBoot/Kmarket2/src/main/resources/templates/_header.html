@@ -124,16 +124,10 @@
 	                    <a th:href="@{/product/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
 	            	</p>
 	            	<!-- 권한이 1인(일반회원) 사용자가 보이는 블럭 -->
-                	<p sec:authorize="hasRole('1')">
+                	<p sec:authorize="isAuthenticated()">
+                		<a th:href="@{/admin}" class="logout" sec:authorize="hasRole('3')">관리자</a>
                 		<a th:href="@{/member/logout}" class="logout">로그아웃</a>
                 		<a th:href="@{/my/home}">마이페이지</a>
-                		<a th:href="@{/product/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
-                	</p>
-                	<!-- 권한이 3인(관리자) 사람만 보이는 블럭 -->
-                	<p sec:authorize="hasRole('3')">
-                		<a th:href="@{/admin/index}" class="logout">관리자</a>
-                		<a th:href="@{/member/logout}" class="logout">로그아웃</a>
-                		<a href="#">마이페이지</a>
                 		<a th:href="@{/product/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 	</p>
 	            </div>
